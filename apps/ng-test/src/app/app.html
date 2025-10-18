@@ -1,4 +1,4 @@
-<div class="app-container" [class.dark]="isDark()" [attr.data-theme]="theme()" [attr.data-layout]="layout()">
+<div class="app-container" [class.dark]="isDark()" [attr.data-theme]="theme()" [attr.data-layout]="layout()" [attr.data-density]="densityMode()">
   <!-- Top Toolbar -->
   <mat-toolbar class="app-toolbar">
     <div class="toolbar-left">
@@ -9,28 +9,6 @@
         <mat-icon class="logo-icon">dashboard</mat-icon>
         <span class="logo-text" [class.compact]="sidebarCompact()">Super AI Guide</span>
       </div>
-    </div>
-
-    <!-- Top-Level Navigation Menu (Fuse-style) -->
-    <div class="top-nav-menu">
-      @for (item of getAllNavigationItems(); track item.id) {
-        <a
-          mat-button
-          [routerLink]="item.route || '/'"
-          [routerLinkActive]="item.children ? '' : 'active-nav-link'"
-          [routerLinkActiveOptions]="{exact: item.route === '/'}"
-          class="nav-menu-item"
-          [class.has-children]="item.children"
-          [matTooltip]="item.tooltip">
-          <mat-icon>{{ item.icon }}</mat-icon>
-          <span class="nav-label">{{ item.title }}</span>
-          @if (item.badge) {
-            <mat-chip class="nav-badge" [class.badge-new]="item.badgeColor === 'accent'" [class.badge-coming]="item.badgeColor === 'warn'">
-              {{ item.badge }}
-            </mat-chip>
-          }
-        </a>
-      }
     </div>
 
     <div class="toolbar-spacer"></div>
@@ -84,9 +62,34 @@
       <span>System Theme</span>
     </button>
     <mat-divider></mat-divider>
+    <button mat-menu-item [matMenuTriggerFor]="densityMenu">
+      <mat-icon>format_line_spacing</mat-icon>
+      <span>Density</span>
+    </button>
+    <mat-divider></mat-divider>
     <button mat-menu-item (click)="toggleSidebarCompact()">
       <mat-icon>{{ sidebarCompact() ? 'unfold_more' : 'fold_more' }}</mat-icon>
       <span>{{ sidebarCompact() ? 'Expand Sidebar' : 'Compact Sidebar' }}</span>
+    </button>
+  </mat-menu>
+
+  <!-- Density Menu -->
+  <mat-menu #densityMenu="matMenu">
+    <button mat-menu-item (click)="setDensity('default')" [class.active]="densityMode() === 'default'">
+      <mat-icon>{{ densityMode() === 'default' ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+      <span>Default</span>
+    </button>
+    <button mat-menu-item (click)="setDensity('comfortable')" [class.active]="densityMode() === 'comfortable'">
+      <mat-icon>{{ densityMode() === 'comfortable' ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+      <span>Comfortable</span>
+    </button>
+    <button mat-menu-item (click)="setDensity('compact')" [class.active]="densityMode() === 'compact'">
+      <mat-icon>{{ densityMode() === 'compact' ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+      <span>Compact</span>
+    </button>
+    <button mat-menu-item (click)="setDensity('super-compact')" [class.active]="densityMode() === 'super-compact'">
+      <mat-icon>{{ densityMode() === 'super-compact' ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+      <span>Super Compact</span>
     </button>
   </mat-menu>
 

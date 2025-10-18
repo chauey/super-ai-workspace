@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { angularRoutes } from './angular.routes';
+import { AngularShellComponent } from './angular-shell.component';
 
 /**
  * Angular Feature Module Configuration
@@ -7,6 +8,11 @@ import { angularRoutes } from './angular.routes';
  * This is the modern Angular 17+ way to create feature modules.
  * Instead of NgModules, we use route configuration objects that can be
  * easily imported and used in the main application.
+ *
+ * The Angular feature uses a shell component that provides:
+ * - Feature-specific header with navigation
+ * - Right sidebar for quick navigation
+ * - Horizontal category navigation
  *
  * Usage in main app.routes.ts:
  * import { angularFeatureRoutes } from './features/angular/angular-feature.config';
@@ -17,6 +23,7 @@ import { angularRoutes } from './angular.routes';
 export const angularFeatureRoutes: Route[] = [
   {
     path: '',
+    component: AngularShellComponent,
     children: angularRoutes
   }
 ];

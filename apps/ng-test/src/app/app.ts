@@ -1,4 +1,4 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ThemeService, Theme, Layout } from './core/services/theme.service';
 import { NavigationService } from './core/navigation/navigation.service';
+import { DensityStore, DensityMode } from './store/density/density.store';
 
 @Component({
   selector: 'app-root',
@@ -46,15 +47,18 @@ import { NavigationService } from './core/navigation/navigation.service';
 })
 export class App {
   protected readonly title = signal('ng-test');
+  
+  // Services
+  private themeService = inject(ThemeService);
+  public navigationService = inject(NavigationService);
+  readonly densityStore = inject(DensityStore);
 
   // Computed values
   sidebarMode = computed(() => this.sidebarCompact() ? 'over' : 'side');
   sidebarWidth = computed(() => this.sidebarCompact() ? '64px' : '280px');
 
-  constructor(
-    private themeService: ThemeService,
-    public navigationService: NavigationService
-  ) {}
+  // Density mode from store
+  densityMode = this.densityStore.mode;
 
   // Theme and layout state
   get theme() { return this.themeService.theme; }
@@ -68,15 +72,6 @@ export class App {
   get sidebarCompact() { return this.navigationService.sidebarCompact; }
   get navigationItems() { return this.navigationService.navigationItems; }
 
-  // Get all navigation items for top menu (Fuse-style)
-  getAllNavigationItems() {
-    return this.navigationService.navigationItems();
-  }
-
-  // Get top-level navigation items (items with routes, no children)
-  getTopLevelItems() {
-    return this.navigationService.navigationItems().filter(item => item.route && !item.children);
-  }
 
   // Theme methods
   setTheme(theme: Theme): void {
@@ -114,5 +109,10 @@ export class App {
 
   isPanelExpanded(panelId: string): boolean {
     return this.navigationService.isPanelExpanded(panelId);
+  }
+
+  // Density methods
+  setDensity(mode: DensityMode): void {
+    this.densityStore.setMode(mode);
   }
 }

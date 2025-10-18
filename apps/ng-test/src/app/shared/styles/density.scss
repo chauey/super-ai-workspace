@@ -1,0 +1,185 @@
+/* Density System - Spacing and sizing variables */
+
+:root {
+  /* Default Density */
+  --density-spacing-xs: 4px;
+  --density-spacing-sm: 8px;
+  --density-spacing-md: 16px;
+  --density-spacing-lg: 24px;
+  --density-spacing-xl: 32px;
+  --density-spacing-xxl: 48px;
+
+  --density-padding-xs: 4px;
+  --density-padding-sm: 8px;
+  --density-padding-md: 16px;
+  --density-padding-lg: 24px;
+
+  --density-font-size-xs: 0.75rem;
+  --density-font-size-sm: 0.875rem;
+  --density-font-size-md: 1rem;
+  --density-font-size-lg: 1.125rem;
+  --density-font-size-xl: 1.25rem;
+  --density-font-size-xxl: 1.5rem;
+  --density-font-size-xxxl: 2rem;
+
+  --density-line-height: 1.5;
+  --density-card-padding: 24px;
+  --density-button-height: 40px;
+  --density-input-height: 56px;
+  --density-icon-size: 24px;
+}
+
+/* Comfortable Density - Slightly more spacious */
+[data-density="comfortable"] {
+  --density-spacing-xs: 6px;
+  --density-spacing-sm: 12px;
+  --density-spacing-md: 20px;
+  --density-spacing-lg: 28px;
+  --density-spacing-xl: 36px;
+  --density-spacing-xxl: 56px;
+
+  --density-padding-xs: 6px;
+  --density-padding-sm: 12px;
+  --density-padding-md: 20px;
+  --density-padding-lg: 28px;
+
+  --density-line-height: 1.6;
+  --density-card-padding: 28px;
+  --density-button-height: 44px;
+  --density-input-height: 60px;
+  --density-icon-size: 26px;
+}
+
+/* Compact Density - Tighter spacing */
+[data-density="compact"] {
+  --density-spacing-xs: 2px;
+  --density-spacing-sm: 4px;
+  --density-spacing-md: 8px;
+  --density-spacing-lg: 12px;
+  --density-spacing-xl: 16px;
+  --density-spacing-xxl: 24px;
+
+  --density-padding-xs: 2px;
+  --density-padding-sm: 4px;
+  --density-padding-md: 8px;
+  --density-padding-lg: 12px;
+
+  --density-font-size-xs: 0.7rem;
+  --density-font-size-sm: 0.8rem;
+  --density-font-size-md: 0.9rem;
+  --density-font-size-lg: 1rem;
+  --density-font-size-xl: 1.1rem;
+  --density-font-size-xxl: 1.3rem;
+  --density-font-size-xxxl: 1.7rem;
+
+  --density-line-height: 1.4;
+  --density-card-padding: 12px;
+  --density-button-height: 32px;
+  --density-input-height: 44px;
+  --density-icon-size: 20px;
+}
+
+/* Super Compact Density - Very tight */
+[data-density="super-compact"] {
+  --density-spacing-xs: 1px;
+  --density-spacing-sm: 2px;
+  --density-spacing-md: 4px;
+  --density-spacing-lg: 8px;
+  --density-spacing-xl: 12px;
+  --density-spacing-xxl: 16px;
+
+  --density-padding-xs: 1px;
+  --density-padding-sm: 2px;
+  --density-padding-md: 4px;
+  --density-padding-lg: 8px;
+
+  --density-font-size-xs: 0.65rem;
+  --density-font-size-sm: 0.75rem;
+  --density-font-size-md: 0.85rem;
+  --density-font-size-lg: 0.95rem;
+  --density-font-size-xl: 1.05rem;
+  --density-font-size-xxl: 1.2rem;
+  --density-font-size-xxxl: 1.5rem;
+
+  --density-line-height: 1.3;
+  --density-card-padding: 8px;
+  --density-button-height: 28px;
+  --density-input-height: 36px;
+  --density-icon-size: 18px;
+}
+
+/* Apply density to common components */
+.mat-mdc-card {
+  padding: var(--density-card-padding) !important;
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-flat-button,
+.mat-mdc-stroked-button {
+  min-height: var(--density-button-height) !important;
+  padding: 0 var(--density-padding-md) !important;
+  font-size: var(--density-font-size-sm) !important;
+  line-height: var(--density-line-height) !important;
+}
+
+.mat-mdc-form-field {
+  font-size: var(--density-font-size-md) !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  min-height: var(--density-input-height) !important;
+}
+
+h1, .header-title {
+  font-size: var(--density-font-size-xxxl) !important;
+  line-height: var(--density-line-height) !important;
+  margin: var(--density-spacing-sm) 0 !important;
+}
+
+h2 {
+  font-size: var(--density-font-size-xxl) !important;
+  line-height: var(--density-line-height) !important;
+  margin: var(--density-spacing-md) 0 var(--density-spacing-sm) 0 !important;
+}
+
+h3 {
+  font-size: var(--density-font-size-xl) !important;
+  line-height: var(--density-line-height) !important;
+  margin: var(--density-spacing-sm) 0 !important;
+}
+
+h4 {
+  font-size: var(--density-font-size-lg) !important;
+  line-height: var(--density-line-height) !important;
+  margin: var(--density-spacing-xs) 0 !important;
+}
+
+p {
+  font-size: var(--density-font-size-md) !important;
+  line-height: var(--density-line-height) !important;
+  margin: var(--density-spacing-sm) 0 !important;
+}
+
+.mat-icon {
+  font-size: var(--density-icon-size) !important;
+  width: var(--density-icon-size) !important;
+  height: var(--density-icon-size) !important;
+}
+
+/* Density utilities */
+.density-padding-xs { padding: var(--density-padding-xs) !important; }
+.density-padding-sm { padding: var(--density-padding-sm) !important; }
+.density-padding-md { padding: var(--density-padding-md) !important; }
+.density-padding-lg { padding: var(--density-padding-lg) !important; }
+
+.density-margin-xs { margin: var(--density-spacing-xs) !important; }
+.density-margin-sm { margin: var(--density-spacing-sm) !important; }
+.density-margin-md { margin: var(--density-spacing-md) !important; }
+.density-margin-lg { margin: var(--density-spacing-lg) !important; }
+
+.density-gap-xs { gap: var(--density-spacing-xs) !important; }
+.density-gap-sm { gap: var(--density-spacing-sm) !important; }
+.density-gap-md { gap: var(--density-spacing-md) !important; }
+.density-gap-lg { gap: var(--density-spacing-lg) !important; }
+

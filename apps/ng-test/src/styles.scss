@@ -13,6 +13,7 @@
 /* Import shared styles - using @import for compatibility with @tailwind */
 @import './app/shared/styles/mixins';
 @import './app/shared/styles/utilities';
+@import './app/shared/styles/density';
 
 /* CSS Variables for Theming - MUST BE IN GLOBAL STYLES */
 :root {

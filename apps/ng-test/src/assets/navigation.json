@@ -246,18 +246,14 @@
           "title": "React",
           "icon": "code",
           "route": "/react",
-          "tooltip": "React tutorials and examples",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "React tutorials and examples"
         },
         {
           "id": "vue",
           "title": "Vue.js",
           "icon": "code",
           "route": "/vue",
-          "tooltip": "Vue.js tutorials and examples",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Vue.js tutorials and examples"
         }
       ]
     },
@@ -273,17 +269,13 @@
           "icon": "terminal",
           "route": "/dotnet",
           "tooltip": "C#, ASP.NET Core, and .NET ecosystem",
-          "badge": "Coming Soon",
-          "badgeColor": "warn",
           "children": [
             {
               "id": "abp-framework",
               "title": "ABP Framework",
               "icon": "view_module",
               "route": "/backend/dotnet/abp-framework",
-              "tooltip": "ABP Framework - Open-source web application framework for ASP.NET Core",
-              "badge": "Coming Soon",
-              "badgeColor": "warn"
+              "tooltip": "ABP Framework - Open-source web application framework for ASP.NET Core"
             }
           ]
         },
@@ -292,18 +284,14 @@
           "title": "Node.js",
           "icon": "code",
           "route": "/nodejs",
-          "tooltip": "Node.js and Express",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Node.js and Express"
         },
         {
           "id": "python",
           "title": "Python",
           "icon": "code",
           "route": "/python",
-          "tooltip": "Python, Django, and FastAPI",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Python, Django, and FastAPI"
         }
       ]
     },
@@ -318,36 +306,28 @@
           "title": "AI-900",
           "icon": "psychology",
           "route": "/ai-900",
-          "tooltip": "Azure AI Fundamentals certification",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Azure AI Fundamentals certification"
         },
         {
           "id": "az-900",
           "title": "AZ-900",
           "icon": "cloud",
           "route": "/az-900",
-          "tooltip": "Azure Fundamentals certification",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Azure Fundamentals certification"
         },
         {
           "id": "az-204",
           "title": "AZ-204",
           "icon": "code",
           "route": "/az-204",
-          "tooltip": "Azure Developer Associate",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Azure Developer Associate"
         },
         {
           "id": "az-400",
           "title": "AZ-400",
           "icon": "settings",
           "route": "/az-400",
-          "tooltip": "Azure DevOps Engineer Expert",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Azure DevOps Engineer Expert"
         }
       ]
     },
@@ -369,9 +349,7 @@
               "title": "NSwag",
               "icon": "code",
               "route": "/api/swagger/nswag",
-              "tooltip": "NSwag - Swagger/OpenAPI toolchain for .NET",
-              "badge": "Coming Soon",
-              "badgeColor": "warn"
+              "tooltip": "NSwag - Swagger/OpenAPI toolchain for .NET"
             }
           ]
         }
@@ -391,6 +369,15 @@
           "icon": "grid_view",
           "route": "/devops/nx",
           "tooltip": "Nx - Smart monorepos for modern development",
+          "badge": "New",
+          "badgeColor": "accent"
+        },
+        {
+          "id": "storybook",
+          "title": "Storybook",
+          "icon": "menu_book",
+          "route": "/devops/storybook",
+          "tooltip": "Storybook - UI component development and documentation",
           "badge": "New",
           "badgeColor": "accent"
         }
@@ -433,54 +420,42 @@
           "title": "Figma MCP",
           "icon": "design_services",
           "route": "/mcp/figma",
-          "tooltip": "Figma Model Context Protocol server",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Figma Model Context Protocol server"
         },
         {
           "id": "mcp-stripe",
           "title": "Stripe MCP",
           "icon": "payment",
           "route": "/mcp/stripe",
-          "tooltip": "Stripe Model Context Protocol server",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Stripe Model Context Protocol server"
         },
         {
           "id": "mcp-supabase",
           "title": "Supabase MCP",
           "icon": "storage",
           "route": "/mcp/supabase",
-          "tooltip": "Supabase Model Context Protocol server",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Supabase Model Context Protocol server"
         },
         {
           "id": "mcp-sentry",
           "title": "Sentry MCP",
           "icon": "monitor_heart",
           "route": "/mcp/sentry",
-          "tooltip": "Sentry Model Context Protocol server",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Sentry Model Context Protocol server"
         },
         {
           "id": "mcp-frameworks",
           "title": "MCP Frameworks",
           "icon": "widgets",
           "route": "/mcp/frameworks",
-          "tooltip": "Model Context Protocol frameworks and SDKs",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Model Context Protocol frameworks and SDKs"
         },
         {
           "id": "mcp-directories",
           "title": "MCP Directories",
           "icon": "folder_open",
           "route": "/mcp/directories",
-          "tooltip": "MCP server directories and registries",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "MCP server directories and registries"
         }
       ]
     },
@@ -514,56 +489,159 @@
           "title": "OpenAI Agents",
           "icon": "psychology",
           "route": "/ai-agents/openai",
-          "tooltip": "OpenAI Assistants and Agents",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "OpenAI Assistants and Agents"
         },
         {
           "id": "semantic-kernel",
           "title": "Semantic Kernel",
           "icon": "model_training",
           "route": "/ai-agents/semantic-kernel",
-          "tooltip": "Microsoft Semantic Kernel",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Microsoft Semantic Kernel"
         },
         {
           "id": "langchain",
           "title": "LangChain",
           "icon": "link",
           "route": "/ai-agents/langchain",
-          "tooltip": "LangChain framework",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "LangChain framework"
         },
         {
           "id": "autogen",
           "title": "AutoGen",
           "icon": "auto_awesome",
           "route": "/ai-agents/autogen",
-          "tooltip": "Microsoft AutoGen",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "Microsoft AutoGen"
         },
         {
           "id": "n8n",
           "title": "n8n",
           "icon": "account_tree",
           "route": "/ai-agents/n8n",
-          "tooltip": "n8n workflow automation",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "n8n workflow automation"
         },
         {
           "id": "llamaindex",
           "title": "LlamaIndex",
           "icon": "storage",
           "route": "/ai-agents/llamaindex",
-          "tooltip": "LlamaIndex data framework",
-          "badge": "Coming Soon",
-          "badgeColor": "warn"
+          "tooltip": "LlamaIndex data framework"
         }
       ]
+    },
+    {
+      "id": "ai-tools",
+      "title": "AI Tools",
+      "icon": "auto_awesome",
+      "tooltip": "AI-powered tools and assistants",
+      "badge": "New",
+      "badgeColor": "accent",
+      "children": [
+        {
+          "id": "ai-coding",
+          "title": "AI for Coding",
+          "icon": "code",
+          "tooltip": "AI-powered coding assistants",
+          "children": [
+            {
+              "id": "cursor",
+              "title": "Cursor",
+              "icon": "edit_note",
+              "route": "/ai-tools/coding/cursor",
+              "tooltip": "Cursor - AI-first code editor"
+            },
+            {
+              "id": "github-copilot",
+              "title": "GitHub Copilot",
+              "icon": "co_present",
+              "route": "/ai-tools/coding/github-copilot",
+              "tooltip": "GitHub Copilot - AI pair programmer"
+            },
+            {
+              "id": "windsurf",
+              "title": "Windsurf",
+              "icon": "sailing",
+              "route": "/ai-tools/coding/windsurf",
+              "tooltip": "Windsurf - AI coding assistant"
+            }
+          ]
+        },
+        {
+          "id": "ai-general",
+          "title": "General AI",
+          "icon": "chat",
+          "tooltip": "General purpose AI assistants",
+          "children": [
+            {
+              "id": "chatgpt",
+              "title": "ChatGPT",
+              "icon": "chat_bubble",
+              "route": "/ai-tools/general/chatgpt",
+              "tooltip": "ChatGPT - OpenAI's conversational AI"
+            },
+            {
+              "id": "gemini",
+              "title": "Gemini",
+              "icon": "stars",
+              "route": "/ai-tools/general/gemini",
+              "tooltip": "Gemini - Google's multimodal AI"
+            },
+            {
+              "id": "grok",
+              "title": "Grok",
+              "icon": "auto_stories",
+              "route": "/ai-tools/general/grok",
+              "tooltip": "Grok - X's AI assistant"
+            },
+            {
+              "id": "claude",
+              "title": "Claude",
+              "icon": "psychology_alt",
+              "route": "/ai-tools/general/claude",
+              "tooltip": "Claude - Anthropic's AI assistant"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saas-apps",
+      "title": "SaaS Apps",
+      "icon": "web_asset",
+      "tooltip": "Software as a Service applications",
+      "badge": "New",
+      "badgeColor": "accent",
+      "children": [
+        {
+          "id": "calendar",
+          "title": "Calendar",
+          "icon": "calendar_month",
+          "route": "/saas/calendar",
+          "tooltip": "Smart calendar application with scheduling"
+        },
+        {
+          "id": "task-management",
+          "title": "Task Management",
+          "icon": "task_alt",
+          "route": "/saas/task-management",
+          "tooltip": "Gamified task and project management"
+        },
+        {
+          "id": "cert-test",
+          "title": "Certification Test",
+          "icon": "quiz",
+          "route": "/saas/cert-test",
+          "tooltip": "Practice tests for certifications and job interviews",
+          "badge": "New",
+          "badgeColor": "accent"
+        }
+      ]
+    },
+    {
+      "id": "resume",
+      "title": "Resume",
+      "icon": "description",
+      "route": "/resume",
+      "tooltip": "Professional resume with download options (PDF, Word)"
     }
   ]
 }

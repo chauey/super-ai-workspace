@@ -41,6 +41,18 @@ export const routes: Routes = [
     loadChildren: () => import('./features/docs/docs.routes').then(m => m.docsRoutes)
   },
 
+  // Resume
+  {
+    path: 'resume',
+    loadChildren: () => import('./features/resume/resume.routes').then(m => m.resumeRoutes)
+  },
+
+  // Certification Test
+  {
+    path: 'saas/cert-test',
+    loadChildren: () => import('./features/cert-test/cert-test.routes').then(m => m.certTestRoutes)
+  },
+
   // // Legacy routes for backward compatibility (redirect to new /angular/ paths)
   // { path: 'core-concepts/empty', redirectTo: '/angular/core-concepts/empty' },
   // { path: 'core-concepts/control-flow', redirectTo: '/angular/core-concepts/control-flow' },
