@@ -1,0 +1,218 @@
+<div class="app-container" [class.dark]="isDark()" [attr.data-theme]="theme()" [attr.data-layout]="layout()">
+  <!-- Top Toolbar -->
+  <mat-toolbar class="app-toolbar">
+    <div class="toolbar-left">
+      <button mat-icon-button (click)="toggleSidebar()" class="sidebar-toggle">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="app-logo">
+        <mat-icon class="logo-icon">dashboard</mat-icon>
+        <span class="logo-text" [class.compact]="sidebarCompact()">Angular, .NET, AI Playground</span>
+      </div>
+    </div>
+
+    <div class="toolbar-spacer"></div>
+
+    <div class="toolbar-actions">
+      <!-- Layout Toggle -->
+      <button mat-icon-button [matMenuTriggerFor]="layoutMenu" matTooltip="Layout Options">
+        <mat-icon>view_quilt</mat-icon>
+      </button>
+
+      <!-- Theme Toggle -->
+      <button mat-icon-button (click)="toggleTheme()" [matTooltip]="theme() === 'system' ? 'System Theme' : (isDark() ? 'Switch to Light' : 'Switch to Dark')">
+        <mat-icon>{{ isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+
+      <!-- Settings Menu -->
+      <button mat-icon-button [matMenuTriggerFor]="settingsMenu" matTooltip="Settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <!-- Layout Menu -->
+  <mat-menu #layoutMenu="matMenu">
+    <button mat-menu-item (click)="setLayout('default')" [class.active]="layout() === 'default'">
+      <mat-icon>view_quilt</mat-icon>
+      <span>Default Layout</span>
+    </button>
+    <button mat-menu-item (click)="setLayout('compact')" [class.active]="layout() === 'compact'">
+      <mat-icon>view_compact</mat-icon>
+      <span>Compact Layout</span>
+    </button>
+    <button mat-menu-item (click)="setLayout('minimal')" [class.active]="layout() === 'minimal'">
+      <mat-icon>view_module</mat-icon>
+      <span>Minimal Layout</span>
+    </button>
+  </mat-menu>
+
+  <!-- Settings Menu -->
+  <mat-menu #settingsMenu="matMenu">
+    <button mat-menu-item (click)="setTheme('light')" [class.active]="theme() === 'light'">
+      <mat-icon>light_mode</mat-icon>
+      <span>Light Theme</span>
+    </button>
+    <button mat-menu-item (click)="setTheme('dark')" [class.active]="theme() === 'dark'">
+      <mat-icon>dark_mode</mat-icon>
+      <span>Dark Theme</span>
+    </button>
+    <button mat-menu-item (click)="setTheme('system')" [class.active]="theme() === 'system'">
+      <mat-icon>brightness_auto</mat-icon>
+      <span>System Theme</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="toggleSidebarCompact()">
+      <mat-icon>{{ sidebarCompact() ? 'unfold_more' : 'fold_more' }}</mat-icon>
+      <span>{{ sidebarCompact() ? 'Expand Sidebar' : 'Compact Sidebar' }}</span>
+    </button>
+  </mat-menu>
+
+  <!-- Main Layout -->
+  <mat-sidenav-container class="app-sidenav-container">
+    <!-- Sidebar -->
+    <mat-sidenav
+      #sidenav
+      [mode]="sidebarMode()"
+      [opened]="sidebarOpen()"
+      [style.width]="sidebarWidth()"
+      class="app-sidenav"
+      [class.compact]="sidebarCompact()">
+
+      <!-- Sidebar Header -->
+      <div class="sidebar-header" *ngIf="!sidebarCompact()">
+        <div class="sidebar-title">
+          <mat-icon>navigation</mat-icon>
+          <span>Navigation</span>
+        </div>
+        <div class="sidebar-actions">
+          <button mat-icon-button (click)="expandAll()" matTooltip="Expand All" size="small">
+            <mat-icon>expand_more</mat-icon>
+          </button>
+          <button mat-icon-button (click)="collapseAll()" matTooltip="Collapse All" size="small">
+            <mat-icon>expand_less</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Items -->
+      <div class="navigation-content">
+        <!-- Loading State -->
+        @if (navigationService.loading()) {
+          <div class="nav-loading">
+            <mat-spinner diameter="24"></mat-spinner>
+            <span>Loading navigation...</span>
+          </div>
+        }
+
+        <!-- Navigation Items -->
+        @if (!navigationService.loading() && navigationService.hasNavigationItems()) {
+          @for (item of navigationService.navigationItems(); track item.id) {
+            <div class="nav-section">
+              <!-- Section Header -->
+              <div
+                class="nav-section-header"
+                (click)="togglePanel(item.id)"
+                [class.expanded]="isPanelExpanded(item.id)"
+                [matTooltip]="sidebarCompact() ? item.tooltip : ''"
+                matTooltipPosition="right">
+                <div class="nav-section-title">
+                  <mat-icon>{{ item.icon }}</mat-icon>
+                  <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
+                </div>
+                <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
+                  {{ isPanelExpanded(item.id) ? 'expand_less' : 'expand_more' }}
+                </mat-icon>
+              </div>
+
+              <!-- Section Items -->
+              <div
+                class="nav-section-items"
+                [class.expanded]="isPanelExpanded(item.id)"
+                *ngIf="item.children">
+                @for (child of item.children; track child.id) {
+                  <a
+                    mat-list-item
+                    [routerLink]="child.route"
+                    routerLinkActive="active"
+                    class="nav-item"
+                    [matTooltip]="sidebarCompact() ? (child.tooltip || child.title) : ''"
+                    matTooltipPosition="right">
+                    <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
+                    <span matListItemTitle *ngIf="!sidebarCompact()">{{ child.title }}</span>
+                    @if (child.badge && !sidebarCompact()) {
+                      <mat-chip matListItemMeta [color]="child.badgeColor || 'primary'">
+                        {{ child.badge }}
+                      </mat-chip>
+                    }
+                  </a>
+                }
+              </div>
+            </div>
+          }
+        }
+
+        <!-- No Navigation Items -->
+        @if (!navigationService.loading() && !navigationService.hasNavigationItems()) {
+          <div class="nav-empty">
+            <mat-icon>navigation</mat-icon>
+            <span>No navigation items available</span>
+          </div>
+        }
+      </div>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content class="app-content">
+      <div class="content-wrapper">
+        <!-- Quick Access Cards (only show on home page) -->
+        <div class="quick-access" *ngIf="!sidebarCompact()">
+          <div class="quick-access-grid">
+            <mat-card class="quick-card" routerLink="/signals" routerLinkActive="active">
+              <mat-card-header>
+                <mat-card-title class="text-blue-600">Signals</mat-card-title>
+                <mat-card-subtitle>Modern reactive state</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>Angular's new reactive primitives for state management.</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button color="primary">Explore</button>
+              </mat-card-actions>
+            </mat-card>
+
+            <mat-card class="quick-card" routerLink="/reactive-forms" routerLinkActive="active">
+              <mat-card-header>
+                <mat-card-title class="text-green-600">Reactive Forms</mat-card-title>
+                <mat-card-subtitle>Form validation & handling</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>Advanced form handling with validation and Material Design.</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button color="primary">Explore</button>
+              </mat-card-actions>
+            </mat-card>
+
+            <mat-card class="quick-card" routerLink="/testdome" routerLinkActive="active">
+              <mat-card-header>
+                <mat-card-title class="text-purple-600">Playground</mat-card-title>
+                <mat-card-subtitle>Interactive demos</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>TestDome pages with Material components and Tailwind CSS.</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button color="primary">Explore</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+
+        <!-- Router Outlet -->
+        <router-outlet />
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+

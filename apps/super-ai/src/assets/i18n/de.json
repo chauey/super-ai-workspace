@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "logout": "Abmelden"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen bei Super AI",
+    "subtitle": "Ihr intelligenter Arbeitsplatz",
+    "cards": {
+      "users": "Benutzer",
+      "projects": "Projekte",
+      "tasks": "Aufgaben",
+      "revenue": "Umsatz"
+    }
+  },
+  "theme": {
+    "light": "Heller Modus",
+    "dark": "Dunkler Modus",
+    "toggle": "Thema Wechseln"
+  },
+  "language": {
+    "select": "Sprache Auswählen",
+    "english": "Englisch",
+    "spanish": "Spanisch",
+    "french": "Französisch",
+    "german": "Deutsch"
+  },
+  "common": {
+    "menu": "Menü",
+    "close": "Schließen",
+    "search": "Suchen",
+    "notifications": "Benachrichtigungen"
+  }
+}
+

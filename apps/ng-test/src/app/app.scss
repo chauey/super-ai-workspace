@@ -1,0 +1,657 @@
+/* Angular Test Suite - Fuse-like Interface Styles */
+/* NOTE: CSS Variables are now defined in styles.scss (global) */
+
+/* Global Material Design Overrides */
+.mat-mdc-list-item {
+  .mdc-list-item__content {
+    color: inherit;
+  }
+
+  .mat-mdc-list-item-title {
+    color: inherit;
+  }
+
+  .mdc-list-item__primary-text {
+    color: inherit;
+  }
+}
+
+/* Layout Variables */
+[data-layout="compact"] {
+  --sidebar-width: 64px;
+  --toolbar-height: 48px;
+  --content-padding: 12px;
+}
+
+[data-layout="minimal"] {
+  --sidebar-width: 0px;
+  --toolbar-height: 40px;
+  --content-padding: 8px;
+}
+
+[data-layout="default"] {
+  --sidebar-width: 280px;
+  --toolbar-height: 56px;
+  --content-padding: 24px;
+}
+
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Toolbar */
+.app-toolbar {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  position: relative;
+
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .sidebar-toggle {
+    color: var(--text-primary);
+  }
+
+  .app-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .logo-icon {
+      color: var(--primary-color);
+    }
+
+    .logo-text {
+      font-weight: 600;
+      font-size: 18px;
+      transition: opacity 0.3s ease;
+
+      &.compact {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .toolbar-spacer {
+    flex: 1;
+  }
+
+  .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    button {
+      color: var(--text-secondary);
+
+      &:hover {
+        color: var(--text-primary);
+        background-color: var(--bg-tertiary);
+      }
+    }
+  }
+}
+
+/* Menu Styles */
+.mat-mdc-menu-panel {
+  background-color: var(--bg-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-hover) !important;
+  color: var(--text-primary) !important;
+
+  .mat-mdc-menu-item {
+    color: var(--text-primary) !important;
+    background-color: transparent !important;
+
+    &:hover {
+      background-color: var(--bg-tertiary) !important;
+    }
+
+    &.active {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+    }
+
+    mat-icon {
+      color: var(--text-secondary) !important;
+    }
+
+    span {
+      color: var(--text-primary) !important;
+    }
+  }
+
+  .mat-mdc-divider {
+    border-color: var(--border-color) !important;
+  }
+}
+
+/* Override Material's default menu styling */
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+  background-color: var(--bg-primary) !important;
+}
+
+.mat-mdc-menu-item.mat-mdc-menu-item {
+  color: var(--text-primary) !important;
+}
+
+/* Sidenav Container */
+.app-sidenav-container {
+  flex: 1;
+  height: calc(100vh - var(--toolbar-height));
+}
+
+/* Sidebar */
+.app-sidenav {
+  background-color: var(--bg-primary);
+  border-right: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+
+  &.compact {
+    .navigation-content {
+      padding: 8px 0;
+    }
+  }
+
+  .sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .sidebar-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .sidebar-actions {
+      display: flex;
+      gap: 4px;
+
+      button {
+        color: var(--text-secondary);
+
+        &:hover {
+          color: var(--text-primary);
+          background-color: var(--bg-tertiary);
+        }
+      }
+    }
+  }
+
+  .navigation-content {
+    padding: 8px 0;
+    overflow-y: auto;
+    height: calc(100% - 80px);
+  }
+}
+
+/* Navigation Sections */
+.nav-section {
+  margin-bottom: 8px;
+
+  .nav-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0 24px 24px 0;
+    margin-right: 8px;
+    color: var(--text-primary);
+
+    &:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    &.expanded {
+      background-color: var(--primary-color);
+      color: white !important;
+
+      .nav-section-title {
+        color: white !important;
+
+        mat-icon {
+          color: white !important;
+        }
+      }
+
+      .expand-icon {
+        transform: rotate(180deg);
+        color: white !important;
+      }
+
+      span {
+        color: white !important;
+      }
+    }
+
+    .nav-section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      color: var(--text-primary);
+
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        color: var(--text-secondary);
+      }
+    }
+
+    .expand-icon {
+      transition: transform 0.2s ease;
+      font-size: 18px;
+      color: var(--text-secondary);
+    }
+  }
+
+  .nav-section-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+    &.expanded {
+      max-height: 500px;
+    }
+
+    .nav-item {
+      padding-left: 48px !important;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      text-decoration: none;
+
+      &:hover {
+        background-color: var(--bg-tertiary);
+        color: var(--text-primary);
+      }
+
+      &.active {
+        background-color: var(--primary-color);
+        color: white !important;
+        font-weight: 500;
+
+        mat-icon {
+          color: white !important;
+        }
+
+        // Force white text on active items
+        .mdc-list-item__content {
+          color: white !important;
+        }
+
+        .mat-mdc-list-item-title {
+          color: white !important;
+        }
+
+        .mdc-list-item__primary-text {
+          color: white !important;
+        }
+
+        span {
+          color: white !important;
+        }
+      }
+
+      mat-icon {
+        color: var(--text-secondary);
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+
+      // Target Material Design classes specifically
+      .mdc-list-item__content {
+        color: inherit;
+      }
+
+      .mat-mdc-list-item-title {
+        color: inherit;
+        font-weight: inherit;
+      }
+
+      .mdc-list-item__primary-text {
+        color: inherit;
+      }
+    }
+  }
+}
+
+/* Compact Sidebar */
+.app-sidenav.compact {
+  .nav-section-header {
+    justify-content: center;
+    padding: 12px 8px;
+    margin-right: 0;
+    border-radius: 8px;
+    margin: 4px 8px;
+
+    .nav-section-title {
+      span {
+        display: none;
+      }
+    }
+
+    .expand-icon {
+      display: none;
+    }
+  }
+
+  .nav-section-items {
+    position: absolute;
+    left: 64px;
+    top: 0;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-hover);
+    z-index: 1000;
+    min-width: 200px;
+
+    .nav-item {
+      padding-left: 16px !important;
+    }
+  }
+}
+
+/* Main Content */
+.app-content {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+
+  .content-wrapper {
+    padding: var(--content-padding);
+    min-height: 100%;
+  }
+}
+
+/* Quick Access */
+.quick-access {
+  margin-bottom: 32px;
+
+  .quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+
+    .quick-card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-primary) !important;
+      color: var(--text-primary) !important;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      mat-card-header {
+        mat-card-title {
+          font-size: 18px;
+          font-weight: 600;
+          color: var(--text-primary) !important;
+        }
+
+        mat-card-subtitle {
+          color: var(--text-secondary) !important;
+        }
+      }
+
+      mat-card-content {
+        color: var(--text-primary) !important;
+
+        p {
+          color: var(--text-primary) !important;
+        }
+      }
+
+      mat-card-header {
+        mat-card-title {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        mat-card-subtitle {
+          color: var(--text-secondary);
+        }
+      }
+
+      mat-card-content {
+        p {
+          color: var(--text-secondary);
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-sidenav {
+    width: 100% !important;
+    max-width: 280px;
+  }
+
+  .quick-access-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar-actions {
+    gap: 4px;
+  }
+}
+
+/* Layout Specific Styles */
+[data-layout="minimal"] {
+  .app-sidenav {
+    display: none;
+  }
+
+  .app-content {
+    margin-left: 0;
+  }
+}
+
+[data-layout="compact"] {
+  .app-sidenav {
+    width: 64px;
+
+    .sidebar-header {
+      display: none;
+    }
+  }
+}
+
+/* Active States */
+.mat-mdc-menu-item.active {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Scrollbar Styling */
+.navigation-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.navigation-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.navigation-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+.navigation-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-disabled);
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Navigation Loading and Empty States */
+.nav-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  color: var(--text-secondary);
+
+  mat-spinner {
+    margin-bottom: 0.5rem;
+  }
+
+  span {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.nav-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  color: var(--text-secondary);
+
+  mat-icon {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    opacity: 0.6;
+  }
+
+  span {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+/* Global Material Card Overrides for Dark Mode */
+.mat-mdc-card {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+
+  .mat-mdc-card-header {
+    color: var(--text-primary) !important;
+  }
+
+  .mat-mdc-card-title {
+    color: var(--text-primary) !important;
+  }
+
+  .mat-mdc-card-subtitle {
+    color: var(--text-secondary) !important;
+  }
+
+  .mat-mdc-card-content {
+    color: var(--text-primary) !important;
+  }
+
+  p, span, div {
+    color: var(--text-primary) !important;
+  }
+}
+
+/* Material Design List Item Overrides */
+.nav-item {
+  // Override Material Design default styles
+  .mdc-list-item__content {
+    color: inherit !important;
+  }
+
+  .mat-mdc-list-item-title {
+    color: inherit !important;
+    font-weight: inherit !important;
+  }
+
+  .mdc-list-item__primary-text {
+    color: inherit !important;
+  }
+
+  .mat-mdc-list-item-unscoped-content {
+    color: inherit !important;
+  }
+
+  // Ensure icons inherit color
+  mat-icon {
+    color: inherit !important;
+  }
+
+  // Active state overrides
+  &.active {
+    .mdc-list-item__content {
+      color: white !important;
+    }
+
+    .mat-mdc-list-item-title {
+      color: white !important;
+    }
+
+    .mdc-list-item__primary-text {
+      color: white !important;
+    }
+
+    .mat-mdc-list-item-unscoped-content {
+      color: white !important;
+    }
+
+    mat-icon {
+      color: white !important;
+    }
+  }
+}

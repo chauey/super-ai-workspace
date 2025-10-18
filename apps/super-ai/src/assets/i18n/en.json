@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to Super AI",
+    "subtitle": "Your intelligent workspace",
+    "cards": {
+      "users": "Users",
+      "projects": "Projects",
+      "tasks": "Tasks",
+      "revenue": "Revenue"
+    }
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "toggle": "Toggle Theme"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "french": "French",
+    "german": "German"
+  },
+  "common": {
+    "menu": "Menu",
+    "close": "Close",
+    "search": "Search",
+    "notifications": "Notifications"
+  }
+}
+

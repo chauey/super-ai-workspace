@@ -1,0 +1,14 @@
+---
+description: Use
+- latest Angular
+- Angular Material
+- Tailwind CSS
+- ag-grid
+- ngRx signal store for state management
+- responsive design
+- mobile
+- PWA
+
+globs:
+alwaysApply: true
+---

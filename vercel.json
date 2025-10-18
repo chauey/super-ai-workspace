@@ -1,0 +1,15 @@
+{
+  "buildCommand": "nx build super-ai --configuration=production",
+  "outputDirectory": "dist/apps/super-ai/browser",
+  "installCommand": "npm install",
+  "routes": [
+    {
+      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
