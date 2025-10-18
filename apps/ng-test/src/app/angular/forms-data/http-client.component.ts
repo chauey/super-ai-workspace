@@ -107,24 +107,34 @@ interface User {
     </div>
   `,
   styles: [`
+    /* Theme-aware styles using CSS custom properties */
+    /* Best Practice: Use CSS variables for all colors */
+
     .page-container {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
     }
 
-    h1 {
-      color: #333;
+    h1, h2, h3 {
+      color: var(--text-primary);
       margin-bottom: 1rem;
+    }
+
+    p {
+      color: var(--text-primary);
     }
 
     .demo-section {
       margin: 2rem 0;
       padding: 1rem;
-      border: 1px solid #ddd;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
       border-radius: 4px;
     }
 
@@ -155,9 +165,20 @@ interface User {
     input {
       width: 100%;
       padding: 0.5rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       border-radius: 4px;
       font-size: 1rem;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+
+      &::placeholder {
+        color: var(--text-disabled);
+      }
+
+      &:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+      }
     }
 
     .users-list {
@@ -167,19 +188,20 @@ interface User {
     .user-card {
       margin: 1rem 0;
       padding: 1rem;
-      background: #f8f9fa;
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
       border-radius: 4px;
-      border-left: 4px solid #1976d2;
+      border-left: 4px solid var(--primary-color);
     }
 
     .user-card h4 {
       margin: 0 0 0.5rem 0;
-      color: #1976d2;
+      color: var(--primary-color);
     }
 
     .user-card p {
       margin: 0.25rem 0;
-      color: #666;
+      color: var(--text-secondary);
     }
 
     .loading {
@@ -204,11 +226,14 @@ interface User {
     }
 
     pre {
-      background: #f8f9fa;
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
       padding: 1rem;
       border-radius: 4px;
       overflow-x: auto;
       margin-top: 1rem;
+      font-family: 'Courier New', monospace;
     }
   `]
 })

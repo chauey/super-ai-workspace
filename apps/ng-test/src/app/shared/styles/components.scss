@@ -1,0 +1,230 @@
+/* Reusable Component Styles - Automatically respects dark mode via CSS variables */
+
+/* Card Styles */
+.card {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+
+  &:hover {
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+/* Page Container */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-content {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* Typography */
+.heading-1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.heading-2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.heading-3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.text-body {
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.text-muted {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+  }
+
+  &.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+/* Code Blocks */
+.code-block {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  padding: 1rem;
+  font-family: 'Courier New', monospace;
+  overflow-x: auto;
+}
+
+/* Section */
+.section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+}
+
+/* List Styles */
+.list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: var(--bg-tertiary);
+    }
+  }
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: inherit;
+
+    &:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    &::placeholder {
+      color: var(--text-disabled);
+    }
+  }
+}
+
+/* Alerts/Messages */
+.alert {
+  padding: 1rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  border: 1px solid;
+
+  &.alert-info {
+    background-color: color-mix(in srgb, var(--info-color) 10%, var(--bg-primary));
+    border-color: var(--info-color);
+    color: var(--text-primary);
+  }
+
+  &.alert-success {
+    background-color: color-mix(in srgb, var(--success-color) 10%, var(--bg-primary));
+    border-color: var(--success-color);
+    color: var(--text-primary);
+  }
+
+  &.alert-warning {
+    background-color: color-mix(in srgb, var(--warning-color) 10%, var(--bg-primary));
+    border-color: var(--warning-color);
+    color: var(--text-primary);
+  }
+
+  &.alert-error {
+    background-color: color-mix(in srgb, var(--warn-color) 10%, var(--bg-primary));
+    border-color: var(--warn-color);
+    color: var(--text-primary);
+  }
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+
+  th,
+  td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  th {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  td {
+    color: var(--text-primary);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover td {
+    background-color: var(--bg-tertiary);
+  }
+}

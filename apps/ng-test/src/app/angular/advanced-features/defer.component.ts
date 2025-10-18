@@ -160,20 +160,20 @@ import { CommonModule } from '@angular/common';
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
+      background: var(--bg-primary, white);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     h1 {
-      color: #333;
+      color: var(--text-primary, #333);
       margin-bottom: 1rem;
     }
 
     .demo-section {
       margin: 2rem 0;
       padding: 1rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
     }
 
@@ -187,7 +187,7 @@ import { CommonModule } from '@angular/common';
 
     .loading-content {
       padding: 1rem;
-      background: #fff3cd;
+      background: rgba(255, 193, 7, 0.2);
       border: 1px solid #ffeaa7;
       border-radius: 4px;
       color: #856404;
@@ -203,7 +203,7 @@ import { CommonModule } from '@angular/common';
 
     .placeholder-content {
       padding: 1rem;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       border: 1px solid #dee2e6;
       border-radius: 4px;
       color: #495057;
@@ -241,7 +241,7 @@ import { CommonModule } from '@angular/common';
     .viewport-container {
       height: 200px;
       overflow-y: auto;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
       padding: 1rem;
     }
@@ -257,7 +257,7 @@ import { CommonModule } from '@angular/common';
       align-items: center;
       justify-content: center;
       border-radius: 4px;
-      color: #666;
+      color: var(--text-secondary, #666);
     }
 
     .interaction-trigger {
@@ -275,7 +275,7 @@ import { CommonModule } from '@angular/common';
 
     .hover-trigger {
       padding: 2rem;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       border: 2px dashed #1976d2;
       border-radius: 8px;
       text-align: center;
@@ -290,13 +290,13 @@ import { CommonModule } from '@angular/common';
 
     .multi-trigger-demo {
       padding: 2rem;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       border-radius: 8px;
       text-align: center;
     }
 
     .code-example {
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       padding: 1rem;
       border-radius: 4px;
       overflow-x: auto;
@@ -306,7 +306,7 @@ import { CommonModule } from '@angular/common';
       margin: 0;
       font-family: monospace;
       font-size: 0.875rem;
-      color: #333;
+      color: var(--text-primary, #333);
     }
 
     ul {

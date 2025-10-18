@@ -6,6 +6,10 @@
 /* Angular Material theme - using prebuilt theme to avoid injection issues */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+/* Import shared styles - using @import for compatibility with @tailwind */
+@import './app/shared/styles/mixins';
+@import './app/shared/styles/utilities';
+
 /* CSS Variables for Theming - MUST BE IN GLOBAL STYLES */
 :root {
   --primary-color: #3f51b5;
@@ -75,6 +79,175 @@ body {
   }
 
   .mat-mdc-card-content {
+    color: var(--text-primary) !important;
+  }
+}
+
+/* Tailwind Custom Utilities for Dark Mode - Reusable across all components */
+@layer utilities {
+  .bg-card {
+    background-color: var(--bg-primary);
+  }
+
+  .bg-content {
+    background-color: var(--bg-secondary);
+  }
+
+  .text-primary {
+    color: var(--text-primary);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .border-default {
+    border-color: var(--border-color);
+  }
+}
+
+/* Global overrides for hardcoded Tailwind colors to respect dark mode */
+.dark {
+  /* Override hardcoded white backgrounds */
+  .bg-white {
+    background-color: var(--bg-primary) !important;
+  }
+
+  /* Override hardcoded gray text colors */
+  .text-gray-800,
+  .text-gray-900 {
+    color: var(--text-primary) !important;
+  }
+
+  .text-gray-600,
+  .text-gray-700 {
+    color: var(--text-secondary) !important;
+  }
+
+  .text-gray-500 {
+    color: var(--text-disabled) !important;
+  }
+
+  /* Override hardcoded gray backgrounds */
+  .bg-gray-50 {
+    background-color: var(--bg-secondary) !important;
+  }
+
+  .bg-gray-100 {
+    background-color: var(--bg-tertiary) !important;
+  }
+
+  /* Override hardcoded borders */
+  .border-gray-200,
+  .border-gray-300 {
+    border-color: var(--border-color) !important;
+  }
+
+  /* Override form inputs */
+  input.border-gray-300,
+  textarea.border-gray-300,
+  select.border-gray-300 {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+
+    &::placeholder {
+      color: var(--text-disabled) !important;
+    }
+  }
+
+  /* Override status/alert colors to work with dark background */
+  .bg-yellow-100 {
+    background-color: rgba(255, 193, 7, 0.2) !important;
+  }
+
+  .text-yellow-800 {
+    color: #ffc107 !important;
+  }
+
+  .bg-green-100 {
+    background-color: rgba(76, 175, 80, 0.2) !important;
+  }
+
+  .text-green-600,
+  .text-green-700,
+  .text-green-800 {
+    color: #4caf50 !important;
+  }
+
+  .bg-red-100 {
+    background-color: rgba(244, 67, 54, 0.2) !important;
+  }
+
+  .text-red-500,
+  .text-red-800 {
+    color: #ef5350 !important;
+  }
+
+  /* Keep button colors as-is (they should remain colorful) */
+  .bg-blue-500,
+  .bg-blue-600,
+  .bg-gray-500,
+  .bg-gray-600,
+  .bg-red-500,
+  .bg-red-600 {
+    /* These are intentionally colorful buttons - don't override */
+  }
+
+  /* Override component-scoped styles that hardcode white/light colors */
+  /* Use wildcard attribute selector to match ANY Angular scoped attribute */
+  /* This will match .page-container[_ngcontent-ng-cXXXXXX] regardless of hash */
+  div[class~="page-container"][class],
+  div[class*="page-container"],
+  div[class~="demo-section"][class],
+  div[class*="demo-section"],
+  div[class~="card-container"][class],
+  div[class~="content-wrapper"][class] {
+    background: var(--bg-primary) !important;
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  div[class~="demo-section"][class],
+  div[class~="section"][class],
+  div[class~="content-section"][class] {
+    border-color: var(--border-color) !important;
+  }
+
+  /* Override hardcoded text colors in components */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary) !important;
+  }
+
+  p {
+    color: var(--text-primary) !important;
+  }
+
+  /* Override list items and cards */
+  .user-card,
+  .item-card,
+  .info-card {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .user-card p,
+  .item-card p,
+  .info-card p {
+    color: var(--text-secondary) !important;
+  }
+
+  /* Override code/pre blocks */
+  pre {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* Override warning/info backgrounds while keeping them visible */
+  .warning,
+  [style*="background: #fff3cd"],
+  [style*="background:#fff3cd"] {
+    background-color: rgba(255, 193, 7, 0.2) !important;
     color: var(--text-primary) !important;
   }
 }

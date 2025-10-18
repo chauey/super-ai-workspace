@@ -1,0 +1,138 @@
+/**
+ * Custom Utility Classes
+ *
+ * Enterprise Pattern: Use Tailwind for layout, custom utilities for domain-specific patterns
+ * - Tailwind: Spacing, flex, grid, responsive design
+ * - Custom: Theme-aware components, app-specific patterns
+ * - Angular Material: UI components (buttons, forms, cards)
+ */
+
+/* ==========================================================================
+   DEMO-SPECIFIC UTILITIES (Theme-aware)
+   ========================================================================== */
+
+/* Log Container - For demo components showing operation logs */
+.log-container {
+  @apply max-h-48 overflow-y-auto rounded border p-4;
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.log-entry {
+  @apply my-1 rounded px-2 py-1 text-sm font-mono;
+  color: var(--text-primary);
+}
+
+.log-success {
+  background-color: color-mix(in srgb, var(--success-color) 15%, var(--bg-primary));
+  color: var(--success-color);
+  border-left: 3px solid var(--success-color);
+}
+
+.log-error {
+  background-color: color-mix(in srgb, var(--warn-color) 15%, var(--bg-primary));
+  color: var(--warn-color);
+  border-left: 3px solid var(--warn-color);
+}
+
+.log-info {
+  background-color: color-mix(in srgb, var(--info-color) 15%, var(--bg-primary));
+  color: var(--info-color);
+  border-left: 3px solid var(--info-color);
+}
+
+/* Status Indicators - For demo components showing loading/success/error states */
+.status {
+  @apply rounded p-4 my-4;
+  border: 1px solid;
+}
+
+.status-loading {
+  background-color: color-mix(in srgb, var(--warning-color) 10%, var(--bg-primary));
+  border-color: var(--warning-color);
+  color: var(--warning-color);
+}
+
+.status-success {
+  background-color: color-mix(in srgb, var(--success-color) 10%, var(--bg-primary));
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.status-error {
+  background-color: color-mix(in srgb, var(--warn-color) 10%, var(--bg-primary));
+  border-color: var(--warn-color);
+  color: var(--warn-color);
+}
+
+.status-info {
+  background-color: color-mix(in srgb, var(--info-color) 10%, var(--bg-primary));
+  border-color: var(--info-color);
+  color: var(--info-color);
+}
+
+/* Demo Visibility States - For control flow demos */
+.visible-text {
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+.hidden-text {
+  color: var(--warn-color);
+  font-style: italic;
+}
+
+/* List Item States - For todo/item list demos */
+.list-item-completed {
+  @apply line-through;
+  color: var(--text-disabled);
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   THEME-AWARE TAILWIND EXTENSIONS
+   ========================================================================== */
+
+/* These extend Tailwind with theme-aware versions */
+@layer utilities {
+  /* Backgrounds */
+  .bg-card {
+    background-color: var(--bg-primary);
+  }
+
+  .bg-content {
+    background-color: var(--bg-secondary);
+  }
+
+  .bg-subtle {
+    background-color: var(--bg-tertiary);
+  }
+
+  /* Text Colors */
+  .text-primary {
+    color: var(--text-primary);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-disabled {
+    color: var(--text-disabled);
+  }
+
+  /* Borders */
+  .border-default {
+    border-color: var(--border-color);
+  }
+
+  /* Shadows */
+  .shadow-themed {
+    box-shadow: var(--shadow);
+  }
+
+  .shadow-themed-hover:hover {
+    box-shadow: var(--shadow-hover);
+  }
+}
+

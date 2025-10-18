@@ -145,20 +145,20 @@ class LoggingService {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
+      background: var(--bg-primary, white);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     h1 {
-      color: #333;
+      color: var(--text-primary, #333);
       margin-bottom: 1rem;
     }
 
     .demo-section {
       margin: 2rem 0;
       padding: 1rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
     }
 
@@ -171,7 +171,7 @@ class LoggingService {
     input {
       flex: 1;
       padding: 0.5rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
     }
 
@@ -196,10 +196,10 @@ class LoggingService {
 
     .route-button {
       padding: 0.5rem 1rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
       cursor: pointer;
-      background: white;
+      background: var(--bg-primary, white);
     }
 
     .route-button.accessible {
@@ -221,8 +221,8 @@ class LoggingService {
     .log-container {
       max-height: 200px;
       overflow-y: auto;
-      background: #f8f9fa;
-      border: 1px solid #ddd;
+      background: var(--bg-tertiary, #f8f9fa);
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
       padding: 1rem;
     }
@@ -246,12 +246,12 @@ class LoggingService {
     }
 
     .log-entry.warning {
-      background: #fff3cd;
+      background: rgba(255, 193, 7, 0.2);
       color: #856404;
     }
 
     .timestamp {
-      color: #666;
+      color: var(--text-secondary, #666);
       font-size: 0.75rem;
     }
 
@@ -268,9 +268,9 @@ class LoggingService {
 
     .guard-item {
       padding: 1rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
     }
 
     .guard-item h4 {

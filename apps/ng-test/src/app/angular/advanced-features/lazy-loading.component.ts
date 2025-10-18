@@ -117,20 +117,20 @@ import { CommonModule } from '@angular/common';
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
+      background: var(--bg-primary, white);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     h1 {
-      color: #333;
+      color: var(--text-primary, #333);
       margin-bottom: 1rem;
     }
 
     .demo-section {
       margin: 2rem 0;
       padding: 1rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
     }
 
@@ -143,7 +143,7 @@ import { CommonModule } from '@angular/common';
 
     .strategy-card, .route-card, .benefit-card {
       padding: 1rem;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       border-radius: 4px;
     }
 
@@ -160,13 +160,13 @@ import { CommonModule } from '@angular/common';
     .strategy-card li, .route-card li, .benefit-card li {
       margin: 0.25rem 0;
       font-size: 0.875rem;
-      color: #666;
+      color: var(--text-secondary, #666);
     }
 
     .code-example {
       margin: 1rem 0;
       padding: 1rem;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       border-radius: 4px;
       overflow-x: auto;
     }
@@ -175,7 +175,7 @@ import { CommonModule } from '@angular/common';
       margin: 0;
       font-family: monospace;
       font-size: 0.875rem;
-      color: #333;
+      color: var(--text-primary, #333);
     }
 
     button {
@@ -199,7 +199,7 @@ import { CommonModule } from '@angular/common';
 
     .loading-state {
       padding: 1rem;
-      background: #fff3cd;
+      background: rgba(255, 193, 7, 0.2);
       border: 1px solid #ffeaa7;
       border-radius: 4px;
       color: #856404;
@@ -222,7 +222,7 @@ import { CommonModule } from '@angular/common';
 
     li {
       padding: 0.5rem;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       border-radius: 4px;
       margin: 0.25rem 0;
     }

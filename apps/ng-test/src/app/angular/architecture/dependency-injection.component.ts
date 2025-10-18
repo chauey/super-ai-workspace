@@ -81,20 +81,20 @@ class MockDataService implements DataService {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
+      background: var(--bg-primary, white);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     h1 {
-      color: #333;
+      color: var(--text-primary, #333);
       margin-bottom: 1rem;
     }
 
     .demo-section {
       margin: 2rem 0;
       padding: 1rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
     }
 
@@ -120,8 +120,8 @@ class MockDataService implements DataService {
     .log-container {
       max-height: 200px;
       overflow-y: auto;
-      background: #f8f9fa;
-      border: 1px solid #ddd;
+      background: var(--bg-tertiary, #f8f9fa);
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
       padding: 1rem;
     }
@@ -129,7 +129,7 @@ class MockDataService implements DataService {
     .log-entry {
       margin: 0.25rem 0;
       padding: 0.25rem;
-      background: white;
+      background: var(--bg-primary, white);
       border-radius: 2px;
       font-family: monospace;
       font-size: 0.875rem;

@@ -124,13 +124,13 @@ import { MatChipsModule } from '@angular/material/chips';
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
+      background: var(--bg-primary, white);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     h1 {
-      color: #333;
+      color: var(--text-primary, #333);
       margin-bottom: 1rem;
     }
 
@@ -147,7 +147,7 @@ import { MatChipsModule } from '@angular/material/chips';
     input {
       width: 100%;
       padding: 0.5rem;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color, #ddd);
       border-radius: 4px;
       font-size: 1rem;
     }
@@ -185,7 +185,7 @@ import { MatChipsModule } from '@angular/material/chips';
     .form-status {
       margin: 2rem 0;
       padding: 1rem;
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       border-radius: 4px;
     }
 
@@ -197,7 +197,7 @@ import { MatChipsModule } from '@angular/material/chips';
     }
 
     pre {
-      background: #f8f9fa;
+      background: var(--bg-tertiary, #f8f9fa);
       padding: 1rem;
       border-radius: 4px;
       overflow-x: auto;
