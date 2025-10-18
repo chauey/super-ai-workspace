@@ -2,10 +2,44 @@ import { Routes } from '@angular/router';
 import { angularFeatureRoutes } from './features/angular/angular-feature.config';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/angular', pathMatch: 'full' },
+  // Dashboard - Landing page with all top-level features
+  {
+    path: '',
+    loadChildren: () => import('./features/dashboard/dashboard.routes').then(m => m.dashboardRoutes)
+  },
+
+  // Design System - Top level
+  {
+    path: 'design-system',
+    loadChildren: () => import('./features/design-system/design-system.routes').then(m => m.designSystemRoutes)
+  },
 
   // Angular Feature Module - All routes under /angular/
   { path: 'angular', children: angularFeatureRoutes },
+
+  // .NET Learning Path
+  {
+    path: 'dotnet',
+    loadChildren: () => import('./features/dotnet/dotnet.routes').then(m => m.dotnetRoutes)
+  },
+
+  // AI-900: Azure AI Fundamentals
+  {
+    path: 'ai-900',
+    loadChildren: () => import('./features/ai-900/ai-900.routes').then(m => m.ai900Routes)
+  },
+
+  // AZ-900: Azure Fundamentals
+  {
+    path: 'az-900',
+    loadChildren: () => import('./features/az-900/az-900.routes').then(m => m.az900Routes)
+  },
+
+  // Documentation
+  {
+    path: 'docs',
+    loadChildren: () => import('./features/docs/docs.routes').then(m => m.docsRoutes)
+  },
 
   // // Legacy routes for backward compatibility (redirect to new /angular/ paths)
   // { path: 'core-concepts/empty', redirectTo: '/angular/core-concepts/empty' },
@@ -41,5 +75,5 @@ export const routes: Routes = [
   // { path: 'testdome', redirectTo: '/angular/playground/testdome' },
   // { path: 'testdome2', redirectTo: '/angular/playground/testdome2' },
 
-  { path: '**', redirectTo: '/angular' }
+  { path: '**', redirectTo: '/' }
 ];

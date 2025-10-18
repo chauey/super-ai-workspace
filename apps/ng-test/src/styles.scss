@@ -6,6 +6,10 @@
 /* Angular Material theme - using prebuilt theme to avoid injection issues */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+/* AG Grid Styles */
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+
 /* Import shared styles - using @import for compatibility with @tailwind */
 @import './app/shared/styles/mixins';
 @import './app/shared/styles/utilities';

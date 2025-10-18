@@ -7,8 +7,30 @@
       </button>
       <div class="app-logo">
         <mat-icon class="logo-icon">dashboard</mat-icon>
-        <span class="logo-text" [class.compact]="sidebarCompact()">Angular, .NET, AI Playground</span>
+        <span class="logo-text" [class.compact]="sidebarCompact()">Super AI Guide</span>
       </div>
+    </div>
+
+    <!-- Top-Level Navigation Menu (Fuse-style) -->
+    <div class="top-nav-menu">
+      @for (item of getAllNavigationItems(); track item.id) {
+        <a
+          mat-button
+          [routerLink]="item.route || '/'"
+          [routerLinkActive]="item.children ? '' : 'active-nav-link'"
+          [routerLinkActiveOptions]="{exact: item.route === '/'}"
+          class="nav-menu-item"
+          [class.has-children]="item.children"
+          [matTooltip]="item.tooltip">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span class="nav-label">{{ item.title }}</span>
+          @if (item.badge) {
+            <mat-chip class="nav-badge" [class.badge-new]="item.badgeColor === 'accent'" [class.badge-coming]="item.badgeColor === 'warn'">
+              {{ item.badge }}
+            </mat-chip>
+          }
+        </a>
+      }
     </div>
 
     <div class="toolbar-spacer"></div>
@@ -165,50 +187,6 @@
     <!-- Main Content -->
     <mat-sidenav-content class="app-content">
       <div class="content-wrapper">
-        <!-- Quick Access Cards (only show on home page) -->
-        <div class="quick-access" *ngIf="!sidebarCompact()">
-          <div class="quick-access-grid">
-            <mat-card class="quick-card" routerLink="/signals" routerLinkActive="active">
-              <mat-card-header>
-                <mat-card-title class="text-blue-600">Signals</mat-card-title>
-                <mat-card-subtitle>Modern reactive state</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <p>Angular's new reactive primitives for state management.</p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button color="primary">Explore</button>
-              </mat-card-actions>
-            </mat-card>
-
-            <mat-card class="quick-card" routerLink="/reactive-forms" routerLinkActive="active">
-              <mat-card-header>
-                <mat-card-title class="text-green-600">Reactive Forms</mat-card-title>
-                <mat-card-subtitle>Form validation & handling</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <p>Advanced form handling with validation and Material Design.</p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button color="primary">Explore</button>
-              </mat-card-actions>
-            </mat-card>
-
-            <mat-card class="quick-card" routerLink="/testdome" routerLinkActive="active">
-              <mat-card-header>
-                <mat-card-title class="text-purple-600">Playground</mat-card-title>
-                <mat-card-subtitle>Interactive demos</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <p>TestDome pages with Material components and Tailwind CSS.</p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button color="primary">Explore</button>
-              </mat-card-actions>
-            </mat-card>
-          </div>
-        </div>
-
         <!-- Router Outlet -->
         <router-outlet />
       </div>

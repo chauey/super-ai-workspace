@@ -68,6 +68,16 @@ export class App {
   get sidebarCompact() { return this.navigationService.sidebarCompact; }
   get navigationItems() { return this.navigationService.navigationItems; }
 
+  // Get all navigation items for top menu (Fuse-style)
+  getAllNavigationItems() {
+    return this.navigationService.navigationItems();
+  }
+
+  // Get top-level navigation items (items with routes, no children)
+  getTopLevelItems() {
+    return this.navigationService.navigationItems().filter(item => item.route && !item.children);
+  }
+
   // Theme methods
   setTheme(theme: Theme): void {
     this.themeService.setTheme(theme);
