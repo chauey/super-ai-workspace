@@ -82,9 +82,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         color: var(--text-primary);
         border-bottom: 1px solid var(--border-color);
         box-shadow: var(--shadow);
-        height: 64px;
-        min-height: 64px;
-        padding: 0 24px;
+        height: auto;
+        min-height: 80px;
+        padding: 16px 24px;
         display: flex;
         align-items: center;
         z-index: 999;
@@ -93,26 +93,28 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       .feature-header-content {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 16px;
         width: 100%;
       }
 
       .feature-icon {
-        font-size: 32px;
-        width: 32px;
-        height: 32px;
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
         color: var(--primary-color);
+        flex-shrink: 0;
       }
 
       .feature-title-group {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        gap: 4px;
       }
 
       .feature-title {
         margin: 0;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 600;
         line-height: 1.2;
       }
@@ -120,6 +122,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       .feature-subtitle {
         font-size: 14px;
         color: var(--text-secondary);
+        line-height: 1.4;
       }
 
       .feature-sidenav-container {

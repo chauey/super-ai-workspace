@@ -1,36 +1,40 @@
 import { Routes } from '@angular/router';
 
 // Eagerly loaded components (imported directly)
-import { EmptyComponent } from '../../angular/core-concepts/empty.component';
-import { ControlFlowComponent } from '../../angular/core-concepts/control-flow.component';
+import { EmptyComponent } from './pages/core-concepts/empty.component';
+import { ControlFlowComponent } from './pages/core-concepts/control-flow.component';
 
 export const angularRoutes: Routes = [
-  { path: '', redirectTo: 'core-concepts/empty', pathMatch: 'full' },
+  { path: '', redirectTo: 'core-concepts', pathMatch: 'full' },
 
-  // CORE CONCEPTS
+  // CORE CONCEPTS - Landing Page
+  { path: 'core-concepts', loadComponent: () => import('./pages/core-concepts/core-concepts-landing.component').then(m => m.CoreConceptsLandingComponent) },
   { path: 'core-concepts/empty', component: EmptyComponent },
   { path: 'core-concepts/control-flow', component: ControlFlowComponent },
-  { path: 'core-concepts/signals', loadComponent: () => import('../../angular/core-concepts/signals.component').then(m => m.SignalsComponent) },
+  { path: 'core-concepts/signals', loadComponent: () => import('./pages/core-concepts/signals.component').then(m => m.SignalsComponent) },
 
-  // FORMS & DATA
-  { path: 'forms-data/reactive-forms', loadComponent: () => import('../../angular/forms-data/reactive-forms.component').then(m => m.ReactiveFormsComponent) },
-  { path: 'forms-data/reactive-forms-signals', loadComponent: () => import('../../angular/forms-data/reactive-forms-signals.component').then(m => m.ReactiveFormsSignalsComponent) },
-  { path: 'forms-data/http-client', loadComponent: () => import('../../angular/forms-data/http-client.component').then(m => m.HttpClientComponent) },
+  // FORMS & DATA - Landing Page
+  { path: 'forms-data', loadComponent: () => import('./pages/forms-data/forms-data-landing.component').then(m => m.FormsDataLandingComponent) },
+  { path: 'forms-data/reactive-forms', loadComponent: () => import('./pages/forms-data/reactive-forms.component').then(m => m.ReactiveFormsComponent) },
+  { path: 'forms-data/reactive-forms-signals', loadComponent: () => import('./pages/forms-data/reactive-forms-signals.component').then(m => m.ReactiveFormsSignalsComponent) },
+  { path: 'forms-data/http-client', loadComponent: () => import('./pages/forms-data/http-client.component').then(m => m.HttpClientComponent) },
 
-  // ARCHITECTURE
-  { path: 'architecture/dependency-injection', loadComponent: () => import('../../angular/architecture/dependency-injection.component').then(m => m.DependencyInjectionComponent) },
-  { path: 'architecture/lifecycle-hooks', loadComponent: () => import('../../angular/architecture/lifecycle-hooks.component').then(m => m.LifecycleHooksComponent) },
-  { path: 'architecture/services', loadComponent: () => import('../../angular/architecture/services.component').then(m => m.ServicesComponent) },
+  // ARCHITECTURE - Landing Page
+  { path: 'architecture', loadComponent: () => import('./pages/architecture/architecture-landing.component').then(m => m.ArchitectureLandingComponent) },
+  { path: 'architecture/dependency-injection', loadComponent: () => import('./pages/architecture/dependency-injection.component').then(m => m.DependencyInjectionComponent) },
+  { path: 'architecture/lifecycle-hooks', loadComponent: () => import('./pages/architecture/lifecycle-hooks.component').then(m => m.LifecycleHooksComponent) },
+  { path: 'architecture/services', loadComponent: () => import('./pages/architecture/services.component').then(m => m.ServicesComponent) },
 
-  // ADVANCED FEATURES
-  { path: 'advanced-features/pipes', loadComponent: () => import('../../angular/advanced-features/pipes.component').then(m => m.PipesComponent) },
-  { path: 'advanced-features/guards-interceptors', loadComponent: () => import('../../angular/advanced-features/guards-interceptors.component').then(m => m.GuardsInterceptorsComponent) },
-  { path: 'advanced-features/lazy-loading', loadComponent: () => import('../../angular/advanced-features/lazy-loading.component').then(m => m.LazyLoadingComponent) },
-  { path: 'advanced-features/defer', loadComponent: () => import('../../angular/advanced-features/defer.component').then(m => m.DeferComponent) },
+  // ADVANCED FEATURES - Landing Page
+  { path: 'advanced-features', loadComponent: () => import('./pages/advanced-features/advanced-features-landing.component').then(m => m.AdvancedFeaturesLandingComponent) },
+  { path: 'advanced-features/pipes', loadComponent: () => import('./pages/advanced-features/pipes.component').then(m => m.PipesComponent) },
+  { path: 'advanced-features/guards-interceptors', loadComponent: () => import('./pages/advanced-features/guards-interceptors.component').then(m => m.GuardsInterceptorsComponent) },
+  { path: 'advanced-features/lazy-loading', loadComponent: () => import('./pages/advanced-features/lazy-loading.component').then(m => m.LazyLoadingComponent) },
+  { path: 'advanced-features/defer', loadComponent: () => import('./pages/advanced-features/defer.component').then(m => m.DeferComponent) },
 
   // PLAYGROUND
-  { path: 'playground/testdome', loadComponent: () => import('../../angular/playground/testdome.component').then(m => m.TestdomeComponent) },
-  { path: 'playground/testdome2', loadComponent: () => import('../../angular/playground/testdome2.component').then(m => m.Testdome2Component) },
+  { path: 'playground/testdome', loadComponent: () => import('./pages/playground/testdome.component').then(m => m.TestdomeComponent) },
+  { path: 'playground/testdome2', loadComponent: () => import('./pages/playground/testdome2.component').then(m => m.Testdome2Component) },
 
   // Legacy routes for backward compatibility
   { path: 'empty', redirectTo: 'core-concepts/empty' },

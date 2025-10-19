@@ -47,7 +47,7 @@ import { DensityStore, DensityMode } from './store/density/density.store';
 })
 export class App {
   protected readonly title = signal('ng-test');
-  
+
   // Services
   private themeService = inject(ThemeService);
   public navigationService = inject(NavigationService);
@@ -109,6 +109,10 @@ export class App {
 
   isPanelExpanded(panelId: string): boolean {
     return this.navigationService.isPanelExpanded(panelId);
+  }
+
+  ensureExpanded(panelId: string): void {
+    this.navigationService.ensureExpanded(panelId);
   }
 
   // Density methods

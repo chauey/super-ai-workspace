@@ -216,8 +216,6 @@
     padding: 12px 16px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-radius: 0 24px 24px 0;
-    margin-right: 8px;
     color: var(--text-primary);
 
     &:hover {
@@ -225,24 +223,8 @@
     }
 
     &.expanded {
-      background-color: var(--primary-color);
-      color: white !important;
-
-      .nav-section-title {
-        color: white !important;
-
-        mat-icon {
-          color: white !important;
-        }
-      }
-
       .expand-icon {
         transform: rotate(180deg);
-        color: white !important;
-      }
-
-      span {
-        color: white !important;
       }
     }
 
@@ -268,13 +250,58 @@
     }
   }
 
+  // Clickable section header (without children)
+  .nav-section-link {
+    text-decoration: none;
+    display: flex;
+
+    &.active {
+      font-weight: 600;
+
+      .nav-section-title {
+        color: var(--primary-color);
+
+        mat-icon {
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+
+  // Title as link (for sections with children and route)
+  .nav-title-link {
+    flex: 1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &.active {
+      font-weight: 600;
+      color: var(--primary-color) !important;
+
+      mat-icon {
+        color: var(--primary-color) !important;
+      }
+
+      span {
+        color: var(--primary-color) !important;
+      }
+    }
+  }
+
   .nav-section-items {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
 
     &.expanded {
-      max-height: 500px;
+      max-height: 1000px;
     }
 
     .nav-item {
@@ -315,6 +342,10 @@
         }
       }
 
+      &.nav-grandchild {
+        padding-left: 72px !important;
+      }
+
       mat-icon {
         color: var(--text-secondary);
         font-size: 18px;
@@ -336,6 +367,100 @@
         color: inherit;
       }
     }
+  }
+}
+
+// Nested subsections (for 3+ level navigation)
+.nav-subsection {
+  .nav-subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px 8px 48px;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+
+    &:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    &.expanded {
+      background-color: var(--bg-tertiary);
+
+      .expand-icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    .nav-subsection-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text-primary);
+      text-decoration: none;
+      flex: 1;
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--primary-color);
+
+        mat-icon {
+          color: var(--primary-color);
+        }
+      }
+
+      &.active {
+        color: var(--primary-color) !important;
+        font-weight: 600;
+
+        mat-icon {
+          color: var(--primary-color) !important;
+        }
+      }
+
+      mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: var(--text-secondary);
+        transition: color 0.2s ease;
+      }
+    }
+
+    .expand-icon {
+      transition: transform 0.2s ease;
+      font-size: 16px;
+      color: var(--text-secondary);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .nav-subsection-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+    &.expanded {
+      max-height: 500px;
+    }
+  }
+}
+
+// 4th level navigation
+.nav-level-4 {
+  .nav-subsection-header {
+    padding-left: 64px; // Extra indentation for 4th level
+  }
+
+  .nav-greatgrandchild {
+    padding-left: 88px !important; // Even more indentation for 5th level (great-grandchildren)
   }
 }
 

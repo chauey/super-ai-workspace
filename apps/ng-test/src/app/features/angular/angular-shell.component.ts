@@ -140,36 +140,52 @@ interface AngularNavItem {
     .feature-toolbar {
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
-      padding: 0 1rem;
-      min-height: 80px;
+      padding: 1rem;
+      min-height: auto;
+      height: auto;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 1rem;
     }
 
     .feature-header {
       display: flex;
       align-items: center;
       gap: 1rem;
+      flex-shrink: 0;
     }
 
     .feature-icon {
-      font-size: 32px;
-      width: 32px;
-      height: 32px;
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
       color: var(--primary-color);
+      flex-shrink: 0;
+    }
+
+    .feature-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 0;
     }
 
     .feature-title h1 {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 600;
       color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .feature-subtitle {
       font-size: 0.875rem;
       color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .feature-nav-horizontal {
@@ -418,38 +434,6 @@ export class AngularShellComponent implements OnInit {
         { id: 'guards-interceptors', title: 'Guards & Interceptors', icon: 'security', route: '/angular/advanced-features/guards-interceptors', tooltip: 'Angular guards and interceptors' },
         { id: 'lazy-loading', title: 'Lazy Loading', icon: 'speed', route: '/angular/advanced-features/lazy-loading', tooltip: 'Angular lazy loading' },
         { id: 'defer', title: '@defer Directive', icon: 'schedule', route: '/angular/advanced-features/defer', tooltip: 'Angular @defer directive' }
-      ]
-    },
-    {
-      id: 'state-management',
-      title: 'State Management',
-      icon: 'storage',
-      tooltip: 'State management solutions',
-      badge: 'New',
-      badgeColor: 'accent',
-      children: [
-        { id: 'ngrx', title: 'NgRx', icon: 'inventory', route: '/angular/state-management/ngrx', tooltip: 'NgRx - Reactive state for Angular' },
-        { id: 'signal-store', title: 'Signal Store', icon: 'signal_cellular_alt', route: '/angular/state-management/ngrx/signal-store', tooltip: 'NgRx Signal Store', badge: 'New', badgeColor: 'accent' }
-      ]
-    },
-    {
-      id: 'localization',
-      title: 'Localization',
-      icon: 'language',
-      tooltip: 'Internationalization and localization',
-      children: [
-        { id: 'transloco', title: 'Transloco', icon: 'translate', route: '/angular/localization/transloco', tooltip: 'Transloco - i18n library' }
-      ]
-    },
-    {
-      id: 'starter-kits',
-      title: 'Starter Kits',
-      icon: 'rocket_launch',
-      tooltip: 'Production-ready Angular starter templates',
-      badge: 'Premium',
-      badgeColor: 'primary',
-      children: [
-        { id: 'fuse-angular', title: 'Fuse Angular', icon: 'stars', route: '/angular/starter-kits/fuse', tooltip: 'Fuse Angular - Premium admin template', badge: 'Premium', badgeColor: 'primary' }
       ]
     },
     {

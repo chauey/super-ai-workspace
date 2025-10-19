@@ -134,45 +134,185 @@
         @if (!navigationService.loading() && navigationService.hasNavigationItems()) {
           @for (item of navigationService.navigationItems(); track item.id) {
             <div class="nav-section">
-              <!-- Section Header -->
-              <div
-                class="nav-section-header"
-                (click)="togglePanel(item.id)"
-                [class.expanded]="isPanelExpanded(item.id)"
-                [matTooltip]="sidebarCompact() ? item.tooltip : ''"
-                matTooltipPosition="right">
-                <div class="nav-section-title">
-                  <mat-icon>{{ item.icon }}</mat-icon>
-                  <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
-                </div>
-                <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
-                  {{ isPanelExpanded(item.id) ? 'expand_less' : 'expand_more' }}
-                </mat-icon>
-              </div>
-
-              <!-- Section Items -->
-              <div
-                class="nav-section-items"
-                [class.expanded]="isPanelExpanded(item.id)"
-                *ngIf="item.children">
-                @for (child of item.children; track child.id) {
-                  <a
-                    mat-list-item
-                    [routerLink]="child.route"
-                    routerLinkActive="active"
-                    class="nav-item"
-                    [matTooltip]="sidebarCompact() ? (child.tooltip || child.title) : ''"
-                    matTooltipPosition="right">
-                    <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
-                    <span matListItemTitle *ngIf="!sidebarCompact()">{{ child.title }}</span>
-                    @if (child.badge && !sidebarCompact()) {
-                      <mat-chip matListItemMeta [color]="child.badgeColor || 'primary'">
-                        {{ child.badge }}
+              <!-- Section Header (with route) -->
+              @if (item.route && !item.children) {
+                <a
+                  [routerLink]="item.route"
+                  routerLinkActive="active"
+                  class="nav-section-header nav-section-link"
+                  [matTooltip]="sidebarCompact() ? item.tooltip : ''"
+                  matTooltipPosition="right">
+                  <div class="nav-section-title">
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                    <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
+                    @if (item.badge && !sidebarCompact()) {
+                      <mat-chip [color]="item.badgeColor || 'primary'">
+                        {{ item.badge }}
                       </mat-chip>
                     }
-                  </a>
-                }
-              </div>
+                  </div>
+                </a>
+              }
+
+              <!-- Section Header (with children) - now also navigates if has route -->
+              @if (item.children) {
+                <div
+                  class="nav-section-header"
+                  [class.expanded]="isPanelExpanded(item.id)"
+                  [matTooltip]="sidebarCompact() ? item.tooltip : ''"
+                  matTooltipPosition="right">
+                  <!-- Clickable title that navigates if route exists -->
+                  @if (item.route) {
+                    <a
+                      [routerLink]="item.route"
+                      routerLinkActive="active"
+                      class="nav-section-title nav-title-link"
+                      (click)="item.children && ensureExpanded(item.id); $event.stopPropagation()">
+                      <mat-icon>{{ item.icon }}</mat-icon>
+                      <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
+                      @if (item.badge && !sidebarCompact()) {
+                        <mat-chip [color]="item.badgeColor || 'primary'" class="ml-2">
+                          {{ item.badge }}
+                        </mat-chip>
+                      }
+                    </a>
+                  } @else {
+                    <div class="nav-section-title" (click)="togglePanel(item.id)">
+                      <mat-icon>{{ item.icon }}</mat-icon>
+                      <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
+                      @if (item.badge && !sidebarCompact()) {
+                        <mat-chip [color]="item.badgeColor || 'primary'" class="ml-2">
+                          {{ item.badge }}
+                        </mat-chip>
+                      }
+                    </div>
+                  }
+                  <!-- Expand/collapse icon (always toggles children) -->
+                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()" (click)="togglePanel(item.id)">
+                    {{ isPanelExpanded(item.id) ? 'expand_less' : 'expand_more' }}
+                  </mat-icon>
+                </div>
+
+                <!-- Section Items (children) -->
+                <div
+                  class="nav-section-items"
+                  [class.expanded]="isPanelExpanded(item.id)">
+                  @for (child of item.children; track child.id) {
+                    <!-- Child with no sub-children -->
+                    @if (!child.children) {
+                      <a
+                        mat-list-item
+                        [routerLink]="child.route"
+                        routerLinkActive="active"
+                        class="nav-item"
+                        [matTooltip]="sidebarCompact() ? (child.tooltip || child.title) : ''"
+                        matTooltipPosition="right">
+                        <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
+                        <span matListItemTitle *ngIf="!sidebarCompact()">{{ child.title }}</span>
+                        @if (child.badge && !sidebarCompact()) {
+                          <mat-chip matListItemMeta [color]="child.badgeColor || 'primary'">
+                            {{ child.badge }}
+                          </mat-chip>
+                        }
+                      </a>
+                    }
+
+                    <!-- Child with sub-children (nested) -->
+                    @if (child.children) {
+                      <div class="nav-subsection">
+                        <div
+                          class="nav-subsection-header"
+                          [class.expanded]="isPanelExpanded(child.id)">
+                          <!-- Clickable title that navigates if route exists -->
+                          @if (child.route) {
+                            <a
+                              [routerLink]="child.route"
+                              routerLinkActive="active"
+                              class="nav-subsection-title"
+                              (click)="child.children && ensureExpanded(child.id); $event.stopPropagation()">
+                              <mat-icon>{{ child.icon }}</mat-icon>
+                              <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
+                            </a>
+                          } @else {
+                            <div class="nav-subsection-title" (click)="togglePanel(child.id)">
+                              <mat-icon>{{ child.icon }}</mat-icon>
+                              <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
+                            </div>
+                          }
+                          <mat-icon class="expand-icon" *ngIf="!sidebarCompact()" (click)="togglePanel(child.id)">
+                            {{ isPanelExpanded(child.id) ? 'expand_less' : 'expand_more' }}
+                          </mat-icon>
+                        </div>
+
+                        <div
+                          class="nav-subsection-items"
+                          [class.expanded]="isPanelExpanded(child.id)">
+                          @for (grandchild of child.children; track grandchild.id) {
+                            <!-- Grandchild with no sub-children -->
+                            @if (!grandchild.children) {
+                              <a
+                                mat-list-item
+                                [routerLink]="grandchild.route"
+                                routerLinkActive="active"
+                                class="nav-item nav-grandchild"
+                                [matTooltip]="sidebarCompact() ? (grandchild.tooltip || grandchild.title) : ''"
+                                matTooltipPosition="right">
+                                <mat-icon matListItemIcon>{{ grandchild.icon }}</mat-icon>
+                                <span matListItemTitle *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
+                              </a>
+                            }
+
+                            <!-- Grandchild with sub-children (4th level) -->
+                            @if (grandchild.children) {
+                              <div class="nav-subsection nav-level-4">
+                                <div
+                                  class="nav-subsection-header"
+                                  [class.expanded]="isPanelExpanded(grandchild.id)">
+                                  @if (grandchild.route) {
+                                    <a
+                                      [routerLink]="grandchild.route"
+                                      routerLinkActive="active"
+                                      class="nav-subsection-title"
+                                      (click)="grandchild.children && ensureExpanded(grandchild.id); $event.stopPropagation()">
+                                      <mat-icon>{{ grandchild.icon }}</mat-icon>
+                                      <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
+                                    </a>
+                                  } @else {
+                                    <div class="nav-subsection-title" (click)="togglePanel(grandchild.id)">
+                                      <mat-icon>{{ grandchild.icon }}</mat-icon>
+                                      <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
+                                    </div>
+                                  }
+                                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()" (click)="togglePanel(grandchild.id)">
+                                    {{ isPanelExpanded(grandchild.id) ? 'expand_less' : 'expand_more' }}
+                                  </mat-icon>
+                                </div>
+
+                                <div
+                                  class="nav-subsection-items"
+                                  [class.expanded]="isPanelExpanded(grandchild.id)">
+                                  @for (greatgrandchild of grandchild.children; track greatgrandchild.id) {
+                                    <a
+                                      mat-list-item
+                                      [routerLink]="greatgrandchild.route"
+                                      routerLinkActive="active"
+                                      class="nav-item nav-greatgrandchild"
+                                      [matTooltip]="sidebarCompact() ? (greatgrandchild.tooltip || greatgrandchild.title) : ''"
+                                      matTooltipPosition="right">
+                                      <mat-icon matListItemIcon>{{ greatgrandchild.icon }}</mat-icon>
+                                      <span matListItemTitle *ngIf="!sidebarCompact()">{{ greatgrandchild.title }}</span>
+                                    </a>
+                                  }
+                                </div>
+                              </div>
+                            }
+                          }
+                        </div>
+                      </div>
+                    }
+                  }
+                </div>
+              }
             </div>
           }
         }

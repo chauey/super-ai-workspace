@@ -18,17 +18,17 @@ import { RouterModule } from '@angular/router';
         </p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div class="stat-card">
-            <mat-icon class="text-primary text-4xl mb-2">palette</mat-icon>
+            <mat-icon class="stat-icon">palette</mat-icon>
             <h3 class="text-xl font-semibold text-primary">10+</h3>
             <p class="text-secondary text-sm">Component Categories</p>
           </div>
           <div class="stat-card">
-            <mat-icon class="text-primary text-4xl mb-2">brush</mat-icon>
+            <mat-icon class="stat-icon">brush</mat-icon>
             <h3 class="text-xl font-semibold text-primary">50+</h3>
             <p class="text-secondary text-sm">UI Components</p>
           </div>
           <div class="stat-card">
-            <mat-icon class="text-primary text-4xl mb-2">dark_mode</mat-icon>
+            <mat-icon class="stat-icon">dark_mode</mat-icon>
             <h3 class="text-xl font-semibold text-primary">2</h3>
             <p class="text-secondary text-sm">Theme Modes</p>
           </div>
@@ -42,7 +42,7 @@ import { RouterModule } from '@angular/router';
           [routerLink]="section.path"
           class="section-card"
         >
-          <mat-icon class="text-primary text-3xl mb-3">{{ section.icon }}</mat-icon>
+          <mat-icon class="section-icon">{{ section.icon }}</mat-icon>
           <h4 class="text-lg font-semibold text-primary mb-2">{{ section.title }}</h4>
           <p class="text-secondary text-sm">{{ section.description }}</p>
         </a>
@@ -75,6 +75,15 @@ import { RouterModule } from '@angular/router';
         border-color: var(--border-color);
       }
 
+      .stat-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        color: var(--primary-color);
+        margin: 0 auto 8px;
+        display: block;
+      }
+
       .section-card {
         @apply block p-6 rounded-lg border transition-all cursor-pointer;
         background-color: var(--bg-card);
@@ -85,6 +94,15 @@ import { RouterModule } from '@angular/router';
           box-shadow: var(--shadow-hover);
           transform: translateY(-2px);
         }
+      }
+
+      .section-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        color: var(--primary-color);
+        margin-bottom: 12px;
+        display: block;
       }
     `,
   ],

@@ -1,7 +1,7 @@
 import { signalStore, withState, withMethods, withComputed, withHooks, patchState } from '@ngrx/signals';
 import { computed } from '@angular/core';
 import { TestDto, TestAttemptDto, UserAnswerDto, TestHistoryDto, TestPauseDto, SkillPerformanceDto } from '../models/test.model';
-import { azureFundamentalsTest } from '../data/azure-fundamentals.data';
+import { azureFundamentalsTest, azureAdministratorTest } from '../data/azure-fundamentals.data';
 
 interface TestState {
   availableTests: TestDto[];
@@ -192,7 +192,7 @@ export const CertTestStore = signalStore(
 
         try {
           // In a real app, this would be an HTTP call
-          const tests = [azureFundamentalsTest];
+          const tests = [azureFundamentalsTest, azureAdministratorTest];
           patchState(store, { availableTests: tests, loading: false });
         } catch (error) {
           patchState(store, {

@@ -285,6 +285,18 @@ export class NavigationService {
     return this._expandedPanels().has(panelId);
   }
 
+  /**
+   * Ensure a panel is expanded (open it if it's collapsed)
+   */
+  ensureExpanded(panelId: string): void {
+    const current = this._expandedPanels();
+    if (!current.has(panelId)) {
+      const newSet = new Set(current);
+      newSet.add(panelId);
+      this._expandedPanels.set(newSet);
+    }
+  }
+
   // Sidebar management
   toggleSidebar(): void {
     this._sidebarOpen.update(open => !open);

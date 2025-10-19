@@ -5,6 +5,11 @@ export const routes: Routes = [
   // Dashboard - Landing page with all top-level features
   {
     path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
     loadChildren: () => import('./features/dashboard/dashboard.routes').then(m => m.dashboardRoutes)
   },
 
@@ -47,6 +52,18 @@ export const routes: Routes = [
     loadChildren: () => import('./features/resume/resume.routes').then(m => m.resumeRoutes)
   },
 
+  // Front-end Landing Page
+  {
+    path: 'front-end',
+    loadComponent: () => import('./features/front-end/front-end.component').then(m => m.FrontEndComponent)
+  },
+
+  // SaaS Landing Page
+  {
+    path: 'saas',
+    loadComponent: () => import('./features/saas/saas.component').then(m => m.SaaSComponent)
+  },
+
   // Certification Test
   {
     path: 'saas/cert-test',
@@ -87,5 +104,9 @@ export const routes: Routes = [
   // { path: 'testdome', redirectTo: '/angular/playground/testdome' },
   // { path: 'testdome2', redirectTo: '/angular/playground/testdome2' },
 
-  { path: '**', redirectTo: '/' }
+  // 404 / Coming Soon - Catch all undefined routes
+  {
+    path: '**',
+    loadComponent: () => import('./shared/components/not-found/not-found.component').then(m => m.NotFoundComponent)
+  }
 ];
