@@ -32,7 +32,7 @@ import { ThemeService } from '../../core/services/theme.service';
           <p class="text-xl md:text-2xl text-secondary mb-6">
             Your comprehensive learning platform for Angular, .NET, and Azure certifications
           </p>
-          <p class="text-base text-secondary mb-8 max-w-2xl mx-auto">
+          <p class="text-base text-secondary mb-8 mx-auto">
             Master modern web development with hands-on tutorials, best practices, and certification preparation materials.
           </p>
           <div class="flex gap-4 justify-center flex-wrap">

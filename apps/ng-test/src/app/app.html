@@ -145,11 +145,11 @@
                   <div class="nav-section-title">
                     <mat-icon>{{ item.icon }}</mat-icon>
                     <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
-                    @if (item.badge && !sidebarCompact()) {
+                    <!-- @if (item.badge && !sidebarCompact()) {
                       <mat-chip [color]="item.badgeColor || 'primary'">
                         {{ item.badge }}
                       </mat-chip>
-                    }
+                    } -->
                   </div>
                 </a>
               }
@@ -170,21 +170,21 @@
                       (click)="item.children && ensureExpanded(item.id); $event.stopPropagation()">
                       <mat-icon>{{ item.icon }}</mat-icon>
                       <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
-                      @if (item.badge && !sidebarCompact()) {
+                      <!-- @if (item.badge && !sidebarCompact()) {
                         <mat-chip [color]="item.badgeColor || 'primary'" class="ml-2">
                           {{ item.badge }}
                         </mat-chip>
-                      }
+                      } -->
                     </a>
                   } @else {
                     <div class="nav-section-title" (click)="togglePanel(item.id)">
                       <mat-icon>{{ item.icon }}</mat-icon>
                       <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
-                      @if (item.badge && !sidebarCompact()) {
+                      <!-- @if (item.badge && !sidebarCompact()) {
                         <mat-chip [color]="item.badgeColor || 'primary'" class="ml-2">
                           {{ item.badge }}
                         </mat-chip>
-                      }
+                      } -->
                     </div>
                   }
                   <!-- Expand/collapse icon (always toggles children) -->
@@ -209,11 +209,11 @@
                         matTooltipPosition="right">
                         <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
                         <span matListItemTitle *ngIf="!sidebarCompact()">{{ child.title }}</span>
-                        @if (child.badge && !sidebarCompact()) {
+                        <!-- @if (child.badge && !sidebarCompact()) {
                           <mat-chip matListItemMeta [color]="child.badgeColor || 'primary'">
                             {{ child.badge }}
                           </mat-chip>
-                        }
+                        } -->
                       </a>
                     }
 

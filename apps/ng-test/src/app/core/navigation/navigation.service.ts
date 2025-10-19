@@ -61,8 +61,8 @@ export class NavigationService {
         next: (items) => {
           this._navigationItems.set(items);
           this._loading.set(false);
-          // Expand all panels by default
-          this._expandedPanels.set(new Set(items.map(item => item.id)));
+          // Start with all panels collapsed by default
+          this._expandedPanels.set(new Set());
         },
         error: (error) => {
           console.error('Error loading navigation:', error);

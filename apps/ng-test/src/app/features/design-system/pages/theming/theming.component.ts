@@ -98,6 +98,19 @@ import { ThemeService } from '../../../../core/services/theme.service';
       color: var(--text-primary);
       border: 1px solid var(--border-color);
     }
+
+    /* Ensure chip visibility in dark mode */
+    mat-chip {
+      background-color: var(--accent-color) !important;
+      color: white !important;
+      border: none !important;
+      font-weight: 500 !important;
+      font-size: 0.875rem !important;
+      height: 24px !important;
+      min-height: 24px !important;
+      padding: 0 12px !important;
+      border-radius: 12px !important;
+    }
   `],
 })
 export class ThemingComponent {

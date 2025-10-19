@@ -53,7 +53,7 @@ interface AngularNavItem {
             <button
               mat-button
               [class.active]="isActiveCategory(category.id)"
-              (click)="toggleCategory(category.id)"
+              (click)="navigateToCategory(category.id)"
               [matTooltip]="category.tooltip"
               class="category-btn">
               <mat-icon>{{ category.icon }}</mat-icon>
@@ -481,6 +481,14 @@ export class AngularShellComponent implements OnInit {
       this._activeCategoryId.set(null);
     } else {
       this._activeCategoryId.set(categoryId);
+    }
+  }
+
+  navigateToCategory(categoryId: string) {
+    // Navigate to the category landing page
+    const category = this.angularCategories().find(cat => cat.id === categoryId);
+    if (category) {
+      this.router.navigate([`/angular/${categoryId}`]);
     }
   }
 

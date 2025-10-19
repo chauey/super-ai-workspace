@@ -47,6 +47,11 @@ export const designSystemRoutes: Routes = [
           import('./pages/cards/cards.component').then((m) => m.CardsComponent),
       },
       {
+        path: 'badges',
+        loadComponent: () =>
+          import('./pages/badges/badges.component').then((m) => m.BadgesComponent),
+      },
+      {
         path: 'layouts',
         loadComponent: () =>
           import('./pages/layouts/layouts.component').then((m) => m.LayoutsComponent),

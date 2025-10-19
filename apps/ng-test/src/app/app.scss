@@ -150,6 +150,64 @@
   color: var(--text-primary) !important;
 }
 
+/* Badge and Chip Styling for Dark Mode */
+.mat-mdc-chip {
+  background-color: var(--accent-color) !important;
+  color: white !important;
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.75rem !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  padding: 0 8px !important;
+  border-radius: 10px !important;
+}
+
+
+
+/* Fix Material icons in dark mode - very specific targeting */
+.dark .mat-nav-list .mat-list-item mat-icon[matListItemIcon] {
+  color: #9ca3af !important; /* Light gray for visibility */
+}
+
+.dark .mat-nav-list .mat-list-item:hover mat-icon[matListItemIcon] {
+  color: #ffffff !important; /* White on hover */
+}
+
+.dark .mat-nav-list .mat-list-item.active mat-icon[matListItemIcon] {
+  color: #3b82f6 !important; /* Blue when active */
+}
+
+/* Fix Quick Navigation icons in dark mode - Using Material Design CSS Variables */
+.dark .quick-nav-card .mat-mdc-list-item {
+  --mdc-list-item-leading-icon-color: #9ca3af !important;
+  --mdc-list-item-leading-icon-size: 24px !important;
+}
+
+.dark .quick-nav-card .mat-mdc-list-item:hover {
+  --mdc-list-item-leading-icon-color: #ffffff !important;
+}
+
+.dark .quick-nav-card .mat-mdc-list-item.active {
+  --mdc-list-item-leading-icon-color: #3b82f6 !important;
+}
+
+/* Force icon color with maximum specificity */
+.dark .quick-nav-card .mat-mdc-list-item mat-icon {
+  color: #9ca3af !important;
+  --mat-icon-color: #9ca3af !important;
+}
+
+.dark .quick-nav-card .mat-mdc-list-item:hover mat-icon {
+  color: #ffffff !important;
+  --mat-icon-color: #ffffff !important;
+}
+
+.dark .quick-nav-card .mat-mdc-list-item.active mat-icon {
+  color: #3b82f6 !important;
+  --mat-icon-color: #3b82f6 !important;
+}
+
 /* Sidenav Container */
 .app-sidenav-container {
   flex: 1;
@@ -309,6 +367,8 @@
       color: var(--text-secondary);
       transition: all 0.2s ease;
       text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
 
       &:hover {
         background-color: var(--bg-tertiary);
@@ -344,6 +404,8 @@
 
       &.nav-grandchild {
         padding-left: 72px !important;
+        font-size: 13px;
+        font-weight: 400;
       }
 
       mat-icon {
@@ -397,7 +459,7 @@
       align-items: center;
       gap: 8px;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-primary);
       text-decoration: none;
       flex: 1;
@@ -422,9 +484,9 @@
       }
 
       mat-icon {
-        font-size: 16px;
-        width: 16px;
-        height: 16px;
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
         color: var(--text-secondary);
         transition: color 0.2s ease;
       }
@@ -459,8 +521,27 @@
     padding-left: 64px; // Extra indentation for 4th level
   }
 
+  .nav-subsection-title {
+    font-size: 12px;
+    font-weight: 400;
+
+    mat-icon {
+      font-size: 12px;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
   .nav-greatgrandchild {
     padding-left: 88px !important; // Even more indentation for 5th level (great-grandchildren)
+    font-size: 12px;
+    font-weight: 400;
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
   }
 }
 

@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-design-system',
@@ -20,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatCardModule,
     MatTooltipModule,
+    MatChipsModule,
   ],
   template: `
     <div class="design-system-feature-container">
@@ -51,9 +53,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
             <mat-card-content>
               <mat-nav-list>
                 @for (link of navLinks; track link.path) {
-                  <a mat-list-item [routerLink]="link.path" routerLinkActive="active" [matTooltip]="link.label">
+                  <a mat-list-item [routerLink]="link.path" routerLinkActive="active" [matTooltip]="link.label" class="nav-link-item">
                     <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
-                    <span matListItemTitle>{{ link.label }}</span>
+                    <span matListItemTitle class="nav-link-text">{{ link.label }}</span>
+                    <!-- @if (link.badge) {
+                      <mat-chip matListItemMeta class="nav-badge" [class.badge-accent]="link.badgeColor === 'accent'" [class.badge-primary]="link.badgeColor === 'primary'">
+                        {{ link.badge }}
+                      </mat-chip>
+                    } -->
                   </a>
                 }
               </mat-nav-list>
@@ -172,44 +179,96 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       }
 
       .quick-nav-card .mat-list-item {
-        color: var(--text-secondary);
+        color: var(--text-secondary) !important;
         border-radius: 4px;
         margin-bottom: 4px;
+        transition: all 0.2s ease;
       }
 
       .quick-nav-card .mat-list-item:hover {
         background-color: var(--bg-tertiary);
-        color: var(--text-primary);
+        color: var(--text-primary) !important;
       }
 
       .quick-nav-card .mat-list-item.active {
         background-color: rgba(var(--primary-rgb), 0.15);
-        color: var(--primary-color);
+        color: var(--primary-color) !important;
         font-weight: 500;
       }
 
-      .quick-nav-card .mat-list-item.active mat-icon {
-        color: var(--primary-color);
+
+      .nav-badge {
+        font-size: 0.75rem !important;
+        height: 20px !important;
+        min-height: 20px !important;
+        padding: 0 8px !important;
+        font-weight: 500 !important;
+        background-color: var(--accent-color) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 10px !important;
       }
 
-      .quick-nav-card .mat-list-item mat-icon {
-        color: var(--text-icon);
+      .nav-badge.badge-accent {
+        background-color: var(--accent-color) !important;
+        color: white !important;
+      }
+
+      .nav-badge.badge-primary {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+      }
+
+      /* Force icon colors in dark mode - Using CSS Variables */
+      .dark .quick-nav-card .mat-mdc-list-item mat-icon[matListItemIcon] {
+        --mat-icon-color: #9ca3af !important;
+        color: #9ca3af !important;
+      }
+
+      .dark .quick-nav-card .mat-mdc-list-item:hover mat-icon[matListItemIcon] {
+        --mat-icon-color: #ffffff !important;
+        color: #ffffff !important;
+      }
+
+      .dark .quick-nav-card .mat-mdc-list-item.active mat-icon[matListItemIcon] {
+        --mat-icon-color: #3b82f6 !important;
+        color: #3b82f6 !important;
+      }
+
+      /* Direct targeting of navigation text */
+      .nav-link-item {
+        color: var(--text-secondary) !important;
+      }
+
+      .nav-link-item:hover {
+        color: var(--text-primary) !important;
+      }
+
+      .nav-link-item.active {
+        color: var(--primary-color) !important;
+      }
+
+      .nav-link-text {
+        color: inherit !important;
+        font-weight: inherit !important;
       }
     `,
   ],
 })
 export class DesignSystemComponent {
+
   navLinks = [
     { path: 'overview', label: 'Overview', icon: 'dashboard' },
-    { path: 'colors', label: 'Colors', icon: 'palette' },
+    { path: 'colors', label: 'Colors', icon: 'palette', badge: 'New', badgeColor: 'accent' },
     { path: 'typography', label: 'Typography', icon: 'text_fields' },
     { path: 'icons', label: 'Icons', icon: 'emoji_emotions' },
-    { path: 'buttons', label: 'Buttons', icon: 'smart_button' },
+    { path: 'buttons', label: 'Buttons', icon: 'smart_button', badge: 'Updated', badgeColor: 'primary' },
     { path: 'forms', label: 'Forms', icon: 'edit_note' },
-    { path: 'cards', label: 'Cards', icon: 'view_agenda' },
+    { path: 'cards', label: 'Cards', icon: 'view_agenda', badge: 'New', badgeColor: 'accent' },
+    { path: 'badges', label: 'Badges', icon: 'label', badge: 'New', badgeColor: 'accent' },
     { path: 'layouts', label: 'Layouts', icon: 'view_quilt' },
-    { path: 'grids', label: 'Grids', icon: 'grid_on' },
-    { path: 'theming', label: 'Theming', icon: 'dark_mode' },
+    { path: 'grids', label: 'Grids', icon: 'grid_on', badge: 'New', badgeColor: 'accent' },
+    { path: 'theming', label: 'Theming', icon: 'dark_mode', badge: 'Updated', badgeColor: 'primary' },
   ];
 }
 
