@@ -160,14 +160,15 @@
                   class="nav-section-header"
                   [class.expanded]="isPanelExpanded(item.id)"
                   [matTooltip]="sidebarCompact() ? item.tooltip : ''"
-                  matTooltipPosition="right">
+                  matTooltipPosition="right"
+                  (click)="handleSectionClick(item, $event)">
                   <!-- Clickable title that navigates if route exists -->
                   @if (item.route) {
                     <a
                       [routerLink]="item.route"
                       routerLinkActive="active"
                       class="nav-section-title nav-title-link"
-                      (click)="item.children && ensureExpanded(item.id); $event.stopPropagation()">
+                      (click)="$event.stopPropagation()">
                       <mat-icon>{{ item.icon }}</mat-icon>
                       <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
                       <!-- @if (item.badge && !sidebarCompact()) {
@@ -177,7 +178,7 @@
                       } -->
                     </a>
                   } @else {
-                    <div class="nav-section-title" (click)="togglePanel(item.id)">
+                    <div class="nav-section-title">
                       <mat-icon>{{ item.icon }}</mat-icon>
                       <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
                       <!-- @if (item.badge && !sidebarCompact()) {
@@ -188,7 +189,7 @@
                     </div>
                   }
                   <!-- Expand/collapse icon (always toggles children) -->
-                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()" (click)="togglePanel(item.id)">
+                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
                     {{ isPanelExpanded(item.id) ? 'expand_less' : 'expand_more' }}
                   </mat-icon>
                 </div>
@@ -222,24 +223,25 @@
                       <div class="nav-subsection">
                         <div
                           class="nav-subsection-header"
-                          [class.expanded]="isPanelExpanded(child.id)">
+                          [class.expanded]="isPanelExpanded(child.id)"
+                          (click)="handleSectionClick(child, $event)">
                           <!-- Clickable title that navigates if route exists -->
                           @if (child.route) {
                             <a
                               [routerLink]="child.route"
                               routerLinkActive="active"
                               class="nav-subsection-title"
-                              (click)="child.children && ensureExpanded(child.id); $event.stopPropagation()">
+                              (click)="$event.stopPropagation()">
                               <mat-icon>{{ child.icon }}</mat-icon>
                               <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
                             </a>
                           } @else {
-                            <div class="nav-subsection-title" (click)="togglePanel(child.id)">
+                            <div class="nav-subsection-title">
                               <mat-icon>{{ child.icon }}</mat-icon>
                               <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
                             </div>
                           }
-                          <mat-icon class="expand-icon" *ngIf="!sidebarCompact()" (click)="togglePanel(child.id)">
+                          <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
                             {{ isPanelExpanded(child.id) ? 'expand_less' : 'expand_more' }}
                           </mat-icon>
                         </div>
@@ -267,23 +269,24 @@
                               <div class="nav-subsection nav-level-4">
                                 <div
                                   class="nav-subsection-header"
-                                  [class.expanded]="isPanelExpanded(grandchild.id)">
+                                  [class.expanded]="isPanelExpanded(grandchild.id)"
+                                  (click)="handleSectionClick(grandchild, $event)">
                                   @if (grandchild.route) {
                                     <a
                                       [routerLink]="grandchild.route"
                                       routerLinkActive="active"
                                       class="nav-subsection-title"
-                                      (click)="grandchild.children && ensureExpanded(grandchild.id); $event.stopPropagation()">
+                                      (click)="$event.stopPropagation()">
                                       <mat-icon>{{ grandchild.icon }}</mat-icon>
                                       <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
                                     </a>
                                   } @else {
-                                    <div class="nav-subsection-title" (click)="togglePanel(grandchild.id)">
+                                    <div class="nav-subsection-title">
                                       <mat-icon>{{ grandchild.icon }}</mat-icon>
                                       <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
                                     </div>
                                   }
-                                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()" (click)="togglePanel(grandchild.id)">
+                                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
                                     {{ isPanelExpanded(grandchild.id) ? 'expand_less' : 'expand_more' }}
                                   </mat-icon>
                                 </div>

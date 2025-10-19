@@ -647,7 +647,30 @@
       "title": "Resume",
       "icon": "description",
       "route": "/resume",
-      "tooltip": "Professional resume with download options (PDF, Word)"
+      "tooltip": "Professional resume with download options (PDF, Word)",
+      "children": [
+        {
+          "id": "resume-home",
+          "title": "Resume Home",
+          "icon": "home",
+          "route": "/resume",
+          "tooltip": "Resume portfolio overview"
+        },
+        {
+          "id": "resume-one-pager",
+          "title": "One-Pager Resume",
+          "icon": "description",
+          "route": "/resume/chauey/one-pager",
+          "tooltip": "Concise one-page resume"
+        },
+        {
+          "id": "resume-full",
+          "title": "Full Resume",
+          "icon": "folder_open",
+          "route": "/resume/chauey/full",
+          "tooltip": "Comprehensive career portfolio"
+        }
+      ]
     }
   ]
 }

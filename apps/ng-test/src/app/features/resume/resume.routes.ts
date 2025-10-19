@@ -1,10 +1,12 @@
-import { Route } from '@angular/router';
-import { ResumeComponent } from './resume.component';
+import { Routes } from '@angular/router';
 
-export const resumeRoutes: Route[] = [
+export const resumeRoutes: Routes = [
   {
     path: '',
-    component: ResumeComponent,
+    loadComponent: () => import('./resume-home.component').then(m => m.ResumeHomeComponent)
   },
+  {
+    path: ':username/:slug',
+    loadComponent: () => import('./resume-viewer.component').then(m => m.ResumeViewerComponent)
+  }
 ];
-

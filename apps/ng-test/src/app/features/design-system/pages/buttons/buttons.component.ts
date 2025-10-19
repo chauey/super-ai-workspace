@@ -89,6 +89,79 @@ import { MatIconModule } from '@angular/material/icon';
       </div>
     </div>
   `,
+  styles: [`
+    /* Fix button text colors in dark mode */
+    .dark mat-raised-button:not([color]) {
+      background-color: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-raised-button:not([color]):hover {
+      background-color: var(--bg-secondary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-button:not([color]) {
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-button:not([color]):hover {
+      background-color: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-stroked-button:not([color]) {
+      border-color: var(--border-color) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-stroked-button:not([color]):hover {
+      background-color: var(--bg-tertiary) !important;
+      border-color: var(--text-primary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-icon-button:not([color]) {
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-icon-button:not([color]):hover {
+      background-color: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-fab:not([color]) {
+      background-color: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-fab:not([color]):hover {
+      background-color: var(--bg-secondary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-mini-fab:not([color]) {
+      background-color: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .dark mat-mini-fab:not([color]):hover {
+      background-color: var(--bg-secondary) !important;
+      color: var(--text-primary) !important;
+    }
+
+    /* Ensure disabled buttons are properly styled in dark mode */
+    .dark mat-button[disabled],
+    .dark mat-raised-button[disabled],
+    .dark mat-stroked-button[disabled] {
+      color: var(--text-disabled) !important;
+      background-color: transparent !important;
+    }
+
+    .dark mat-raised-button[disabled] {
+      background-color: var(--bg-disabled) !important;
+    }
+  `]
 })
 export class ButtonsComponent {}
 

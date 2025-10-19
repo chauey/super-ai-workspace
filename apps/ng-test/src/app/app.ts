@@ -115,6 +115,18 @@ export class App {
     this.navigationService.ensureExpanded(panelId);
   }
 
+  handleSectionClick(item: any, event: Event): void {
+    // If the item has children, toggle the panel
+    if (item.children) {
+      this.togglePanel(item.id);
+    }
+
+    // If the item has a route and no children, navigate
+    if (item.route && !item.children) {
+      // Navigation will be handled by the routerLink
+    }
+  }
+
   // Density methods
   setDensity(mode: DensityMode): void {
     this.densityStore.setMode(mode);
