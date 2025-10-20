@@ -26,7 +26,7 @@ import { MatChipsModule } from '@angular/material/chips';
             Welcome to Super AI Guide
           </h1>
           <p class="text-xl text-secondary mb-6">
-            Your comprehensive learning platform for AI, Front-end, Back-end, and Azure certifications
+            Your all-in-one developer hub: Learn modern web technologies, master cloud certifications, explore AI tools, build SaaS applications, and showcase your skills with interactive tutorials and real-world projects.
           </p>
           <div class="flex gap-4 justify-center flex-wrap">
             <button mat-raised-button color="primary" routerLink="/design-system">

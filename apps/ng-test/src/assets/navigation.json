@@ -8,667 +8,1036 @@
       "tooltip": "Home dashboard"
     },
     {
-      "id": "design-system",
-      "title": "Design System",
-      "icon": "palette",
-      "route": "/design-system",
-      "tooltip": "UI Kit, style guide, and component library",
-      "badge": "New",
-      "badgeColor": "accent"
-    },
-    {
-      "id": "docs",
-      "title": "Documentation",
-      "icon": "menu_book",
-      "route": "/docs",
-      "tooltip": "Developer guides and documentation"
-    },
-    {
-      "id": "front-end",
-      "title": "Front-end",
-      "icon": "web",
-      "route": "/front-end",
-      "tooltip": "Front-end frameworks and libraries",
+      "id": "tech",
+      "title": "Tech",
+      "icon": "school",
+      "tooltip": "All educational content",
       "children": [
         {
-          "id": "angular",
-          "title": "Angular",
-          "icon": "code",
-          "route": "/angular",
-          "tooltip": "Angular tutorials and examples",
+          "id": "front-end",
+          "title": "Front-end",
+          "icon": "web",
+          "tooltip": "Front-end frameworks and libraries",
           "children": [
             {
-              "id": "core-concepts",
-              "title": "Core Concepts",
-              "icon": "build",
-              "route": "/angular/core-concepts",
-              "tooltip": "Angular core concepts and fundamentals",
+              "id": "angular",
+              "title": "Angular",
+              "icon": "code",
+              "route": "/angular",
+              "tooltip": "Angular tutorials and examples",
               "children": [
                 {
-                  "id": "empty",
-                  "title": "Empty Page",
-                  "icon": "description",
-                  "route": "/angular/core-concepts/empty",
-                  "tooltip": "Empty page template"
-                },
-                {
-                  "id": "control-flow",
-                  "title": "Control Flow",
-                  "icon": "control_camera",
-                  "route": "/angular/core-concepts/control-flow",
-                  "tooltip": "Angular control flow syntax"
-                },
-                {
-                  "id": "signals",
-                  "title": "Signals & Resources",
-                  "icon": "signal_cellular_alt",
-                  "route": "/angular/core-concepts/signals",
-                  "tooltip": "Angular signals and resources"
-                }
-              ]
-            },
-            {
-              "id": "forms-data",
-              "title": "Forms & Data",
-              "icon": "description",
-              "route": "/angular/forms-data",
-              "tooltip": "Angular forms and data handling",
-              "children": [
-                {
-                  "id": "reactive-forms",
-                  "title": "Reactive Forms",
-                  "icon": "edit",
-                  "route": "/angular/forms-data/reactive-forms",
-                  "tooltip": "Angular reactive forms"
-                },
-                {
-                  "id": "reactive-forms-signals",
-                  "title": "Forms + Signals",
-                  "icon": "signal_cellular_alt",
-                  "route": "/angular/forms-data/reactive-forms-signals",
-                  "tooltip": "Reactive forms with signals"
-                },
-                {
-                  "id": "http-client",
-                  "title": "HTTP Client",
-                  "icon": "http",
-                  "route": "/angular/forms-data/http-client",
-                  "tooltip": "Angular HTTP client"
-                }
-              ]
-            },
-            {
-              "id": "architecture",
-              "title": "Architecture",
-              "icon": "architecture",
-              "route": "/angular/architecture",
-              "tooltip": "Angular architecture patterns",
-              "children": [
-                {
-                  "id": "dependency-injection",
-                  "title": "Dependency Injection",
-                  "icon": "injection",
-                  "route": "/angular/architecture/dependency-injection",
-                  "tooltip": "Angular dependency injection"
-                },
-                {
-                  "id": "lifecycle-hooks",
-                  "title": "Lifecycle Hooks",
-                  "icon": "cycle",
-                  "route": "/angular/architecture/lifecycle-hooks",
-                  "tooltip": "Angular component lifecycle hooks"
-                },
-                {
-                  "id": "services",
-                  "title": "Services",
+                  "id": "core-concepts",
+                  "title": "Core Concepts",
                   "icon": "build",
-                  "route": "/angular/architecture/services",
-                  "tooltip": "Angular services"
-                }
-              ]
-            },
-            {
-              "id": "advanced-features",
-              "title": "Advanced Features",
-              "icon": "extension",
-              "route": "/angular/advanced-features",
-              "tooltip": "Advanced Angular features",
-              "children": [
-                {
-                  "id": "pipes",
-                  "title": "Pipes",
-                  "icon": "filter_list",
-                  "route": "/angular/advanced-features/pipes",
-                  "tooltip": "Angular pipes"
-                },
-                {
-                  "id": "guards-interceptors",
-                  "title": "Guards & Interceptors",
-                  "icon": "security",
-                  "route": "/angular/advanced-features/guards-interceptors",
-                  "tooltip": "Angular guards and interceptors"
-                },
-                {
-                  "id": "lazy-loading",
-                  "title": "Lazy Loading",
-                  "icon": "speed",
-                  "route": "/angular/advanced-features/lazy-loading",
-                  "tooltip": "Angular lazy loading"
-                },
-                {
-                  "id": "defer",
-                  "title": "@defer Directive",
-                  "icon": "schedule",
-                  "route": "/angular/advanced-features/defer",
-                  "tooltip": "Angular @defer directive"
-                }
-              ]
-            },
-            {
-              "id": "state-management",
-              "title": "State Management",
-              "icon": "storage",
-              "tooltip": "State management solutions",
-              "children": [
-                {
-                  "id": "ngrx",
-                  "title": "NgRx",
-                  "icon": "inventory",
-                  "route": "/angular/state-management/ngrx",
-                  "tooltip": "NgRx - Reactive state for Angular",
+                  "route": "/angular/core-concepts",
+                  "tooltip": "Angular core concepts and fundamentals",
                   "children": [
                     {
-                      "id": "ngrx-signal-store",
-                      "title": "Signal Store",
+                      "id": "empty",
+                      "title": "Empty Page",
+                      "icon": "description",
+                      "route": "/angular/core-concepts/empty",
+                      "tooltip": "Empty page template"
+                    },
+                    {
+                      "id": "control-flow",
+                      "title": "Control Flow",
+                      "icon": "control_camera",
+                      "route": "/angular/core-concepts/control-flow",
+                      "tooltip": "Angular control flow syntax"
+                    },
+                    {
+                      "id": "signals",
+                      "title": "Signals & Resources",
                       "icon": "signal_cellular_alt",
-                      "route": "/angular/state-management/ngrx/signal-store",
-                      "tooltip": "NgRx Signal Store - Modern state management",
-                      "badge": "New",
+                      "route": "/angular/core-concepts/signals",
+                      "tooltip": "Angular signals and resources"
+                    }
+                  ]
+                },
+                {
+                  "id": "forms-data",
+                  "title": "Forms & Data",
+                  "icon": "description",
+                  "route": "/angular/forms-data",
+                  "tooltip": "Angular forms and data handling",
+                  "children": [
+                    {
+                      "id": "reactive-forms",
+                      "title": "Reactive Forms",
+                      "icon": "edit",
+                      "route": "/angular/forms-data/reactive-forms",
+                      "tooltip": "Angular reactive forms"
+                    },
+                    {
+                      "id": "reactive-forms-signals",
+                      "title": "Forms + Signals",
+                      "icon": "signal_cellular_alt",
+                      "route": "/angular/forms-data/reactive-forms-signals",
+                      "tooltip": "Reactive forms with signals"
+                    },
+                    {
+                      "id": "http-client",
+                      "title": "HTTP Client",
+                      "icon": "http",
+                      "route": "/angular/forms-data/http-client",
+                      "tooltip": "Angular HTTP client"
+                    }
+                  ]
+                },
+                {
+                  "id": "architecture",
+                  "title": "Architecture",
+                  "icon": "architecture",
+                  "route": "/angular/architecture",
+                  "tooltip": "Angular architecture patterns",
+                  "children": [
+                    {
+                      "id": "dependency-injection",
+                      "title": "Dependency Injection",
+                      "icon": "injection",
+                      "route": "/angular/architecture/dependency-injection",
+                      "tooltip": "Angular dependency injection"
+                    },
+                    {
+                      "id": "lifecycle-hooks",
+                      "title": "Lifecycle Hooks",
+                      "icon": "cycle",
+                      "route": "/angular/architecture/lifecycle-hooks",
+                      "tooltip": "Angular component lifecycle hooks"
+                    },
+                    {
+                      "id": "services",
+                      "title": "Services",
+                      "icon": "build",
+                      "route": "/angular/architecture/services",
+                      "tooltip": "Angular services"
+                    }
+                  ]
+                },
+                {
+                  "id": "advanced-features",
+                  "title": "Advanced Features",
+                  "icon": "extension",
+                  "route": "/angular/advanced-features",
+                  "tooltip": "Advanced Angular features",
+                  "children": [
+                    {
+                      "id": "pipes",
+                      "title": "Pipes",
+                      "icon": "filter_list",
+                      "route": "/angular/advanced-features/pipes",
+                      "tooltip": "Angular pipes"
+                    },
+                    {
+                      "id": "guards-interceptors",
+                      "title": "Guards & Interceptors",
+                      "icon": "security",
+                      "route": "/angular/advanced-features/guards-interceptors",
+                      "tooltip": "Angular guards and interceptors"
+                    },
+                    {
+                      "id": "lazy-loading",
+                      "title": "Lazy Loading",
+                      "icon": "speed",
+                      "route": "/angular/advanced-features/lazy-loading",
+                      "tooltip": "Angular lazy loading"
+                    },
+                    {
+                      "id": "defer",
+                      "title": "@defer Directive",
+                      "icon": "schedule",
+                      "route": "/angular/advanced-features/defer",
+                      "tooltip": "Angular @defer directive"
+                    }
+                  ]
+                },
+                {
+                  "id": "state-management",
+                  "title": "State Management",
+                  "icon": "storage",
+                  "tooltip": "State management solutions",
+                  "children": [
+                    {
+                      "id": "ngrx",
+                      "title": "NgRx",
+                      "icon": "inventory",
+                      "route": "/angular/state-management/ngrx",
+                      "tooltip": "NgRx - Reactive state for Angular",
+                      "children": [
+                        {
+                          "id": "ngrx-signal-store",
+                          "title": "Signal Store",
+                          "icon": "signal_cellular_alt",
+                          "route": "/angular/state-management/ngrx/signal-store",
+                          "tooltip": "NgRx Signal Store - Modern state management",
+                          "badge": "New",
+                          "badgeColor": "accent"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "localization",
+                  "title": "Localization",
+                  "icon": "language",
+                  "tooltip": "Internationalization and localization",
+                  "children": [
+                    {
+                      "id": "transloco",
+                      "title": "Transloco",
+                      "icon": "translate",
+                      "route": "/angular/localization/transloco",
+                      "tooltip": "Transloco - The internationalization library used by Fuse"
+                    }
+                  ]
+                },
+                {
+                  "id": "starter-kits",
+                  "title": "Starter Kits",
+                  "icon": "rocket_launch",
+                  "tooltip": "Production-ready Angular starter templates",
+                  "children": [
+                    {
+                      "id": "fuse-angular",
+                      "title": "Fuse Angular",
+                      "icon": "stars",
+                      "route": "/angular/starter-kits/fuse",
+                      "tooltip": "Fuse Angular - Premium admin template and starter kit",
+                      "badge": "Premium",
                       "badgeColor": "accent"
+                    }
+                  ]
+                },
+                {
+                  "id": "playground",
+                  "title": "Playground",
+                  "icon": "play_arrow",
+                  "tooltip": "Experimental features and testing",
+                  "children": [
+                    {
+                      "id": "testdome",
+                      "title": "TestDome Page 1",
+                      "icon": "science",
+                      "route": "/angular/playground/testdome",
+                      "tooltip": "TestDome experiment page 1"
+                    },
+                    {
+                      "id": "testdome2",
+                      "title": "TestDome Page 2",
+                      "icon": "experiment",
+                      "route": "/angular/playground/testdome2",
+                      "tooltip": "TestDome experiment page 2"
                     }
                   ]
                 }
               ]
             },
             {
-              "id": "localization",
-              "title": "Localization",
-              "icon": "language",
-              "tooltip": "Internationalization and localization",
+              "id": "react",
+              "title": "React",
+              "icon": "code",
+              "route": "/react",
+              "tooltip": "React tutorials and examples"
+            },
+            {
+              "id": "vue",
+              "title": "Vue.js",
+              "icon": "code",
+              "route": "/vue",
+              "tooltip": "Vue.js tutorials and examples"
+            }
+          ]
+        },
+        {
+          "id": "back-end",
+          "title": "Back-end",
+          "icon": "dns",
+          "tooltip": "Back-end frameworks and technologies",
+          "children": [
+            {
+              "id": "dotnet",
+              "title": ".NET",
+              "icon": "terminal",
+              "route": "/dotnet",
+              "tooltip": "C#, ASP.NET Core, and .NET ecosystem",
               "children": [
                 {
-                  "id": "transloco",
-                  "title": "Transloco",
-                  "icon": "translate",
-                  "route": "/angular/localization/transloco",
-                  "tooltip": "Transloco - The internationalization library used by Fuse"
+                  "id": "abp-framework",
+                  "title": "ABP Framework",
+                  "icon": "view_module",
+                  "route": "/backend/dotnet/abp-framework",
+                  "tooltip": "ABP Framework - Open-source web application framework for ASP.NET Core"
                 }
               ]
             },
             {
-              "id": "starter-kits",
-              "title": "Starter Kits",
-              "icon": "rocket_launch",
-              "tooltip": "Production-ready Angular starter templates",
-              "children": [
-                {
-                  "id": "fuse-angular",
-                  "title": "Fuse Angular",
-                  "icon": "stars",
-                  "route": "/angular/starter-kits/fuse",
-                  "tooltip": "Fuse Angular - Premium admin template and starter kit",
-                  "badge": "Premium",
-                  "badgeColor": "accent"
-                }
-              ]
+              "id": "nodejs",
+              "title": "Node.js",
+              "icon": "code",
+              "route": "/nodejs",
+              "tooltip": "Node.js and Express"
             },
             {
-              "id": "playground",
-              "title": "Playground",
-              "icon": "play_arrow",
-              "tooltip": "Experimental features and testing",
+              "id": "python",
+              "title": "Python",
+              "icon": "code",
+              "route": "/python",
+              "tooltip": "Python, Django, and FastAPI"
+            }
+          ]
+        },
+        {
+          "id": "cloud-devops",
+          "title": "Cloud & DevOps",
+          "icon": "cloud",
+          "tooltip": "Cloud platforms and DevOps practices",
+          "children": [
+            {
+              "id": "azure-fundamentals",
+              "title": "Azure Fundamentals (AZ-900)",
+              "icon": "cloud",
+              "route": "/az-900",
+              "tooltip": "Azure Fundamentals certification"
+            },
+            {
+              "id": "azure-developer",
+              "title": "Azure Developer (AZ-204)",
+              "icon": "code",
+              "route": "/az-204",
+              "tooltip": "Azure Developer Associate"
+            },
+            {
+              "id": "azure-devops",
+              "title": "Azure DevOps (AZ-400)",
+              "icon": "settings",
+              "route": "/az-400",
+              "tooltip": "Azure DevOps Engineer Expert"
+            },
+            {
+              "id": "ai-fundamentals",
+              "title": "AI Fundamentals (AI-900)",
+              "icon": "psychology",
+              "route": "/ai-900",
+              "tooltip": "Azure AI Fundamentals certification"
+            }
+          ]
+        },
+        {
+          "id": "ai-machine-learning",
+          "title": "AI & Machine Learning",
+          "icon": "psychology",
+          "tooltip": "AI tools and machine learning resources",
+          "children": [
+            {
+              "id": "ai-tools",
+              "title": "AI Tools",
+              "icon": "auto_awesome",
+              "tooltip": "AI-powered tools and assistants",
               "children": [
                 {
-                  "id": "testdome",
-                  "title": "TestDome Page 1",
-                  "icon": "science",
-                  "route": "/angular/playground/testdome",
-                  "tooltip": "TestDome experiment page 1"
+                  "id": "ai-coding",
+                  "title": "AI for Coding",
+                  "icon": "code",
+                  "tooltip": "AI-powered coding assistants",
+                  "children": [
+                    {
+                      "id": "cursor",
+                      "title": "Cursor",
+                      "icon": "edit_note",
+                      "route": "/ai-tools/coding/cursor",
+                      "tooltip": "Cursor - AI-first code editor"
+                    },
+                    {
+                      "id": "github-copilot",
+                      "title": "GitHub Copilot",
+                      "icon": "co_present",
+                      "route": "/ai-tools/coding/github-copilot",
+                      "tooltip": "GitHub Copilot - AI pair programmer"
+                    },
+                    {
+                      "id": "windsurf",
+                      "title": "Windsurf",
+                      "icon": "sailing",
+                      "route": "/ai-tools/coding/windsurf",
+                      "tooltip": "Windsurf - AI coding assistant"
+                    }
+                  ]
                 },
                 {
-                  "id": "testdome2",
-                  "title": "TestDome Page 2",
-                  "icon": "experiment",
-                  "route": "/angular/playground/testdome2",
-                  "tooltip": "TestDome experiment page 2"
+                  "id": "ai-general",
+                  "title": "General AI",
+                  "icon": "chat",
+                  "tooltip": "General purpose AI assistants",
+                  "children": [
+                    {
+                      "id": "chatgpt",
+                      "title": "ChatGPT",
+                      "icon": "chat_bubble",
+                      "route": "/ai-tools/general/chatgpt",
+                      "tooltip": "ChatGPT - OpenAI's conversational AI"
+                    },
+                    {
+                      "id": "gemini",
+                      "title": "Gemini",
+                      "icon": "stars",
+                      "route": "/ai-tools/general/gemini",
+                      "tooltip": "Gemini - Google's multimodal AI"
+                    },
+                    {
+                      "id": "grok",
+                      "title": "Grok",
+                      "icon": "auto_stories",
+                      "route": "/ai-tools/general/grok",
+                      "tooltip": "Grok - X's AI assistant"
+                    },
+                    {
+                      "id": "claude",
+                      "title": "Claude",
+                      "icon": "psychology_alt",
+                      "route": "/ai-tools/general/claude",
+                      "tooltip": "Claude - Anthropic's AI assistant"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "ai-agents",
+              "title": "AI Agents",
+              "icon": "smart_toy",
+              "tooltip": "AI agent development platforms",
+              "children": [
+                {
+                  "id": "openai-agents",
+                  "title": "OpenAI Agents",
+                  "icon": "psychology",
+                  "route": "/ai-agents/openai",
+                  "tooltip": "OpenAI Assistants and Agents"
+                },
+                {
+                  "id": "semantic-kernel",
+                  "title": "Semantic Kernel",
+                  "icon": "model_training",
+                  "route": "/ai-agents/semantic-kernel",
+                  "tooltip": "Microsoft Semantic Kernel"
+                },
+                {
+                  "id": "langchain",
+                  "title": "LangChain",
+                  "icon": "link",
+                  "route": "/ai-agents/langchain",
+                  "tooltip": "LangChain framework"
+                },
+                {
+                  "id": "autogen",
+                  "title": "AutoGen",
+                  "icon": "auto_awesome",
+                  "route": "/ai-agents/autogen",
+                  "tooltip": "Microsoft AutoGen"
+                },
+                {
+                  "id": "n8n",
+                  "title": "n8n",
+                  "icon": "account_tree",
+                  "route": "/ai-agents/n8n",
+                  "tooltip": "n8n workflow automation"
+                },
+                {
+                  "id": "llamaindex",
+                  "title": "LlamaIndex",
+                  "icon": "storage",
+                  "route": "/ai-agents/llamaindex",
+                  "tooltip": "LlamaIndex data framework"
+                }
+              ]
+            },
+            {
+              "id": "mcp-servers",
+              "title": "MCP Servers",
+              "icon": "hub",
+              "tooltip": "Model Context Protocol server integrations",
+              "children": [
+                {
+                  "id": "mcp-playwright",
+                  "title": "Playwright MCP",
+                  "icon": "theater_comedy",
+                  "route": "/mcp/playwright",
+                  "tooltip": "Playwright Model Context Protocol server"
+                },
+                {
+                  "id": "mcp-figma",
+                  "title": "Figma MCP",
+                  "icon": "design_services",
+                  "route": "/mcp/figma",
+                  "tooltip": "Figma Model Context Protocol server"
+                },
+                {
+                  "id": "mcp-stripe",
+                  "title": "Stripe MCP",
+                  "icon": "payment",
+                  "route": "/mcp/stripe",
+                  "tooltip": "Stripe Model Context Protocol server"
+                },
+                {
+                  "id": "mcp-supabase",
+                  "title": "Supabase MCP",
+                  "icon": "storage",
+                  "route": "/mcp/supabase",
+                  "tooltip": "Supabase Model Context Protocol server"
+                },
+                {
+                  "id": "mcp-sentry",
+                  "title": "Sentry MCP",
+                  "icon": "monitor_heart",
+                  "route": "/mcp/sentry",
+                  "tooltip": "Sentry Model Context Protocol server"
+                },
+                {
+                  "id": "mcp-frameworks",
+                  "title": "MCP Frameworks",
+                  "icon": "widgets",
+                  "route": "/mcp/frameworks",
+                  "tooltip": "Model Context Protocol frameworks and SDKs"
+                },
+                {
+                  "id": "mcp-directories",
+                  "title": "MCP Directories",
+                  "icon": "folder_open",
+                  "route": "/mcp/directories",
+                  "tooltip": "MCP server directories and registries"
                 }
               ]
             }
           ]
         },
         {
-          "id": "react",
-          "title": "React",
-          "icon": "code",
-          "route": "/react",
-          "tooltip": "React tutorials and examples"
-        },
-        {
-          "id": "vue",
-          "title": "Vue.js",
-          "icon": "code",
-          "route": "/vue",
-          "tooltip": "Vue.js tutorials and examples"
+          "id": "e2e-testing",
+          "title": "E2E Testing",
+          "icon": "bug_report",
+          "tooltip": "End-to-end testing frameworks and tools",
+          "children": [
+            {
+              "id": "playwright",
+              "title": "Playwright",
+              "icon": "theater_comedy",
+              "tooltip": "End-to-end testing with Playwright",
+              "children": [
+                {
+                  "id": "playwright-getting-started",
+                  "title": "Getting Started",
+                  "icon": "play_arrow",
+                  "route": "/playwright/getting-started",
+                  "tooltip": "Playwright setup and basics"
+                },
+                {
+                  "id": "playwright-test-examples",
+                  "title": "Test Examples",
+                  "icon": "science",
+                  "route": "/playwright/test-examples",
+                  "tooltip": "Playwright test examples and patterns"
+                },
+                {
+                  "id": "playwright-best-practices",
+                  "title": "Best Practices",
+                  "icon": "star",
+                  "route": "/playwright/best-practices",
+                  "tooltip": "Playwright testing best practices"
+                },
+                {
+                  "id": "playwright-mcp-integration",
+                  "title": "MCP Integration",
+                  "icon": "hub",
+                  "route": "/playwright/mcp-integration",
+                  "tooltip": "Playwright Model Context Protocol integration"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
-      "id": "backend",
-      "title": "Back-end",
-      "icon": "dns",
-      "tooltip": "Back-end frameworks and technologies",
+      "id": "build",
+      "title": "Build",
+      "icon": "build",
+      "tooltip": "Development tools and resources",
       "children": [
         {
-          "id": "dotnet",
-          "title": ".NET",
-          "icon": "terminal",
-          "route": "/dotnet",
-          "tooltip": "C#, ASP.NET Core, and .NET ecosystem",
+          "id": "design-system",
+          "title": "Design System",
+          "icon": "palette",
+          "route": "/design-system",
+          "tooltip": "UI Kit, style guide, and component library",
           "children": [
             {
-              "id": "abp-framework",
-              "title": "ABP Framework",
-              "icon": "view_module",
-              "route": "/backend/dotnet/abp-framework",
-              "tooltip": "ABP Framework - Open-source web application framework for ASP.NET Core"
+              "id": "colors-typography",
+              "title": "Colors & Typography",
+              "icon": "text_fields",
+              "tooltip": "Color palettes and typography",
+              "children": [
+                {
+                  "id": "colors",
+                  "title": "Colors",
+                  "icon": "palette",
+                  "route": "/design-system/colors",
+                  "tooltip": "Color system and palettes"
+                },
+                {
+                  "id": "typography",
+                  "title": "Typography",
+                  "icon": "text_fields",
+                  "route": "/design-system/typography",
+                  "tooltip": "Typography system and fonts"
+                }
+              ]
+            },
+            {
+              "id": "components",
+              "title": "Components",
+              "icon": "widgets",
+              "tooltip": "UI components and patterns",
+              "children": [
+                {
+                  "id": "buttons",
+                  "title": "Buttons",
+                  "icon": "smart_button",
+                  "route": "/design-system/buttons",
+                  "tooltip": "Button components and variants"
+                },
+                {
+                  "id": "forms",
+                  "title": "Forms",
+                  "icon": "edit_note",
+                  "route": "/design-system/forms",
+                  "tooltip": "Form components and validation"
+                },
+                {
+                  "id": "cards",
+                  "title": "Cards",
+                  "icon": "view_agenda",
+                  "route": "/design-system/cards",
+                  "tooltip": "Card components and layouts"
+                },
+                {
+                  "id": "badges",
+                  "title": "Badges",
+                  "icon": "label",
+                  "route": "/design-system/badges",
+                  "tooltip": "Badge and chip components"
+                },
+                {
+                  "id": "icons",
+                  "title": "Icons",
+                  "icon": "emoji_emotions",
+                  "route": "/design-system/icons",
+                  "tooltip": "Icon system and usage"
+                }
+              ]
+            },
+            {
+              "id": "layouts-grids",
+              "title": "Layouts & Grids",
+              "icon": "view_quilt",
+              "tooltip": "Layout systems and grid components",
+              "children": [
+                {
+                  "id": "layouts",
+                  "title": "Layouts",
+                  "icon": "view_quilt",
+                  "route": "/design-system/layouts",
+                  "tooltip": "Layout components and patterns"
+                },
+                {
+                  "id": "grids",
+                  "title": "Grids",
+                  "icon": "grid_on",
+                  "route": "/design-system/grids",
+                  "tooltip": "Grid system and data tables"
+                }
+              ]
+            },
+            {
+              "id": "theming",
+              "title": "Theming",
+              "icon": "dark_mode",
+              "route": "/design-system/theming",
+              "tooltip": "Theme system and dark mode"
             }
           ]
         },
         {
-          "id": "nodejs",
-          "title": "Node.js",
+          "id": "development-tools",
+          "title": "Development Tools",
           "icon": "code",
-          "route": "/nodejs",
-          "tooltip": "Node.js and Express"
-        },
-        {
-          "id": "python",
-          "title": "Python",
-          "icon": "code",
-          "route": "/python",
-          "tooltip": "Python, Django, and FastAPI"
-        }
-      ]
-    },
-    {
-      "id": "certifications",
-      "title": "Certifications",
-      "icon": "workspace_premium",
-      "tooltip": "Microsoft Azure certifications",
-      "children": [
-        {
-          "id": "ai-900",
-          "title": "AI-900",
-          "icon": "psychology",
-          "route": "/ai-900",
-          "tooltip": "Azure AI Fundamentals certification"
-        },
-        {
-          "id": "az-900",
-          "title": "AZ-900",
-          "icon": "cloud",
-          "route": "/az-900",
-          "tooltip": "Azure Fundamentals certification"
-        },
-        {
-          "id": "az-204",
-          "title": "AZ-204",
-          "icon": "code",
-          "route": "/az-204",
-          "tooltip": "Azure Developer Associate"
-        },
-        {
-          "id": "az-400",
-          "title": "AZ-400",
-          "icon": "settings",
-          "route": "/az-400",
-          "tooltip": "Azure DevOps Engineer Expert"
-        }
-      ]
-    },
-    {
-      "id": "api-documentation",
-      "title": "API & Documentation",
-      "icon": "api",
-      "tooltip": "API development and documentation tools",
-      "children": [
-        {
-          "id": "swagger-openapi",
-          "title": "Swagger/OpenAPI",
-          "icon": "description",
-          "route": "/api/swagger",
-          "tooltip": "OpenAPI Specification and Swagger tools",
+          "tooltip": "Development and documentation tools",
           "children": [
             {
-              "id": "nswag",
-              "title": "NSwag",
+              "id": "documentation",
+              "title": "Documentation",
+              "icon": "menu_book",
+              "route": "/docs",
+              "tooltip": "Developer guides and documentation"
+            },
+            {
+              "id": "api-documentation",
+              "title": "API Documentation",
+              "icon": "api",
+              "tooltip": "API development and documentation tools",
+              "children": [
+                {
+                  "id": "swagger-openapi",
+                  "title": "Swagger/OpenAPI",
+                  "icon": "description",
+                  "route": "/api/swagger",
+                  "tooltip": "OpenAPI Specification and Swagger tools",
+                  "children": [
+                    {
+                      "id": "nswag",
+                      "title": "NSwag",
+                      "icon": "code",
+                      "route": "/api/swagger/nswag",
+                      "tooltip": "NSwag - Swagger/OpenAPI toolchain for .NET"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "showcase",
+      "title": "Showcase",
+      "icon": "show_chart",
+      "tooltip": "Portfolio and demos",
+      "children": [
+        {
+          "id": "portfolio",
+          "title": "Portfolio",
+          "icon": "folder",
+          "tooltip": "Professional portfolio and resume",
+          "children": [
+            {
+              "id": "resume",
+              "title": "Resume",
+              "icon": "description",
+              "route": "/resume",
+              "tooltip": "Professional resume with download options",
+              "children": [
+                {
+                  "id": "resume-home",
+                  "title": "Resume Home",
+                  "icon": "home",
+                  "route": "/resume",
+                  "tooltip": "Resume portfolio overview"
+                },
+                {
+                  "id": "resume-one-pager",
+                  "title": "One-Pager Resume",
+                  "icon": "description",
+                  "route": "/resume/chauey/one-pager",
+                  "tooltip": "Concise one-page resume"
+                },
+                {
+                  "id": "resume-full",
+                  "title": "Full Resume",
+                  "icon": "folder_open",
+                  "route": "/resume/chauey/full",
+                  "tooltip": "Comprehensive career portfolio"
+                }
+              ]
+            },
+            {
+              "id": "projects",
+              "title": "Projects",
+              "icon": "work",
+              "route": "/showcase/projects",
+              "tooltip": "Portfolio projects and case studies"
+            },
+            {
+              "id": "skills-matrix",
+              "title": "Skills Matrix",
+              "icon": "grid_view",
+              "route": "/showcase/skills-matrix",
+              "tooltip": "Technical skills and competencies"
+            }
+          ]
+        },
+        {
+          "id": "demos",
+          "title": "Demos",
+          "icon": "play_circle",
+          "tooltip": "Interactive demonstrations and examples",
+          "children": [
+            {
+              "id": "interactive-examples",
+              "title": "Interactive Examples",
+              "icon": "touch_app",
+              "route": "/showcase/interactive-examples",
+              "tooltip": "Interactive code examples and demos"
+            },
+            {
+              "id": "live-previews",
+              "title": "Live Previews",
+              "icon": "visibility",
+              "route": "/showcase/live-previews",
+              "tooltip": "Live application previews"
+            },
+            {
+              "id": "code-samples",
+              "title": "Code Samples",
               "icon": "code",
-              "route": "/api/swagger/nswag",
-              "tooltip": "NSwag - Swagger/OpenAPI toolchain for .NET"
+              "route": "/showcase/code-samples",
+              "tooltip": "Code samples and snippets"
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "devops-tooling",
-      "title": "DevOps & Tooling",
-      "icon": "build_circle",
-      "tooltip": "Development tools and build systems",
-      "badge": "New",
-      "badgeColor": "accent",
-      "children": [
-        {
-          "id": "nx-framework",
-          "title": "Nx Framework",
-          "icon": "grid_view",
-          "route": "/devops/nx",
-          "tooltip": "Nx - Smart monorepos for modern development",
-          "badge": "New",
-          "badgeColor": "accent"
         },
         {
-          "id": "storybook",
-          "title": "Storybook",
-          "icon": "menu_book",
-          "route": "/devops/storybook",
-          "tooltip": "Storybook - UI component development and documentation",
-          "badge": "New",
-          "badgeColor": "accent"
-        }
-      ]
-    },
-    {
-      "id": "e2e-testing",
-      "title": "E2E Testing",
-      "icon": "bug_report",
-      "tooltip": "End-to-end testing frameworks and tools",
-      "children": [
-        {
-          "id": "playwright",
-          "title": "Playwright",
-          "icon": "theater_comedy",
-          "route": "/e2e/playwright",
-          "tooltip": "Modern end-to-end testing with Playwright",
-          "badge": "New",
-          "badgeColor": "accent"
-        }
-      ]
-    },
-    {
-      "id": "mcp-servers",
-      "title": "MCP Servers",
-      "icon": "hub",
-      "tooltip": "Model Context Protocol server integrations",
-      "badge": "New",
-      "badgeColor": "accent",
-      "children": [
-        {
-          "id": "mcp-playwright",
-          "title": "Playwright MCP",
-          "icon": "theater_comedy",
-          "route": "/mcp/playwright",
-          "tooltip": "Playwright Model Context Protocol server"
-        },
-        {
-          "id": "mcp-figma",
-          "title": "Figma MCP",
-          "icon": "design_services",
-          "route": "/mcp/figma",
-          "tooltip": "Figma Model Context Protocol server"
-        },
-        {
-          "id": "mcp-stripe",
-          "title": "Stripe MCP",
-          "icon": "payment",
-          "route": "/mcp/stripe",
-          "tooltip": "Stripe Model Context Protocol server"
-        },
-        {
-          "id": "mcp-supabase",
-          "title": "Supabase MCP",
-          "icon": "storage",
-          "route": "/mcp/supabase",
-          "tooltip": "Supabase Model Context Protocol server"
-        },
-        {
-          "id": "mcp-sentry",
-          "title": "Sentry MCP",
-          "icon": "monitor_heart",
-          "route": "/mcp/sentry",
-          "tooltip": "Sentry Model Context Protocol server"
-        },
-        {
-          "id": "mcp-frameworks",
-          "title": "MCP Frameworks",
-          "icon": "widgets",
-          "route": "/mcp/frameworks",
-          "tooltip": "Model Context Protocol frameworks and SDKs"
-        },
-        {
-          "id": "mcp-directories",
-          "title": "MCP Directories",
-          "icon": "folder_open",
-          "route": "/mcp/directories",
-          "tooltip": "MCP server directories and registries"
-        }
-      ]
-    },
-    {
-      "id": "ai",
-      "title": "AI",
-      "icon": "psychology",
-      "tooltip": "Artificial Intelligence resources and tools",
-      "children": [
-        {
-          "id": "ai-leaderboards",
-          "title": "Leaderboards",
-          "icon": "leaderboard",
-          "route": "/ai/leaderboards",
-          "tooltip": "AI model leaderboards and benchmarks",
-          "badge": "New",
-          "badgeColor": "accent"
-        }
-      ]
-    },
-    {
-      "id": "ai-agents",
-      "title": "AI Agent Builders",
-      "icon": "smart_toy",
-      "tooltip": "AI agent development platforms",
-      "badge": "New",
-      "badgeColor": "accent",
-      "children": [
-        {
-          "id": "openai-agents",
-          "title": "OpenAI Agents",
-          "icon": "psychology",
-          "route": "/ai-agents/openai",
-          "tooltip": "OpenAI Assistants and Agents"
-        },
-        {
-          "id": "semantic-kernel",
-          "title": "Semantic Kernel",
-          "icon": "model_training",
-          "route": "/ai-agents/semantic-kernel",
-          "tooltip": "Microsoft Semantic Kernel"
-        },
-        {
-          "id": "langchain",
-          "title": "LangChain",
-          "icon": "link",
-          "route": "/ai-agents/langchain",
-          "tooltip": "LangChain framework"
-        },
-        {
-          "id": "autogen",
-          "title": "AutoGen",
-          "icon": "auto_awesome",
-          "route": "/ai-agents/autogen",
-          "tooltip": "Microsoft AutoGen"
-        },
-        {
-          "id": "n8n",
-          "title": "n8n",
-          "icon": "account_tree",
-          "route": "/ai-agents/n8n",
-          "tooltip": "n8n workflow automation"
-        },
-        {
-          "id": "llamaindex",
-          "title": "LlamaIndex",
-          "icon": "storage",
-          "route": "/ai-agents/llamaindex",
-          "tooltip": "LlamaIndex data framework"
-        }
-      ]
-    },
-    {
-      "id": "ai-tools",
-      "title": "AI Tools",
-      "icon": "auto_awesome",
-      "tooltip": "AI-powered tools and assistants",
-      "badge": "New",
-      "badgeColor": "accent",
-      "children": [
-        {
-          "id": "ai-coding",
-          "title": "AI for Coding",
-          "icon": "code",
-          "tooltip": "AI-powered coding assistants",
+          "id": "achievements",
+          "title": "Achievements",
+          "icon": "emoji_events",
+          "tooltip": "Certifications and achievements",
           "children": [
             {
-              "id": "cursor",
-              "title": "Cursor",
-              "icon": "edit_note",
-              "route": "/ai-tools/coding/cursor",
-              "tooltip": "Cursor - AI-first code editor"
+              "id": "certifications",
+              "title": "Certifications",
+              "icon": "workspace_premium",
+              "route": "/showcase/certifications",
+              "tooltip": "Professional certifications and credentials"
             },
             {
-              "id": "github-copilot",
-              "title": "GitHub Copilot",
-              "icon": "co_present",
-              "route": "/ai-tools/coding/github-copilot",
-              "tooltip": "GitHub Copilot - AI pair programmer"
+              "id": "badges",
+              "title": "Badges",
+              "icon": "label",
+              "route": "/showcase/badges",
+              "tooltip": "Digital badges and achievements"
             },
             {
-              "id": "windsurf",
-              "title": "Windsurf",
-              "icon": "sailing",
-              "route": "/ai-tools/coding/windsurf",
-              "tooltip": "Windsurf - AI coding assistant"
-            }
-          ]
-        },
-        {
-          "id": "ai-general",
-          "title": "General AI",
-          "icon": "chat",
-          "tooltip": "General purpose AI assistants",
-          "children": [
-            {
-              "id": "chatgpt",
-              "title": "ChatGPT",
-              "icon": "chat_bubble",
-              "route": "/ai-tools/general/chatgpt",
-              "tooltip": "ChatGPT - OpenAI's conversational AI"
-            },
-            {
-              "id": "gemini",
-              "title": "Gemini",
-              "icon": "stars",
-              "route": "/ai-tools/general/gemini",
-              "tooltip": "Gemini - Google's multimodal AI"
-            },
-            {
-              "id": "grok",
-              "title": "Grok",
-              "icon": "auto_stories",
-              "route": "/ai-tools/general/grok",
-              "tooltip": "Grok - X's AI assistant"
-            },
-            {
-              "id": "claude",
-              "title": "Claude",
-              "icon": "psychology_alt",
-              "route": "/ai-tools/general/claude",
-              "tooltip": "Claude - Anthropic's AI assistant"
+              "id": "milestones",
+              "title": "Milestones",
+              "icon": "flag",
+              "route": "/showcase/milestones",
+              "tooltip": "Career milestones and accomplishments"
             }
           ]
         }
       ]
     },
     {
-      "id": "saas-apps",
-      "title": "SaaS Apps",
-      "icon": "web_asset",
-      "route": "/saas",
-      "tooltip": "Software as a Service applications",
-      "badge": "New",
-      "badgeColor": "accent",
+      "id": "apps",
+      "title": "Apps",
+      "icon": "apps",
+      "tooltip": "SaaS applications and utilities",
       "children": [
         {
           "id": "calendar",
           "title": "Calendar",
           "icon": "calendar_month",
-          "route": "/saas/calendar",
+          "route": "/apps/calendar",
           "tooltip": "Smart calendar application with scheduling"
         },
         {
           "id": "task-management",
           "title": "Task Management",
           "icon": "task_alt",
-          "route": "/saas/task-management",
+          "route": "/apps/task-management",
           "tooltip": "Gamified task and project management"
         },
         {
-          "id": "cert-test",
+          "id": "certification-test",
           "title": "Certification Test",
           "icon": "quiz",
-          "route": "/saas/cert-test",
+          "route": "/apps/certification-test",
           "tooltip": "Practice tests for certifications and job interviews",
-          "badge": "New",
-          "badgeColor": "accent"
+          "children": [
+            {
+              "id": "practice-tests",
+              "title": "Practice Tests",
+              "icon": "quiz",
+              "tooltip": "Practice tests for various certifications",
+              "children": [
+                {
+                  "id": "azure-fundamentals",
+                  "title": "Azure Fundamentals",
+                  "icon": "cloud",
+                  "route": "/apps/certification-test/azure-fundamentals-practice/take",
+                  "tooltip": "AZ-900 Azure Fundamentals practice test"
+                },
+                {
+                  "id": "azure-administrator",
+                  "title": "Azure Administrator",
+                  "icon": "admin_panel_settings",
+                  "route": "/apps/certification-test/azure-administrator-practice/take",
+                  "tooltip": "AZ-104 Azure Administrator practice test"
+                },
+                {
+                  "id": "angular-20-practice",
+                  "title": "Angular 20 Practice Test",
+                  "icon": "quiz",
+                  "route": "/apps/certification-test/angular-20-practice/take",
+                  "tooltip": "50-question practice test for Angular 20",
+                  "badge": "New",
+                  "badgeColor": "accent"
+                }
+              ]
+            },
+            {
+              "id": "test-history",
+              "title": "Test History",
+              "icon": "history",
+              "tooltip": "Test attempts and progress tracking",
+              "children": [
+                {
+                  "id": "attempts-results",
+                  "title": "Attempts & Results",
+                  "icon": "assessment",
+                  "route": "/apps/certification-test",
+                  "tooltip": "View all test attempts and results"
+                },
+                {
+                  "id": "progress-tracking",
+                  "title": "Progress Tracking",
+                  "icon": "trending_up",
+                  "route": "/apps/certification-test",
+                  "tooltip": "Track your certification progress"
+                },
+                {
+                  "id": "performance-analytics",
+                  "title": "Performance Analytics",
+                  "icon": "analytics",
+                  "route": "/apps/certification-test",
+                  "tooltip": "Detailed performance analytics and insights"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "family-tree",
+          "title": "Family Tree",
+          "icon": "family_restroom",
+          "route": "/apps/family-tree",
+          "tooltip": "Genealogy and family history management"
+        },
+        {
+          "id": "job-board",
+          "title": "Job Board",
+          "icon": "work",
+          "route": "/apps/job-board",
+          "tooltip": "Job search and application tracking"
+        },
+        {
+          "id": "lists",
+          "title": "Lists",
+          "icon": "list",
+          "route": "/apps/lists",
+          "tooltip": "General list management and organization"
+        },
+        {
+          "id": "chat",
+          "title": "Chat",
+          "icon": "chat",
+          "route": "/apps/chat",
+          "tooltip": "Messaging and communication platform"
         }
       ]
     },
     {
-      "id": "resume",
-      "title": "Resume",
-      "icon": "description",
-      "route": "/resume",
-      "tooltip": "Professional resume with download options (PDF, Word)",
+      "id": "tools",
+      "title": "Tools",
+      "icon": "build_circle",
+      "tooltip": "Utilities and integrations",
       "children": [
         {
-          "id": "resume-home",
-          "title": "Resume Home",
-          "icon": "home",
-          "route": "/resume",
-          "tooltip": "Resume portfolio overview"
+          "id": "utilities",
+          "title": "Utilities",
+          "icon": "handyman",
+          "tooltip": "Development utilities and tools",
+          "children": [
+            {
+              "id": "code-generators",
+              "title": "Code Generators",
+              "icon": "auto_fix_high",
+              "route": "/tools/code-generators",
+              "tooltip": "Code generation tools and templates"
+            },
+            {
+              "id": "formatters",
+              "title": "Formatters",
+              "icon": "format_align_left",
+              "route": "/tools/formatters",
+              "tooltip": "Code formatting and beautification tools"
+            },
+            {
+              "id": "validators",
+              "title": "Validators",
+              "icon": "check_circle",
+              "route": "/tools/validators",
+              "tooltip": "Code validation and linting tools"
+            }
+          ]
         },
         {
-          "id": "resume-one-pager",
-          "title": "One-Pager Resume",
-          "icon": "description",
-          "route": "/resume/chauey/one-pager",
-          "tooltip": "Concise one-page resume"
+          "id": "integrations",
+          "title": "Integrations",
+          "icon": "hub",
+          "tooltip": "Third-party integrations and services",
+          "children": [
+            {
+              "id": "mcp-servers",
+              "title": "MCP Servers",
+              "icon": "hub",
+              "route": "/tools/mcp-servers",
+              "tooltip": "Model Context Protocol server integrations"
+            },
+            {
+              "id": "api-connections",
+              "title": "API Connections",
+              "icon": "api",
+              "route": "/tools/api-connections",
+              "tooltip": "API integration and connection tools"
+            },
+            {
+              "id": "third-party-services",
+              "title": "Third-party Services",
+              "icon": "extension",
+              "route": "/tools/third-party-services",
+              "tooltip": "Third-party service integrations"
+            }
+          ]
         },
         {
-          "id": "resume-full",
-          "title": "Full Resume",
-          "icon": "folder_open",
-          "route": "/resume/chauey/full",
-          "tooltip": "Comprehensive career portfolio"
+          "id": "settings",
+          "title": "Settings",
+          "icon": "settings",
+          "tooltip": "Application settings and preferences",
+          "children": [
+            {
+              "id": "theme-configuration",
+              "title": "Theme Configuration",
+              "icon": "palette",
+              "route": "/tools/theme-configuration",
+              "tooltip": "Theme and appearance settings"
+            },
+            {
+              "id": "layout-preferences",
+              "title": "Layout Preferences",
+              "icon": "view_quilt",
+              "route": "/tools/layout-preferences",
+              "tooltip": "Layout and UI preferences"
+            },
+            {
+              "id": "user-preferences",
+              "title": "User Preferences",
+              "icon": "person",
+              "route": "/tools/user-preferences",
+              "tooltip": "User account and preference settings"
+            }
+          ]
         }
       ]
     }

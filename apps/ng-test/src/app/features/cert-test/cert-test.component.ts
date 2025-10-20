@@ -1,5 +1,6 @@
-import { Component, inject, computed, signal, OnDestroy } from '@angular/core';
+import { Component, inject, computed, signal, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -783,8 +784,9 @@ import { TestDto, UserAnswerDto } from './models/test.model';
     }
   `]
 })
-export class CertTestComponent implements OnDestroy {
+export class CertTestComponent implements OnInit, OnDestroy {
   readonly store = inject(CertTestStore);
+  readonly route = inject(ActivatedRoute);
 
   // Store signals
   availableTests = this.store.availableTests;
@@ -807,6 +809,20 @@ export class CertTestComponent implements OnDestroy {
     const index = this.currentQuestionIndex();
     return test ? test.Questions[index] : null;
   });
+
+  ngOnInit() {
+    // Check if a testId is provided in the route
+    this.route.params.subscribe(params => {
+      const testId = params['testId'];
+      if (testId) {
+        // Find the test by ID and start it
+        const test = this.availableTests().find(t => t.Id === testId);
+        if (test) {
+          this.startTest(test);
+        }
+      }
+    });
+  }
 
   ngOnDestroy() {
     // Clean up timer on component destroy

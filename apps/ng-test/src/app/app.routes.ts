@@ -13,7 +13,43 @@ export const routes: Routes = [
     loadChildren: () => import('./features/dashboard/dashboard.routes').then(m => m.dashboardRoutes)
   },
 
-  // Design System - Top level
+  // Tech - Educational content
+  {
+    path: 'tech',
+    loadChildren: () => import('./features/tech/tech.routes').then(m => m.techRoutes)
+  },
+
+  // Build - Development tools and resources
+  {
+    path: 'build',
+    loadChildren: () => import('./features/build/build.routes').then(m => m.buildRoutes)
+  },
+
+  // Certify - Certification preparation
+  {
+    path: 'certify',
+    loadChildren: () => import('./features/certify/certify.routes').then(m => m.certifyRoutes)
+  },
+
+  // Showcase - Portfolio and demos
+  {
+    path: 'showcase',
+    loadChildren: () => import('./features/showcase/showcase.routes').then(m => m.showcaseRoutes)
+  },
+
+  // Apps - SaaS applications and utilities
+  {
+    path: 'apps',
+    loadChildren: () => import('./features/apps/apps.routes').then(m => m.appsRoutes)
+  },
+
+  // Tools - Utilities and integrations
+  {
+    path: 'tools',
+    loadChildren: () => import('./features/tools/tools.routes').then(m => m.toolsRoutes)
+  },
+
+  // Design System - Top level (moved from Build for backward compatibility)
   {
     path: 'design-system',
     loadChildren: () => import('./features/design-system/design-system.routes').then(m => m.designSystemRoutes)
@@ -40,6 +76,18 @@ export const routes: Routes = [
     loadChildren: () => import('./features/az-900/az-900.routes').then(m => m.az900Routes)
   },
 
+  // AZ-204: Azure Developer Associate (placeholder)
+  {
+    path: 'az-204',
+    loadComponent: () => import('./shared/components/not-found/not-found.component').then(m => m.NotFoundComponent)
+  },
+
+  // AZ-400: Azure DevOps Engineer Expert (placeholder)
+  {
+    path: 'az-400',
+    loadComponent: () => import('./shared/components/not-found/not-found.component').then(m => m.NotFoundComponent)
+  },
+
   // Documentation
   {
     path: 'docs',
@@ -58,51 +106,32 @@ export const routes: Routes = [
     loadComponent: () => import('./features/front-end/front-end.component').then(m => m.FrontEndComponent)
   },
 
-  // SaaS Landing Page
+  // SaaS Landing Page (legacy - redirect to apps)
   {
     path: 'saas',
-    loadComponent: () => import('./features/saas/saas.component').then(m => m.SaaSComponent)
+    redirectTo: 'apps',
+    pathMatch: 'full'
   },
 
-  // Certification Test
+  // Certification Test (legacy - redirect to apps)
   {
     path: 'saas/cert-test',
-    loadChildren: () => import('./features/cert-test/cert-test.routes').then(m => m.certTestRoutes)
+    redirectTo: 'apps/certification-test',
+    pathMatch: 'full'
   },
 
-  // // Legacy routes for backward compatibility (redirect to new /angular/ paths)
-  // { path: 'core-concepts/empty', redirectTo: '/angular/core-concepts/empty' },
-  // { path: 'core-concepts/control-flow', redirectTo: '/angular/core-concepts/control-flow' },
-  // { path: 'core-concepts/signals', redirectTo: '/angular/core-concepts/signals' },
-  // { path: 'forms-data/reactive-forms', redirectTo: '/angular/forms-data/reactive-forms' },
-  // { path: 'forms-data/reactive-forms-signals', redirectTo: '/angular/forms-data/reactive-forms-signals' },
-  // { path: 'forms-data/http-client', redirectTo: '/angular/forms-data/http-client' },
-  // { path: 'architecture/dependency-injection', redirectTo: '/angular/architecture/dependency-injection' },
-  // { path: 'architecture/lifecycle-hooks', redirectTo: '/angular/architecture/lifecycle-hooks' },
-  // { path: 'architecture/services', redirectTo: '/angular/architecture/services' },
-  // { path: 'advanced-features/pipes', redirectTo: '/angular/advanced-features/pipes' },
-  // { path: 'advanced-features/guards-interceptors', redirectTo: '/angular/advanced-features/guards-interceptors' },
-  // { path: 'advanced-features/lazy-loading', redirectTo: '/angular/advanced-features/lazy-loading' },
-  // { path: 'advanced-features/defer', redirectTo: '/angular/advanced-features/defer' },
-  // { path: 'playground/testdome', redirectTo: '/angular/playground/testdome' },
-  // { path: 'playground/testdome2', redirectTo: '/angular/playground/testdome2' },
+  // Playwright - Under Learn/E2E Testing
+  {
+    path: 'playwright',
+    loadChildren: () => import('./features/playwright/playwright.routes').then(m => m.playwrightRoutes)
+  },
 
-  // // Legacy single-word routes for backward compatibility
-  // { path: 'empty', redirectTo: '/angular/core-concepts/empty' },
-  // { path: 'control-flow', redirectTo: '/angular/core-concepts/control-flow' },
-  // { path: 'signals', redirectTo: '/angular/core-concepts/signals' },
-  // { path: 'reactive-forms', redirectTo: '/angular/forms-data/reactive-forms' },
-  // { path: 'reactive-forms-signals', redirectTo: '/angular/forms-data/reactive-forms-signals' },
-  // { path: 'http-client', redirectTo: '/angular/forms-data/http-client' },
-  // { path: 'dependency-injection', redirectTo: '/angular/architecture/dependency-injection' },
-  // { path: 'lifecycle-hooks', redirectTo: '/angular/architecture/lifecycle-hooks' },
-  // { path: 'services', redirectTo: '/angular/architecture/services' },
-  // { path: 'pipes', redirectTo: '/angular/advanced-features/pipes' },
-  // { path: 'guards-interceptors', redirectTo: '/angular/advanced-features/guards-interceptors' },
-  // { path: 'lazy-loading', redirectTo: '/angular/advanced-features/lazy-loading' },
-  // { path: 'defer', redirectTo: '/angular/advanced-features/defer' },
-  // { path: 'testdome', redirectTo: '/angular/playground/testdome' },
-  // { path: 'testdome2', redirectTo: '/angular/playground/testdome2' },
+  // E2E Testing (legacy - redirect to playwright)
+  {
+    path: 'e2e',
+    redirectTo: 'playwright',
+    pathMatch: 'full'
+  },
 
   // 404 / Coming Soon - Catch all undefined routes
   {

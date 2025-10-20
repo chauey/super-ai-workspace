@@ -19,7 +19,7 @@ import { MatChipsModule } from '@angular/material/chips';
       </header>
 
       <div class="content-grid">
-        <mat-card class="app-card" [routerLink]="['/saas/cert-test']">
+        <mat-card class="app-card" [routerLink]="['/apps/certification-test']">
           <div class="card-header">
             <mat-icon class="card-icon">quiz</mat-icon>
             <mat-chip color="accent">NEW</mat-chip>

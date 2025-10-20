@@ -389,7 +389,7 @@ export class CardsComponent {
       subtitle: 'Practice & Learn',
       description: 'Practice tests for certifications and job interviews with detailed analytics.',
       icon: 'quiz',
-      route: '/saas/cert-test',
+      route: '/apps/certification-test',
       tags: ['Free', 'Analytics', 'Progress Tracking'],
       badge: 'new',
       status: 'active'

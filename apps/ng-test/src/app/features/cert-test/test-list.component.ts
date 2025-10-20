@@ -59,7 +59,7 @@ import { CertTestStore } from './store/test.store';
           <div class="stat-label">Pass Rate</div>
         </mat-card>
 
-        <mat-card class="stat-card" [routerLink]="['/saas/cert-test/history']" class="clickable">
+        <mat-card class="stat-card" [routerLink]="['/apps/certification-test']" class="clickable">
           <mat-icon>history</mat-icon>
           <div class="stat-value">View</div>
           <div class="stat-label">Test History</div>
@@ -142,11 +142,11 @@ import { CertTestStore } from './store/test.store';
               </mat-card-content>
 
               <mat-card-actions>
-                <button mat-button [routerLink]="['/saas/cert-test', test.Id]">
+                <button mat-button [routerLink]="['/apps/certification-test', test.Id]">
                   <mat-icon>visibility</mat-icon>
                   View Details
                 </button>
-                <button mat-raised-button color="primary" [routerLink]="['/saas/cert-test', test.Id, 'take']">
+                <button mat-raised-button color="primary" [routerLink]="['/apps/certification-test', test.Id, 'take']">
                   <mat-icon>play_arrow</mat-icon>
                   Start Test
                 </button>
