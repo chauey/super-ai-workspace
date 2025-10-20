@@ -17,6 +17,7 @@
           "id": "front-end",
           "title": "Front-end",
           "icon": "web",
+          "route": "/front-end",
           "tooltip": "Front-end frameworks and libraries",
           "children": [
             {
@@ -239,14 +240,14 @@
               "id": "react",
               "title": "React",
               "icon": "code",
-              "route": "/react",
+              "route": "/tech/front-end/react",
               "tooltip": "React tutorials and examples"
             },
             {
               "id": "vue",
               "title": "Vue.js",
               "icon": "code",
-              "route": "/vue",
+              "route": "/tech/front-end/vue",
               "tooltip": "Vue.js tutorials and examples"
             }
           ]
@@ -277,14 +278,14 @@
               "id": "nodejs",
               "title": "Node.js",
               "icon": "code",
-              "route": "/nodejs",
+              "route": "/tech/back-end/nodejs",
               "tooltip": "Node.js and Express"
             },
             {
               "id": "python",
               "title": "Python",
               "icon": "code",
-              "route": "/python",
+              "route": "/tech/back-end/python",
               "tooltip": "Python, Django, and FastAPI"
             }
           ]
@@ -831,6 +832,7 @@
       "id": "apps",
       "title": "Apps",
       "icon": "apps",
+      "route": "/apps",
       "tooltip": "SaaS applications and utilities",
       "children": [
         {
@@ -950,34 +952,43 @@
       "id": "tools",
       "title": "Tools",
       "icon": "build_circle",
+      "route": "/tools",
       "tooltip": "Utilities and integrations",
       "children": [
         {
           "id": "utilities",
           "title": "Utilities",
           "icon": "handyman",
+          "route": "/tools/utilities",
           "tooltip": "Development utilities and tools",
           "children": [
             {
               "id": "code-generators",
               "title": "Code Generators",
               "icon": "auto_fix_high",
-              "route": "/tools/code-generators",
+              "route": "/tools/utilities/code-generators",
               "tooltip": "Code generation tools and templates"
             },
             {
               "id": "formatters",
               "title": "Formatters",
               "icon": "format_align_left",
-              "route": "/tools/formatters",
+              "route": "/tools/utilities/formatters",
               "tooltip": "Code formatting and beautification tools"
             },
             {
               "id": "validators",
               "title": "Validators",
               "icon": "check_circle",
-              "route": "/tools/validators",
+              "route": "/tools/utilities/validators",
               "tooltip": "Code validation and linting tools"
+            },
+            {
+              "id": "cursor-tips",
+              "title": "Cursor Tips",
+              "icon": "tips_and_updates",
+              "route": "/tools/utilities/cursor-tips",
+              "tooltip": "Cursor IDE tips and productivity tricks"
             }
           ]
         },
@@ -985,27 +996,28 @@
           "id": "integrations",
           "title": "Integrations",
           "icon": "hub",
+          "route": "/tools/integrations",
           "tooltip": "Third-party integrations and services",
           "children": [
             {
               "id": "mcp-servers",
               "title": "MCP Servers",
               "icon": "hub",
-              "route": "/tools/mcp-servers",
+              "route": "/tools/integrations/mcp-servers",
               "tooltip": "Model Context Protocol server integrations"
             },
             {
               "id": "api-connections",
               "title": "API Connections",
               "icon": "api",
-              "route": "/tools/api-connections",
+              "route": "/tools/integrations/api-connections",
               "tooltip": "API integration and connection tools"
             },
             {
               "id": "third-party-services",
               "title": "Third-party Services",
               "icon": "extension",
-              "route": "/tools/third-party-services",
+              "route": "/tools/integrations/third-party-services",
               "tooltip": "Third-party service integrations"
             }
           ]
@@ -1014,27 +1026,28 @@
           "id": "settings",
           "title": "Settings",
           "icon": "settings",
+          "route": "/tools/settings",
           "tooltip": "Application settings and preferences",
           "children": [
             {
               "id": "theme-configuration",
               "title": "Theme Configuration",
               "icon": "palette",
-              "route": "/tools/theme-configuration",
+              "route": "/tools/settings/theme-configuration",
               "tooltip": "Theme and appearance settings"
             },
             {
               "id": "layout-preferences",
               "title": "Layout Preferences",
               "icon": "view_quilt",
-              "route": "/tools/layout-preferences",
+              "route": "/tools/settings/layout-preferences",
               "tooltip": "Layout and UI preferences"
             },
             {
               "id": "user-preferences",
               "title": "User Preferences",
               "icon": "person",
-              "route": "/tools/user-preferences",
+              "route": "/tools/settings/user-preferences",
               "tooltip": "User account and preference settings"
             }
           ]

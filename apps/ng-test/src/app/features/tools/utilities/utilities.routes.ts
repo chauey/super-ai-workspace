@@ -16,6 +16,10 @@ export const utilitiesRoutes: Routes = [
   {
     path: 'validators',
     loadComponent: () => import('./validators/validators.component').then(m => m.ValidatorsComponent)
+  },
+  {
+    path: 'cursor-tips',
+    loadComponent: () => import('./cursor-tips/cursor-tips.component').then(m => m.CursorTipsComponent)
   }
 ];
 

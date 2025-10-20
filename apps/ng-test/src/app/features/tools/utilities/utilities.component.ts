@@ -64,7 +64,24 @@ import { MatButtonModule } from '@angular/material/button';
             <button mat-button color="primary">Validate Code</button>
           </mat-card-actions>
         </mat-card>
+
+        <mat-card class="utility-card" routerLink="cursor-tips">
+          <mat-card-header>
+            <mat-icon mat-card-avatar class="utility-icon">tips_and_updates</mat-icon>
+            <mat-card-title>Cursor Tips</mat-card-title>
+            <mat-card-subtitle>Cursor IDE tips and productivity tricks</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Boost your productivity with powerful Cursor IDE features, shortcuts, and AI-powered tools.</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary">View Tips</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
+
+      <!-- Router outlet for child routes -->
+      <router-outlet></router-outlet>
     </div>
   `,
   styles: [`
