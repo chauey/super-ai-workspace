@@ -14,14 +14,6 @@ export const techRoutes: Routes = [
     loadChildren: () => import('./back-end/back-end.routes').then(m => m.backEndRoutes)
   },
   {
-    path: 'cloud-devops',
-    loadChildren: () => import('./cloud-devops/cloud-devops.routes').then(m => m.cloudDevOpsRoutes)
-  },
-  {
-    path: 'ai-machine-learning',
-    loadChildren: () => import('./ai-machine-learning/ai-machine-learning.routes').then(m => m.aiMachineLearningRoutes)
-  },
-  {
     path: 'angular',
     loadChildren: () => import('./angular/angular.routes').then(m => m.angularRoutes)
   }

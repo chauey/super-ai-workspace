@@ -125,6 +125,7 @@ export const azureFundamentalsTest: TestDto = {
         'Community cloud'
       ],
       CorrectAnswer: 1,
+      AllowMultipleSelection: false,
       Explanation: 'Public cloud services are owned and operated by third-party cloud service providers and delivered over the public internet. They are available to anyone who wants to purchase them.',
       Category: 'Cloud Concepts',
       Hint: 'Think about cloud services that are openly available to any organization or individual, like Azure, AWS, or Google Cloud.',
@@ -132,6 +133,25 @@ export const azureFundamentalsTest: TestDto = {
       DifficultyLevel: 'Easy',
       EstimatedTimeSeconds: 60,
       Points: 1
+    },
+    {
+      Id: 'q1b',
+      Question: 'Which of the following are characteristics of cloud computing? (Select all that apply)',
+      Options: [
+        'On-demand self-service',
+        'Broad network access',
+        'Resource pooling',
+        'Measured service'
+      ],
+      CorrectAnswer: [0, 1, 2, 3],
+      AllowMultipleSelection: true,
+      Explanation: 'All of these are key characteristics of cloud computing as defined by NIST: on-demand self-service, broad network access, resource pooling, and measured service.',
+      Category: 'Cloud Concepts',
+      Hint: 'These are the five essential characteristics of cloud computing according to NIST.',
+      SkillIds: ['skill-cloud-concepts'],
+      DifficultyLevel: 'Medium',
+      EstimatedTimeSeconds: 90,
+      Points: 2
     },
     {
       Id: 'q2',

@@ -22,3 +22,5 @@ export const playwrightRoutes: Routes = [
     loadComponent: () => import('./mcp-integration/mcp-integration.component').then(m => m.McpIntegrationComponent)
   }
 ];
+
+

@@ -18,3 +18,5 @@ export const settingsRoutes: Routes = [
     loadComponent: () => import('./user-preferences/user-preferences.component').then(m => m.UserPreferencesComponent)
   }
 ];
+
+

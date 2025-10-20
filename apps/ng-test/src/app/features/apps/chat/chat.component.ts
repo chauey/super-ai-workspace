@@ -11,3 +11,5 @@ import { MatIconModule } from '@angular/material/icon';
   styles: [`.app-container{padding:2rem;max-width:1200px;margin:0 auto}.hero-section{background-color:var(--bg-card);color:var(--text-primary);box-shadow:var(--shadow-lg);padding:2rem;text-align:center;border-radius:8px}.hero-section h1{font-size:3rem;font-weight:700;color:var(--primary-color);margin-bottom:1rem}.hero-section p{color:var(--text-secondary);font-size:1.2rem}.coming-soon{text-align:center;margin-top:2rem}.coming-soon mat-icon{font-size:4rem;color:var(--warn-color)}.coming-soon h2{font-size:2rem;margin-top:1rem}`]
 })
 export class ChatComponent {}
+
+

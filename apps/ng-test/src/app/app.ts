@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { ThemeService, Theme, Layout } from './core/services/theme.service';
 import { NavigationService } from './core/navigation/navigation.service';
 import { DensityStore, DensityMode } from './store/density/density.store';
+import { StoreInitializerService } from './core/services/store-initializer.service';
 
 @Component({
   selector: 'app-root',
@@ -52,6 +53,7 @@ export class App {
   private themeService = inject(ThemeService);
   public navigationService = inject(NavigationService);
   readonly densityStore = inject(DensityStore);
+  private storeInitializer = inject(StoreInitializerService); // This will initialize the store
 
   // Computed values
   sidebarMode = computed(() => this.sidebarCompact() ? 'over' : 'side');

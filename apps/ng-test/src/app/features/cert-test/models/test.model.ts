@@ -27,7 +27,8 @@ export interface TestQuestionDto {
   Id: string;
   Question: string;
   Options: string[];
-  CorrectAnswer: number; // index of correct option
+  CorrectAnswer: number | number[]; // index of correct option(s) - single number for single choice, array for multiple choice
+  AllowMultipleSelection?: boolean; // Whether this question allows multiple answers
   Explanation?: string;
   Category?: string;
   Hint?: string;
@@ -132,7 +133,7 @@ export interface TestAttemptDto {
   EndTime?: Date;
   TimeRemaining?: number; // Seconds remaining
   TotalTimePaused?: number; // Total seconds paused
-  Answers: { [questionId: string]: number };
+  Answers: { [questionId: string]: number | number[] };
   MarkedForReview: string[];
   Score?: number; // Percentage score
   PointsEarned?: number; // Raw points earned
@@ -152,7 +153,7 @@ export interface TestAttemptDto {
  */
 export interface UserAnswerDto {
   QuestionId: string;
-  SelectedOption: number;
+  SelectedOption: number | number[]; // Single option index or array of selected option indices
   IsMarkedForReview?: boolean;
   HintUsed?: boolean;
   AnswerRevealed?: boolean;

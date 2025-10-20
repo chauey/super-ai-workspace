@@ -217,6 +217,7 @@ export const angular20Test: TestDto = {
         'To configure routing'
       ],
       CorrectAnswer: 1,
+      AllowMultipleSelection: false,
       Explanation: 'Angular components are the building blocks of Angular applications. They define reusable UI elements with associated logic, templates, and styling.',
       Category: 'Angular Fundamentals',
       Hint: 'Think about what makes up the user interface in Angular applications.',
@@ -235,6 +236,7 @@ export const angular20Test: TestDto = {
         '@Pipe'
       ],
       CorrectAnswer: 1,
+      AllowMultipleSelection: false,
       Explanation: 'The @Component decorator is used to define Angular components. It provides metadata about the component including its selector, template, and styles.',
       Category: 'Angular Fundamentals',
       Hint: 'Look for the decorator that specifically handles component metadata.',
@@ -242,6 +244,25 @@ export const angular20Test: TestDto = {
       DifficultyLevel: 'Easy',
       EstimatedTimeSeconds: 45,
       Points: 1
+    },
+    {
+      Id: 'q2b',
+      Question: 'Which of the following are valid Angular lifecycle hooks? (Select all that apply)',
+      Options: [
+        'ngOnInit',
+        'ngOnDestroy',
+        'ngOnChanges',
+        'ngOnMount'
+      ],
+      CorrectAnswer: [0, 1, 2],
+      AllowMultipleSelection: true,
+      Explanation: 'ngOnInit, ngOnDestroy, and ngOnChanges are valid Angular lifecycle hooks. ngOnMount is not a valid Angular lifecycle hook.',
+      Category: 'Angular Fundamentals',
+      Hint: 'Think about the common lifecycle hooks you use in Angular components.',
+      SkillIds: ['skill-angular-fundamentals'],
+      DifficultyLevel: 'Medium',
+      EstimatedTimeSeconds: 90,
+      Points: 2
     },
     {
       Id: 'q3',
@@ -309,6 +330,7 @@ export const angular20Test: TestDto = {
         'A service method'
       ],
       CorrectAnswer: 1,
+      AllowMultipleSelection: false,
       Explanation: 'Angular signals are reactive primitives that can hold a value and notify consumers when it changes. They provide fine-grained reactivity.',
       Category: 'Angular Signals',
       Hint: 'Signals are reactive primitives that notify when values change.',
@@ -316,6 +338,25 @@ export const angular20Test: TestDto = {
       DifficultyLevel: 'Medium',
       EstimatedTimeSeconds: 90,
       Points: 1
+    },
+    {
+      Id: 'q6b',
+      Question: 'Which of the following are benefits of using Angular signals? (Select all that apply)',
+      Options: [
+        'Fine-grained reactivity',
+        'Better performance with OnPush change detection',
+        'Simpler state management',
+        'Automatic dependency tracking'
+      ],
+      CorrectAnswer: [0, 1, 2, 3],
+      AllowMultipleSelection: true,
+      Explanation: 'All of these are benefits of Angular signals: fine-grained reactivity, better performance with OnPush change detection, simpler state management, and automatic dependency tracking.',
+      Category: 'Angular Signals',
+      Hint: 'Signals provide many advantages over traditional change detection.',
+      SkillIds: ['skill-angular-signals'],
+      DifficultyLevel: 'Hard',
+      EstimatedTimeSeconds: 120,
+      Points: 3
     },
     {
       Id: 'q7',

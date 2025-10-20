@@ -1,4 +1,5 @@
 import { signalStore, withState, withMethods, withComputed, withHooks, patchState } from '@ngrx/signals';
+import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { computed } from '@angular/core';
 import { TestDto, TestAttemptDto, UserAnswerDto, TestHistoryDto, TestPauseDto, SkillPerformanceDto } from '../models/test.model';
 import { azureFundamentalsTest, azureAdministratorTest } from '../data/azure-fundamentals.data';
@@ -109,8 +110,26 @@ export const CertTestStore = signalStore(
       let correctAnswers = 0;
       answers.forEach(answer => {
         const question = test.Questions.find(q => q.Id === answer.QuestionId);
-        if (question && question.CorrectAnswer === answer.SelectedOption) {
-          correctAnswers++;
+        if (question) {
+          if (question.AllowMultipleSelection) {
+            // For multiple choice questions, check if all correct answers are selected
+            const correctAnswersArray = Array.isArray(question.CorrectAnswer) ? question.CorrectAnswer : [question.CorrectAnswer];
+            const selectedAnswersArray = Array.isArray(answer.SelectedOption) ? answer.SelectedOption : [answer.SelectedOption];
+
+            // Check if the arrays contain the same elements (order doesn't matter)
+            const correctSet = new Set(correctAnswersArray.sort());
+            const selectedSet = new Set(selectedAnswersArray.sort());
+
+            if (correctSet.size === selectedSet.size &&
+                [...correctSet].every(val => selectedSet.has(val))) {
+              correctAnswers++;
+            }
+          } else {
+            // For single choice questions
+            if (question.CorrectAnswer === answer.SelectedOption) {
+              correctAnswers++;
+            }
+          }
         }
       });
 
@@ -123,7 +142,22 @@ export const CertTestStore = signalStore(
         const skillQuestions = test.Questions.filter(q => q.SkillIds.includes(skill.Id));
         const correctSkillAnswers = skillQuestions.filter(q => {
           const userAnswer = answers.find(a => a.QuestionId === q.Id);
-          return userAnswer && q.CorrectAnswer === userAnswer.SelectedOption;
+          if (!userAnswer) return false;
+
+          if (q.AllowMultipleSelection) {
+            // For multiple choice questions
+            const correctAnswersArray = Array.isArray(q.CorrectAnswer) ? q.CorrectAnswer : [q.CorrectAnswer];
+            const selectedAnswersArray = Array.isArray(userAnswer.SelectedOption) ? userAnswer.SelectedOption : [userAnswer.SelectedOption];
+
+            const correctSet = new Set(correctAnswersArray.sort());
+            const selectedSet = new Set(selectedAnswersArray.sort());
+
+            return correctSet.size === selectedSet.size &&
+                   [...correctSet].every(val => selectedSet.has(val));
+          } else {
+            // For single choice questions
+            return q.CorrectAnswer === userAnswer.SelectedOption;
+          }
         }).length;
 
         if (skillQuestions.length > 0) {
@@ -135,8 +169,27 @@ export const CertTestStore = signalStore(
       let pointsEarned = 0;
       test.Questions.forEach(question => {
         const userAnswer = answers.find(a => a.QuestionId === question.Id);
-        if (userAnswer && question.CorrectAnswer === userAnswer.SelectedOption) {
-          pointsEarned += question.Points || 1;
+        if (userAnswer) {
+          let isCorrect = false;
+
+          if (question.AllowMultipleSelection) {
+            // For multiple choice questions
+            const correctAnswersArray = Array.isArray(question.CorrectAnswer) ? question.CorrectAnswer : [question.CorrectAnswer];
+            const selectedAnswersArray = Array.isArray(userAnswer.SelectedOption) ? userAnswer.SelectedOption : [userAnswer.SelectedOption];
+
+            const correctSet = new Set(correctAnswersArray.sort());
+            const selectedSet = new Set(selectedAnswersArray.sort());
+
+            isCorrect = correctSet.size === selectedSet.size &&
+                       [...correctSet].every(val => selectedSet.has(val));
+          } else {
+            // For single choice questions
+            isCorrect = question.CorrectAnswer === userAnswer.SelectedOption;
+          }
+
+          if (isCorrect) {
+            pointsEarned += question.Points || 1;
+          }
         }
       });
 
@@ -189,13 +242,16 @@ export const CertTestStore = signalStore(
     return {
       // Load available tests
       loadTests(): void {
+        console.log('CertTestStore: Loading tests...');
         patchState(store, { loading: true, error: null });
 
         try {
           // In a real app, this would be an HTTP call
           const tests = [azureFundamentalsTest, azureAdministratorTest, angular20Test];
+          console.log('CertTestStore: Tests loaded:', tests.length);
           patchState(store, { availableTests: tests, loading: false });
         } catch (error) {
+          console.error('CertTestStore: Error loading tests:', error);
           patchState(store, {
             error: error instanceof Error ? error.message : 'Failed to load tests',
             loading: false
@@ -460,9 +516,11 @@ export const CertTestStore = signalStore(
   }),
   withHooks({
     onInit(store) {
+      console.log('CertTestStore: Store initialized with withDevtools');
       // Auto-load tests on initialization
       store.loadTests();
     }
-  })
+  }),
+  withDevtools('CertTestStore')
 );
 

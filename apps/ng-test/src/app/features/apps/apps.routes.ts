@@ -34,3 +34,5 @@ export const appsRoutes: Routes = [
     loadComponent: () => import('./chat/chat.component').then(m => m.ChatComponent)
   }
 ];
+
+

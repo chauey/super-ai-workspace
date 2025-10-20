@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -26,6 +27,7 @@ import { TestDto, UserAnswerDto } from './models/test.model';
     MatButtonModule,
     MatIconModule,
     MatRadioModule,
+    MatCheckboxModule,
     MatProgressBarModule,
     MatChipsModule,
     MatBadgeModule,
@@ -143,20 +145,50 @@ import { TestDto, UserAnswerDto } from './models/test.model';
               @if (isAnswerRevealed(currentQuestion()?.Id || '') && currentQuestion()) {
                 <div class="answer-revealed">
                   <mat-icon>visibility</mat-icon>
-                  <strong>Correct Answer:</strong> {{ currentQuestion()!.Options[currentQuestion()!.CorrectAnswer] }}
+                  <strong>Correct Answer:</strong>
+                  @if (currentQuestion()!.AllowMultipleSelection) {
+                    @if (isCorrectAnswerArray(currentQuestion()!.CorrectAnswer)) {
+                      @for (answerIndex of getCorrectAnswerArray(currentQuestion()!.CorrectAnswer); track answerIndex) {
+                        <span class="correct-answer-text">{{ currentQuestion()!.Options[answerIndex] }}</span>
+                        @if (!$last) { <span>, </span> }
+                      }
+                    } @else {
+                      <span class="correct-answer-text">{{ getCorrectAnswerText(currentQuestion()!.CorrectAnswer) }}</span>
+                    }
+                  } @else {
+                    <span class="correct-answer-text">{{ getCorrectAnswerText(currentQuestion()!.CorrectAnswer) }}</span>
+                  }
                 </div>
               }
 
-              <mat-radio-group [ngModel]="selectedAnswer()" (ngModelChange)="selectedAnswer.set($event); onAnswerChange()" class="options-group">
-                @for (option of currentQuestion()?.Options; track $index) {
-                  <mat-radio-button
-                    [value]="$index"
-                    class="option"
-                    [class.correct-answer]="isAnswerRevealed(currentQuestion()?.Id || '') && $index === currentQuestion()?.CorrectAnswer">
-                    {{ option }}
-                  </mat-radio-button>
-                }
-              </mat-radio-group>
+              <!-- Single Choice Questions -->
+              @if (!currentQuestion()?.AllowMultipleSelection) {
+                <mat-radio-group [ngModel]="selectedAnswer()" (ngModelChange)="selectedAnswer.set($event); onAnswerChange()" class="options-group">
+                  @for (option of currentQuestion()?.Options; track $index) {
+                    <mat-radio-button
+                      [value]="$index"
+                      class="option"
+                      [class.correct-answer]="isAnswerRevealed(currentQuestion()?.Id || '') && isCorrectAnswer($index)">
+                      {{ option }}
+                    </mat-radio-button>
+                  }
+                </mat-radio-group>
+              }
+
+              <!-- Multiple Choice Questions -->
+              @if (currentQuestion()?.AllowMultipleSelection) {
+                <div class="options-group">
+                  @for (option of currentQuestion()?.Options; track $index) {
+                    <mat-checkbox
+                      [checked]="isOptionSelected($index)"
+                      (change)="onMultipleChoiceChange($index, $event.checked)"
+                      class="option"
+                      [class.correct-answer]="isAnswerRevealed(currentQuestion()?.Id || '') && isCorrectAnswer($index)">
+                      {{ option }}
+                    </mat-checkbox>
+                  }
+                </div>
+              }
 
               <div class="question-actions">
                 @if (currentQuestion()?.Hint && !isHintVisible(currentQuestion()?.Id || '')) {
@@ -307,7 +339,7 @@ import { TestDto, UserAnswerDto } from './models/test.model';
                       </div>
                       @if (!isAnswerCorrect(question.Id)) {
                         <div class="correct-answer">
-                          <strong>Correct Answer:</strong> {{ question.Options[question.CorrectAnswer] }}
+                          <strong>Correct Answer:</strong> {{ getCorrectAnswerText(question.CorrectAnswer) }}
                         </div>
                       }
                       @if (question.Explanation) {
@@ -466,7 +498,7 @@ import { TestDto, UserAnswerDto } from './models/test.model';
       align-items: center;
       margin-bottom: var(--density-margin-sm);
       font-size: var(--density-font-size-sm);
-      color: var(--text-secondary);
+      color: var(--text-primary);
     }
 
     .progress-left, .progress-right {
@@ -561,6 +593,11 @@ import { TestDto, UserAnswerDto } from './models/test.model';
       border: 2px solid var(--success-color);
     }
 
+    .correct-answer-text {
+      color: var(--success-color);
+      font-weight: 600;
+    }
+
     .question-actions {
       display: flex;
       gap: var(--density-spacing-sm);
@@ -589,7 +626,7 @@ import { TestDto, UserAnswerDto } from './models/test.model';
       gap: var(--density-spacing-md);
       margin-bottom: var(--density-margin-md);
       font-size: var(--density-font-size-xs);
-      color: var(--text-secondary);
+      color: var(--text-primary);
     }
 
     .legend-item {
@@ -617,10 +654,38 @@ import { TestDto, UserAnswerDto } from './models/test.model';
 
     .question-grid button {
       position: relative;
+      color: var(--text-primary) !important;
+      background-color: var(--bg-tertiary) !important;
+      border: 1px solid var(--border-color) !important;
+    }
+
+    .question-grid button:hover {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+    }
+
+    .question-grid button.current {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+    }
+
+    .question-grid button[color="primary"] {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+    }
+
+    .question-grid button[color="warn"] {
+      background-color: var(--warn-color) !important;
+      color: white !important;
+    }
+
+    .question-grid button[color="basic"] {
+      background-color: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
     }
 
     .question-grid button.marked-for-review {
-      border: 2px solid var(--warn-color);
+      border: 2px solid var(--warn-color) !important;
     }
 
     .flag-overlay {
@@ -865,7 +930,7 @@ export class CertTestComponent implements OnInit, OnDestroy {
     if (selected !== null && this.currentQuestion()) {
       const answer: UserAnswerDto = {
         QuestionId: this.currentQuestion()!.Id,
-        SelectedOption: selected
+        SelectedOption: selected as number
       };
       this.store.answerQuestion(answer);
     }
@@ -875,17 +940,112 @@ export class CertTestComponent implements OnInit, OnDestroy {
     this.saveCurrentAnswer();
   }
 
+  // Multiple choice question methods
+  isOptionSelected(optionIndex: number): boolean {
+    const question = this.currentQuestion();
+    if (!question || !question.AllowMultipleSelection) return false;
+
+    const existingAnswer = this.userAnswers().find(a => a.QuestionId === question.Id);
+    if (!existingAnswer) return false;
+
+    const selectedOptions = Array.isArray(existingAnswer.SelectedOption)
+      ? existingAnswer.SelectedOption
+      : [existingAnswer.SelectedOption];
+
+    return selectedOptions.includes(optionIndex);
+  }
+
+  onMultipleChoiceChange(optionIndex: number, checked: boolean) {
+    const question = this.currentQuestion();
+    if (!question || !question.AllowMultipleSelection) return;
+
+    const existingAnswer = this.userAnswers().find(a => a.QuestionId === question.Id);
+    let selectedOptions: number[] = [];
+
+    if (existingAnswer) {
+      selectedOptions = Array.isArray(existingAnswer.SelectedOption)
+        ? [...existingAnswer.SelectedOption]
+        : [existingAnswer.SelectedOption];
+    }
+
+    if (checked) {
+      if (!selectedOptions.includes(optionIndex)) {
+        selectedOptions.push(optionIndex);
+      }
+    } else {
+      selectedOptions = selectedOptions.filter(opt => opt !== optionIndex);
+    }
+
+    const answer: UserAnswerDto = {
+      QuestionId: question.Id,
+      SelectedOption: selectedOptions
+    };
+
+    this.store.answerQuestion(answer);
+  }
+
+  isCorrectAnswer(optionIndex: number): boolean {
+    const question = this.currentQuestion();
+    if (!question) return false;
+
+    if (question.AllowMultipleSelection) {
+      const correctAnswers = Array.isArray(question.CorrectAnswer)
+        ? question.CorrectAnswer
+        : [question.CorrectAnswer];
+      return correctAnswers.includes(optionIndex);
+    } else {
+      return question.CorrectAnswer === optionIndex;
+    }
+  }
+
+  isCorrectAnswerArray(correctAnswer: number | number[]): correctAnswer is number[] {
+    return Array.isArray(correctAnswer);
+  }
+
+  getCorrectAnswerText(correctAnswer: number | number[]): string {
+    const question = this.currentQuestion();
+    if (!question) return '';
+
+    if (Array.isArray(correctAnswer)) {
+      return correctAnswer.map(index => question.Options[index]).join(', ');
+    } else {
+      return question.Options[correctAnswer];
+    }
+  }
+
+  getCorrectAnswerArray(correctAnswer: number | number[]): number[] {
+    return Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer];
+  }
+
   loadAnswer() {
     const question = this.currentQuestion();
     if (question) {
       const existingAnswer = this.userAnswers().find(a => a.QuestionId === question.Id);
-      this.selectedAnswer.set(existingAnswer && existingAnswer.SelectedOption >= 0 ? existingAnswer.SelectedOption : null);
+      if (question.AllowMultipleSelection) {
+        // For multiple choice questions, we don't use selectedAnswer signal
+        // The checkboxes handle their own state
+        this.selectedAnswer.set(null);
+      } else {
+        // For single choice questions
+        const selectedOption = existingAnswer?.SelectedOption;
+        if (selectedOption !== null && selectedOption !== undefined && !Array.isArray(selectedOption) && selectedOption >= 0) {
+          this.selectedAnswer.set(selectedOption);
+        } else {
+          this.selectedAnswer.set(null);
+        }
+      }
     }
   }
 
   isQuestionAnswered(questionId: string): boolean {
     const answer = this.userAnswers().find(a => a.QuestionId === questionId);
-    return !!(answer && answer.SelectedOption >= 0);
+    if (!answer) return false;
+
+    if (Array.isArray(answer.SelectedOption)) {
+      return answer.SelectedOption.length > 0;
+    } else {
+      return answer.SelectedOption !== null && answer.SelectedOption !== undefined && typeof answer.SelectedOption === 'number' && answer.SelectedOption >= 0;
+    }
   }
 
   isQuestionMarkedForReview(questionId: string): boolean {
@@ -964,12 +1124,31 @@ export class CertTestComponent implements OnInit, OnDestroy {
     const question = test.Questions.find(q => q.Id === questionId);
     const userAnswer = this.userAnswers().find(a => a.QuestionId === questionId);
 
-    return !!(question && userAnswer && question.CorrectAnswer === userAnswer.SelectedOption);
+    if (!question || !userAnswer) return false;
+
+    if (question.AllowMultipleSelection) {
+      const correctAnswers = Array.isArray(question.CorrectAnswer) ? question.CorrectAnswer : [question.CorrectAnswer];
+      const selectedAnswers = Array.isArray(userAnswer.SelectedOption) ? userAnswer.SelectedOption : [userAnswer.SelectedOption];
+
+      const correctSet = new Set(correctAnswers.sort());
+      const selectedSet = new Set(selectedAnswers.sort());
+
+      return correctSet.size === selectedSet.size &&
+             [...correctSet].every(val => selectedSet.has(val));
+    } else {
+      return question.CorrectAnswer === userAnswer.SelectedOption;
+    }
   }
 
   getUserAnswer(questionId: string): number {
     const answer = this.userAnswers().find(a => a.QuestionId === questionId);
-    return answer && answer.SelectedOption >= 0 ? answer.SelectedOption : -1;
+    if (!answer) return -1;
+
+    if (Array.isArray(answer.SelectedOption)) {
+      return answer.SelectedOption.length > 0 ? answer.SelectedOption[0] : -1;
+    } else {
+      return answer.SelectedOption !== null && answer.SelectedOption !== undefined && answer.SelectedOption >= 0 ? answer.SelectedOption : -1;
+    }
   }
 
   isHintUsed(questionId: string): boolean {
