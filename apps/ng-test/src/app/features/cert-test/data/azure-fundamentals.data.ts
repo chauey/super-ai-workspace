@@ -3,258 +3,258 @@ import { TestDto, SkillDto, TestOutlineSectionDto } from '../models/test.model';
 // Define skills for Azure Fundamentals
 export const azureFundamentalsSkills: SkillDto[] = [
   {
-    Id: 'skill-cloud-concepts',
-    Name: 'Cloud Computing Concepts',
-    Description: 'Understanding of core cloud computing principles, deployment models, and service types',
-    Category: 'Fundamentals',
-    Weight: 10
+    id: 'skill-cloud-concepts',
+    name: 'Cloud Computing Concepts',
+    description: 'Understanding of core cloud computing principles, deployment models, and service types',
+    category: 'Fundamentals',
+    weight: 10
   },
   {
-    Id: 'skill-azure-services',
-    Name: 'Azure Core Services',
-    Description: 'Knowledge of essential Azure services including compute, storage, and databases',
-    Category: 'Core Services',
-    Weight: 9
+    id: 'skill-azure-services',
+    name: 'Azure Core Services',
+    description: 'Knowledge of essential Azure services including compute, storage, and databases',
+    category: 'Core Services',
+    weight: 9
   },
   {
-    Id: 'skill-security',
-    Name: 'Security and Compliance',
-    Description: 'Understanding of Azure security features, identity management, and compliance',
-    Category: 'Security',
-    Weight: 8
+    id: 'skill-security',
+    name: 'Security and Compliance',
+    description: 'Understanding of Azure security features, identity management, and compliance',
+    category: 'Security',
+    weight: 8
   },
   {
-    Id: 'skill-pricing',
-    Name: 'Pricing and Support',
-    Description: 'Knowledge of Azure pricing models, cost management, and support options',
-    Category: 'Management',
-    Weight: 7
+    id: 'skill-pricing',
+    name: 'Pricing and Support',
+    description: 'Knowledge of Azure pricing models, cost management, and support options',
+    category: 'Management',
+    weight: 7
   },
   {
-    Id: 'skill-database',
-    Name: 'Database Services',
-    Description: 'Understanding of Azure database offerings and when to use each',
-    Category: 'Core Services',
-    Weight: 7
+    id: 'skill-database',
+    name: 'Database Services',
+    description: 'Understanding of Azure database offerings and when to use each',
+    category: 'Core Services',
+    weight: 7
   }
 ];
 
 // Define test outline
 export const azureFundamentalsOutline: TestOutlineSectionDto[] = [
   {
-    Id: 'section-cloud-concepts',
-    Title: 'Cloud Concepts',
-    Description: 'Understand cloud computing principles and deployment models',
-    Order: 1,
-    ContentMarkdownUrl: '/assets/test-content/azure-fundamentals/cloud-concepts.md',
-    QuestionIds: ['q1'],
-    SkillIds: ['skill-cloud-concepts'],
-    EstimatedTimeMinutes: 2,
-    Weight: 20
+    id: 'section-cloud-concepts',
+    title: 'Cloud Concepts',
+    description: 'Understand cloud computing principles and deployment models',
+    order: 1,
+    contentMarkdownUrl: '/assets/test-content/azure-fundamentals/cloud-concepts.md',
+    questionIds: ['q1'],
+    skillIds: ['skill-cloud-concepts'],
+    estimatedTimeMinutes: 2,
+    weight: 20
   },
   {
-    Id: 'section-azure-services',
-    Title: 'Azure Core Services',
-    Description: 'Learn about fundamental Azure services and their use cases',
-    Order: 2,
-    ContentMarkdownUrl: '/assets/test-content/azure-fundamentals/azure-services.md',
-    QuestionIds: ['q2'],
-    SkillIds: ['skill-azure-services', 'skill-database'],
-    EstimatedTimeMinutes: 3,
-    Weight: 30
+    id: 'section-azure-services',
+    title: 'Azure Core Services',
+    description: 'Learn about fundamental Azure services and their use cases',
+    order: 2,
+    contentMarkdownUrl: '/assets/test-content/azure-fundamentals/azure-services.md',
+    questionIds: ['q2'],
+    skillIds: ['skill-azure-services', 'skill-database'],
+    estimatedTimeMinutes: 3,
+    weight: 30
   },
   {
-    Id: 'section-security',
-    Title: 'Security, Privacy, and Compliance',
-    Description: 'Understand Azure security features and compliance offerings',
-    Order: 3,
-    ContentMarkdownUrl: '/assets/test-content/azure-fundamentals/security.md',
-    QuestionIds: ['q3'],
-    SkillIds: ['skill-security'],
-    EstimatedTimeMinutes: 3,
-    Weight: 25
+    id: 'section-security',
+    title: 'Security, Privacy, and Compliance',
+    description: 'Understand Azure security features and compliance offerings',
+    order: 3,
+    contentMarkdownUrl: '/assets/test-content/azure-fundamentals/security.md',
+    questionIds: ['q3'],
+    skillIds: ['skill-security'],
+    estimatedTimeMinutes: 3,
+    weight: 25
   },
   {
-    Id: 'section-pricing',
-    Title: 'Pricing and Support',
-    Description: 'Learn about Azure pricing models and support options',
-    Order: 4,
-    ContentMarkdownUrl: '/assets/test-content/azure-fundamentals/pricing.md',
-    QuestionIds: ['q4', 'q5'],
-    SkillIds: ['skill-pricing'],
-    EstimatedTimeMinutes: 3,
-    Weight: 25
+    id: 'section-pricing',
+    title: 'Pricing and Support',
+    description: 'Learn about Azure pricing models and support options',
+    order: 4,
+    contentMarkdownUrl: '/assets/test-content/azure-fundamentals/pricing.md',
+    questionIds: ['q4', 'q5'],
+    skillIds: ['skill-pricing'],
+    estimatedTimeMinutes: 3,
+    weight: 25
   }
 ];
 
 export const azureFundamentalsTest: TestDto = {
-  Id: 'az-900-sample',
-  Title: 'Azure Fundamentals (AZ-900) - Sample Test',
-  Description: 'A sample certification test for Microsoft Azure Fundamentals covering cloud concepts, Azure services, security, privacy, compliance, and pricing.',
-  Duration: 15,
-  PassingScore: 70,
-  Category: 'Azure',
-  HasTimer: true,
-  Skills: azureFundamentalsSkills,
-  Version: '1.0',
-  VersionId: 'az-900-v1.0',
-  TotalPoints: 5,
-  AllowPause: true,
-  AllowReview: true,
-  RandomizeQuestions: false,
-  RandomizeOptions: false,
-  ShowResultsImmediately: true,
-  CertificationLevel: 'Fundamentals',
-  Prerequisites: [],
-  Tags: ['Azure', 'Cloud', 'Fundamentals', 'Microsoft', 'Certification'],
-  IsFree: true, // Free test
-  Price: 0,
-  Currency: 'USD',
-  Outline: azureFundamentalsOutline,
-  QuestionOrdering: {
-    Type: 'Outline' // Order questions by outline sections
+  id: 'az-900-sample',
+  title: 'Azure Fundamentals (AZ-900) - Sample Test',
+  description: 'A sample certification test for Microsoft Azure Fundamentals covering cloud concepts, Azure services, security, privacy, compliance, and pricing.',
+  duration: 15,
+  passingScore: 70,
+  category: 'Azure',
+  hasTimer: true,
+  skills: azureFundamentalsSkills,
+  version: '1.0',
+  versionId: 'az-900-v1.0',
+  totalPoints: 5,
+  allowPause: true,
+  allowReview: true,
+  randomizeQuestions: false,
+  randomizeOptions: false,
+  showResultsImmediately: true,
+  certificationLevel: 'Fundamentals',
+  prerequisites: [],
+  tags: ['Azure', 'Cloud', 'Fundamentals', 'Microsoft', 'Certification'],
+  isFree: true, // Free test
+  price: 0,
+  currency: 'USD',
+  outline: azureFundamentalsOutline,
+  questionOrdering: {
+    type: 'Outline' // Order questions by outline sections
   },
-  Questions: [
+  questions: [
     {
-      Id: 'q1',
-      Question: 'What type of cloud model provides services over the public internet and is available to anyone who wants to purchase them?',
-      Options: [
+      id: 'q1',
+      question: 'What type of cloud model provides services over the public internet and is available to anyone who wants to purchase them?',
+      options: [
         'Private cloud',
         'Public cloud',
         'Hybrid cloud',
         'Community cloud'
       ],
-      CorrectAnswer: 1,
-      AllowMultipleSelection: false,
-      Explanation: 'Public cloud services are owned and operated by third-party cloud service providers and delivered over the public internet. They are available to anyone who wants to purchase them.',
-      Category: 'Cloud Concepts',
-      Hint: 'Think about cloud services that are openly available to any organization or individual, like Azure, AWS, or Google Cloud.',
-      SkillIds: ['skill-cloud-concepts'],
-      DifficultyLevel: 'Easy',
-      EstimatedTimeSeconds: 60,
-      Points: 1
+      correctAnswer: 1,
+      allowMultipleSelection: false,
+      explanation: 'Public cloud services are owned and operated by third-party cloud service providers and delivered over the public internet. They are available to anyone who wants to purchase them.',
+      category: 'Cloud Concepts',
+      hint: 'Think about cloud services that are openly available to any organization or individual, like Azure, AWS, or Google Cloud.',
+      skillIds: ['skill-cloud-concepts'],
+      difficultyLevel: 'Easy',
+      estimatedTimeSeconds: 60,
+      points: 1
     },
     {
-      Id: 'q1b',
-      Question: 'Which of the following are characteristics of cloud computing? (Select all that apply)',
-      Options: [
+      id: 'q1b',
+      question: 'Which of the following are characteristics of cloud computing? (Select all that apply)',
+      options: [
         'On-demand self-service',
         'Broad network access',
         'Resource pooling',
         'Measured service'
       ],
-      CorrectAnswer: [0, 1, 2, 3],
-      AllowMultipleSelection: true,
-      Explanation: 'All of these are key characteristics of cloud computing as defined by NIST: on-demand self-service, broad network access, resource pooling, and measured service.',
-      Category: 'Cloud Concepts',
-      Hint: 'These are the five essential characteristics of cloud computing according to NIST.',
-      SkillIds: ['skill-cloud-concepts'],
-      DifficultyLevel: 'Medium',
-      EstimatedTimeSeconds: 90,
-      Points: 2
+      correctAnswer: [0, 1, 2, 3],
+      allowMultipleSelection: true,
+      explanation: 'All of these are key characteristics of cloud computing as defined by NIST: on-demand self-service, broad network access, resource pooling, and measured service.',
+      category: 'Cloud Concepts',
+      hint: 'These are the five essential characteristics of cloud computing according to NIST.',
+      skillIds: ['skill-cloud-concepts'],
+      difficultyLevel: 'Medium',
+      estimatedTimeSeconds: 90,
+      points: 2
     },
     {
-      Id: 'q2',
-      Question: 'Which Azure service provides a fully managed relational database with built-in intelligence?',
-      Options: [
+      id: 'q2',
+      question: 'Which Azure service provides a fully managed relational database with built-in intelligence?',
+      options: [
         'Azure Cosmos DB',
         'Azure SQL Database',
         'Azure Table Storage',
         'Azure Blob Storage'
       ],
-      CorrectAnswer: 1,
-      Explanation: 'Azure SQL Database is a fully managed relational database service with built-in intelligence that learns app patterns and adapts to maximize performance, reliability, and data protection.',
-      Category: 'Azure Services',
-      Hint: 'Look for the service name that includes "SQL" - it\'s designed for relational data with automatic tuning.',
-      SkillIds: ['skill-azure-services', 'skill-database'],
-      DifficultyLevel: 'Medium',
-      EstimatedTimeSeconds: 90,
-      Points: 1
+      correctAnswer: 1,
+      explanation: 'Azure SQL Database is a fully managed relational database service with built-in intelligence that learns app patterns and adapts to maximize performance, reliability, and data protection.',
+      category: 'Azure Services',
+      hint: 'Look for the service name that includes "SQL" - it\'s designed for relational data with automatic tuning.',
+      skillIds: ['skill-azure-services', 'skill-database'],
+      difficultyLevel: 'Medium',
+      estimatedTimeSeconds: 90,
+      points: 1
     },
     {
-      Id: 'q3',
-      Question: 'What is the Azure service that provides DDoS protection for Azure applications?',
-      Options: [
+      id: 'q3',
+      question: 'What is the Azure service that provides DDoS protection for Azure applications?',
+      options: [
         'Azure Firewall',
         'Azure DDoS Protection',
         'Azure Security Center',
         'Azure Sentinel'
       ],
-      CorrectAnswer: 1,
-      Explanation: 'Azure DDoS Protection provides enhanced DDoS mitigation features to defend against DDoS attacks. It is tuned to protect your Azure resources in a virtual network.',
-      Category: 'Security',
-      Hint: 'The service name directly indicates its purpose - protecting against Distributed Denial of Service attacks.',
-      SkillIds: ['skill-security'],
-      DifficultyLevel: 'Medium',
-      EstimatedTimeSeconds: 75,
-      Points: 1
+      correctAnswer: 1,
+      explanation: 'Azure DDoS Protection provides enhanced DDoS mitigation features to defend against DDoS attacks. It is tuned to protect your Azure resources in a virtual network.',
+      category: 'Security',
+      hint: 'The service name directly indicates its purpose - protecting against Distributed Denial of Service attacks.',
+      skillIds: ['skill-security'],
+      difficultyLevel: 'Medium',
+      estimatedTimeSeconds: 75,
+      points: 1
     },
     {
-      Id: 'q4',
-      Question: 'Which pricing model allows you to pay for Azure services only when you use them?',
-      Options: [
+      id: 'q4',
+      question: 'Which pricing model allows you to pay for Azure services only when you use them?',
+      options: [
         'Capital Expenditure (CapEx)',
         'Pay-as-you-go',
         'Reserved Instances',
         'Enterprise Agreement'
       ],
-      CorrectAnswer: 1,
-      Explanation: 'Pay-as-you-go is a pricing model where you pay only for the Azure services you use. There is no upfront cost or long-term commitment.',
-      Category: 'Pricing and Support',
-      Hint: 'This model is like a utility bill - you only pay for what you consume, with no upfront commitment.',
-      SkillIds: ['skill-pricing'],
-      DifficultyLevel: 'Easy',
-      EstimatedTimeSeconds: 60,
-      Points: 1
+      correctAnswer: 1,
+      explanation: 'Pay-as-you-go is a pricing model where you pay only for the Azure services you use. There is no upfront cost or long-term commitment.',
+      category: 'Pricing and Support',
+      hint: 'This model is like a utility bill - you only pay for what you consume, with no upfront commitment.',
+      skillIds: ['skill-pricing'],
+      difficultyLevel: 'Easy',
+      estimatedTimeSeconds: 60,
+      points: 1
     },
     {
-      Id: 'q5',
-      Question: 'What Azure tool can be used to estimate the cost of Azure services before deploying them?',
-      Options: [
+      id: 'q5',
+      question: 'What Azure tool can be used to estimate the cost of Azure services before deploying them?',
+      options: [
         'Azure Cost Management',
         'Azure Advisor',
         'Azure Pricing Calculator',
         'Azure Monitor'
       ],
-      CorrectAnswer: 2,
-      Explanation: 'The Azure Pricing Calculator helps you estimate the cost of Azure products. You can configure and estimate the costs for Azure services without actually deploying them.',
-      Category: 'Pricing and Support',
-      Hint: 'This tool helps you "calculate" estimated costs before you deploy - it\'s right in the name!',
-      SkillIds: ['skill-pricing'],
-      DifficultyLevel: 'Easy',
-      EstimatedTimeSeconds: 60,
-      Points: 1
+      correctAnswer: 2,
+      explanation: 'The Azure Pricing Calculator helps you estimate the cost of Azure products. You can configure and estimate the costs for Azure services without actually deploying them.',
+      category: 'Pricing and Support',
+      hint: 'This tool helps you "calculate" estimated costs before you deploy - it\'s right in the name!',
+      skillIds: ['skill-pricing'],
+      difficultyLevel: 'Easy',
+      estimatedTimeSeconds: 60,
+      points: 1
     }
   ]
 };
 
 // Sample paid test (for demonstration)
 export const azureAdministratorTest: TestDto = {
-  Id: 'az-104-sample',
-  Title: 'Azure Administrator (AZ-104) - Practice Test',
-  Description: 'Advanced practice test for Azure Administrator certification',
-  Duration: 60,
-  PassingScore: 70,
-  Category: 'Azure',
-  HasTimer: true,
-  Skills: [],
-  Version: '1.0',
-  VersionId: 'az-104-v1.0',
-  TotalPoints: 0,
-  AllowPause: true,
-  AllowReview: true,
-  RandomizeQuestions: false,
-  RandomizeOptions: false,
-  ShowResultsImmediately: true,
-  CertificationLevel: 'Associate',
-  Prerequisites: ['az-900-sample'],
-  Tags: ['Azure', 'Administrator', 'Associate', 'Certification'],
-  IsFree: false, // Paid test
-  Price: 29.99,
-  Currency: 'USD',
-  Outline: [],
-  QuestionOrdering: {
-    Type: 'Outline'
+  id: 'az-104-sample',
+  title: 'Azure Administrator (AZ-104) - Practice Test',
+  description: 'Advanced practice test for Azure Administrator certification',
+  duration: 60,
+  passingScore: 70,
+  category: 'Azure',
+  hasTimer: true,
+  skills: [],
+  version: '1.0',
+  versionId: 'az-104-v1.0',
+  totalPoints: 0,
+  allowPause: true,
+  allowReview: true,
+  randomizeQuestions: false,
+  randomizeOptions: false,
+  showResultsImmediately: true,
+  certificationLevel: 'Associate',
+  prerequisites: ['az-900-sample'],
+  tags: ['Azure', 'Administrator', 'Associate', 'Certification'],
+  isFree: false, // Paid test
+  price: 29.99,
+  currency: 'USD',
+  outline: [],
+  questionOrdering: {
+    type: 'Outline'
   },
-  Questions: []
+  questions: []
 };

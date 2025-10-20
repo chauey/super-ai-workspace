@@ -69,23 +69,23 @@ export const CertTestStore = signalStore(
       const test = store.currentTest();
       const answers = store.userAnswers();
       if (!test) return 0;
-      return (answers.length / test.Questions.length) * 100;
+      return (answers.length / test.questions.length) * 100;
     }),
     markedForReviewCount: computed(() => {
       const attempt = store.currentAttempt();
-      return attempt?.MarkedForReview?.length || 0;
+      return attempt?.markedForReview?.length || 0;
     }),
     timeRemainingFormatted: computed(() => {
       const attempt = store.currentAttempt();
-      if (!attempt?.TimeRemaining) return '00:00';
-      const minutes = Math.floor(attempt.TimeRemaining / 60);
-      const seconds = attempt.TimeRemaining % 60;
+      if (!attempt?.timeRemaining) return '00:00';
+      const minutes = Math.floor(attempt.timeRemaining / 60);
+      const seconds = attempt.timeRemaining % 60;
       return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }),
     userTestHistory: computed(() => {
       const userId = store.currentUserId();
       const history = store.testHistory();
-      return history.find(h => h.UserId === userId);
+      return history.find(h => h.userId === userId);
     })
   })),
   withMethods((store) => {
@@ -109,12 +109,12 @@ export const CertTestStore = signalStore(
       // Calculate score
       let correctAnswers = 0;
       answers.forEach(answer => {
-        const question = test.Questions.find(q => q.Id === answer.QuestionId);
+        const question = test.questions.find(q => q.id === answer.questionId);
         if (question) {
-          if (question.AllowMultipleSelection) {
+          if (question.allowMultipleSelection) {
             // For multiple choice questions, check if all correct answers are selected
-            const correctAnswersArray = Array.isArray(question.CorrectAnswer) ? question.CorrectAnswer : [question.CorrectAnswer];
-            const selectedAnswersArray = Array.isArray(answer.SelectedOption) ? answer.SelectedOption : [answer.SelectedOption];
+            const correctAnswersArray = Array.isArray(question.correctAnswer) ? question.correctAnswer : [question.correctAnswer];
+            const selectedAnswersArray = Array.isArray(answer.selectedOption) ? answer.selectedOption : [answer.selectedOption];
 
             // Check if the arrays contain the same elements (order doesn't matter)
             const correctSet = new Set(correctAnswersArray.sort());
@@ -126,28 +126,28 @@ export const CertTestStore = signalStore(
             }
           } else {
             // For single choice questions
-            if (question.CorrectAnswer === answer.SelectedOption) {
+            if (question.correctAnswer === answer.selectedOption) {
               correctAnswers++;
             }
           }
         }
       });
 
-      const score = (correctAnswers / test.Questions.length) * 100;
-      const passed = score >= test.PassingScore;
+      const score = (correctAnswers / test.questions.length) * 100;
+      const passed = score >= test.passingScore;
 
       // Calculate skill scores
-      const skillScores: { [skillId: string]: number } = {};
-      test.Skills.forEach(skill => {
-        const skillQuestions = test.Questions.filter(q => q.SkillIds.includes(skill.Id));
+      const skillScores: { [skillid: string]: number } = {};
+      test.skills.forEach(skill => {
+        const skillQuestions = test.questions.filter(q => q.skillIds.includes(skill.id));
         const correctSkillAnswers = skillQuestions.filter(q => {
-          const userAnswer = answers.find(a => a.QuestionId === q.Id);
+          const userAnswer = answers.find(a => a.questionId === q.id);
           if (!userAnswer) return false;
 
-          if (q.AllowMultipleSelection) {
+          if (q.allowMultipleSelection) {
             // For multiple choice questions
-            const correctAnswersArray = Array.isArray(q.CorrectAnswer) ? q.CorrectAnswer : [q.CorrectAnswer];
-            const selectedAnswersArray = Array.isArray(userAnswer.SelectedOption) ? userAnswer.SelectedOption : [userAnswer.SelectedOption];
+            const correctAnswersArray = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
+            const selectedAnswersArray = Array.isArray(userAnswer.selectedOption) ? userAnswer.selectedOption : [userAnswer.selectedOption];
 
             const correctSet = new Set(correctAnswersArray.sort());
             const selectedSet = new Set(selectedAnswersArray.sort());
@@ -156,26 +156,26 @@ export const CertTestStore = signalStore(
                    [...correctSet].every(val => selectedSet.has(val));
           } else {
             // For single choice questions
-            return q.CorrectAnswer === userAnswer.SelectedOption;
+            return q.correctAnswer === userAnswer.selectedOption;
           }
         }).length;
 
         if (skillQuestions.length > 0) {
-          skillScores[skill.Id] = (correctSkillAnswers / skillQuestions.length) * 100;
+          skillScores[skill.id] = (correctSkillAnswers / skillQuestions.length) * 100;
         }
       });
 
       // Calculate points earned
       let pointsEarned = 0;
-      test.Questions.forEach(question => {
-        const userAnswer = answers.find(a => a.QuestionId === question.Id);
+      test.questions.forEach(question => {
+        const userAnswer = answers.find(a => a.questionId === question.id);
         if (userAnswer) {
           let isCorrect = false;
 
-          if (question.AllowMultipleSelection) {
+          if (question.allowMultipleSelection) {
             // For multiple choice questions
-            const correctAnswersArray = Array.isArray(question.CorrectAnswer) ? question.CorrectAnswer : [question.CorrectAnswer];
-            const selectedAnswersArray = Array.isArray(userAnswer.SelectedOption) ? userAnswer.SelectedOption : [userAnswer.SelectedOption];
+            const correctAnswersArray = Array.isArray(question.correctAnswer) ? question.correctAnswer : [question.correctAnswer];
+            const selectedAnswersArray = Array.isArray(userAnswer.selectedOption) ? userAnswer.selectedOption : [userAnswer.selectedOption];
 
             const correctSet = new Set(correctAnswersArray.sort());
             const selectedSet = new Set(selectedAnswersArray.sort());
@@ -184,11 +184,11 @@ export const CertTestStore = signalStore(
                        [...correctSet].every(val => selectedSet.has(val));
           } else {
             // For single choice questions
-            isCorrect = question.CorrectAnswer === userAnswer.SelectedOption;
+            isCorrect = question.correctAnswer === userAnswer.selectedOption;
           }
 
           if (isCorrect) {
-            pointsEarned += question.Points || 1;
+            pointsEarned += question.points || 1;
           }
         }
       });
@@ -196,35 +196,35 @@ export const CertTestStore = signalStore(
       // Update attempt
       const updatedAttempt: TestAttemptDto = {
         ...attempt,
-        EndTime: new Date(),
-        Score: score,
-        Passed: passed,
-        TimeRemaining: 0,
-        Status: 'Completed',
-        PointsEarned: pointsEarned,
-        TotalPoints: test.TotalPoints || test.Questions.length,
-        SkillScores: skillScores,
-        CompletionPercentage: 100
+        endTime: new Date(),
+        score: score,
+        passed: passed,
+        timeRemaining: 0,
+        status: 'Completed',
+        pointsEarned: pointsEarned,
+        totalPoints: test.totalPoints || test.questions.length,
+        skillScores: skillScores,
+        completionPercentage: 100
       };
 
       // Save to history
       const history = store.testHistory();
       const userId = store.currentUserId();
 
-      const userHistoryIndex = history.findIndex(h => h.UserId === userId);
+      const userHistoryIndex = history.findIndex(h => h.userId === userId);
 
       if (userHistoryIndex >= 0) {
         const updatedHistory = [...history];
         updatedHistory[userHistoryIndex] = {
           ...updatedHistory[userHistoryIndex],
-          Attempts: [...updatedHistory[userHistoryIndex].Attempts, updatedAttempt]
+          attempts: [...updatedHistory[userHistoryIndex].attempts, updatedAttempt]
         };
         patchState(store, { testHistory: updatedHistory });
         saveToStorage(updatedHistory);
       } else {
         const newUserHistory: TestHistoryDto = {
-          UserId: userId,
-          Attempts: [updatedAttempt]
+          userId: userId,
+          attempts: [updatedAttempt]
         };
         const updatedHistory = [...history, newUserHistory];
         patchState(store, { testHistory: updatedHistory });
@@ -262,31 +262,31 @@ export const CertTestStore = signalStore(
       // Start a test
       startTest(test: TestDto): void {
         const userId = store.currentUserId();
-        const timeInSeconds = test.HasTimer ? test.Duration * 60 : 0;
+        const timeInSeconds = test.hasTimer ? test.duration * 60 : 0;
         const history = store.testHistory();
-        const userHistory = history.find(h => h.UserId === userId);
+        const userHistory = history.find(h => h.userId === userId);
         const attemptNumber = userHistory
-          ? userHistory.Attempts.filter(a => a.TestId === test.Id).length + 1
+          ? userHistory.attempts.filter(a => a.testId === test.id).length + 1
           : 1;
 
         const attempt: TestAttemptDto = {
-          Id: `attempt-${Date.now()}`,
-          TestId: test.Id,
-          TestVersionId: test.VersionId,
-          UserId: userId,
-          StartTime: new Date(),
-          TimeRemaining: timeInSeconds,
-          TotalTimePaused: 0,
-          Answers: {},
-          MarkedForReview: [],
-          ShowAnswers: false,
-          IsPaused: false,
-          PauseHistory: [],
-          Status: 'InProgress',
-          CompletionPercentage: 0,
-          AttemptNumber: attemptNumber,
-          TotalPoints: test.TotalPoints || test.Questions.length,
-          SkillScores: {}
+          id: `attempt-${Date.now()}`,
+          testId: test.id,
+          testVersionId: test.versionId,
+          userId: userId,
+          startTime: new Date(),
+          timeRemaining: timeInSeconds,
+          totalTimePaused: 0,
+          answers: {},
+          markedForReview: [],
+          showAnswers: false,
+          isPaused: false,
+          pauseHistory: [],
+          status: 'InProgress',
+          completionPercentage: 0,
+          attemptNumber: attemptNumber,
+          totalPoints: test.totalPoints || test.questions.length,
+          skillScores: {}
         };
 
         // Clear any existing timer
@@ -305,18 +305,18 @@ export const CertTestStore = signalStore(
         });
 
         // Start timer if test has time limit
-        if (test.HasTimer && timeInSeconds > 0) {
+        if (test.hasTimer && timeInSeconds > 0) {
           const newInterval = setInterval(() => {
             const currentAttempt = store.currentAttempt();
-            if (currentAttempt && currentAttempt.TimeRemaining && currentAttempt.TimeRemaining > 0) {
+            if (currentAttempt && currentAttempt.timeRemaining && currentAttempt.timeRemaining > 0) {
               const updatedAttempt = {
                 ...currentAttempt,
-                TimeRemaining: currentAttempt.TimeRemaining - 1
+                timeRemaining: currentAttempt.timeRemaining - 1
               };
               patchState(store, { currentAttempt: updatedAttempt });
 
               // Auto-submit when time runs out
-              if (updatedAttempt.TimeRemaining === 0) {
+              if (updatedAttempt.timeRemaining === 0) {
                 internalSubmitTest();
               }
             }
@@ -330,7 +330,7 @@ export const CertTestStore = signalStore(
     answerQuestion(answer: UserAnswerDto): void {
       const currentAnswers = store.userAnswers();
       const existingIndex = currentAnswers.findIndex(
-        a => a.QuestionId === answer.QuestionId
+        a => a.questionId === answer.questionId
       );
 
       const updatedAnswers = existingIndex >= 0
@@ -345,7 +345,7 @@ export const CertTestStore = signalStore(
       const attempt = store.currentAttempt();
       if (!attempt) return;
 
-      const marked = attempt.MarkedForReview || [];
+      const marked = attempt.markedForReview || [];
       const isMarked = marked.includes(questionId);
 
       const updatedMarked = isMarked
@@ -353,7 +353,7 @@ export const CertTestStore = signalStore(
         : [...marked, questionId];
 
       patchState(store, {
-        currentAttempt: { ...attempt, MarkedForReview: updatedMarked }
+        currentAttempt: { ...attempt, markedForReview: updatedMarked }
       });
     },
 
@@ -361,7 +361,7 @@ export const CertTestStore = signalStore(
     pauseTest(): void {
       const attempt = store.currentAttempt();
       const test = store.currentTest();
-      if (!attempt || !test || !test.AllowPause) return;
+      if (!attempt || !test || !test.allowPause) return;
 
       // Clear timer
       const interval = store.timerInterval();
@@ -371,17 +371,17 @@ export const CertTestStore = signalStore(
       }
 
       const pauseRecord: TestPauseDto = {
-        Id: `pause-${Date.now()}`,
-        AttemptId: attempt.Id,
-        PauseStartTime: new Date(),
-        TimeElapsedBeforePause: (test.Duration * 60) - (attempt.TimeRemaining || 0)
+        id: `pause-${Date.now()}`,
+        attemptId: attempt.id,
+        pauseStartTime: new Date(),
+        timeElapsedBeforePause: (test.duration * 60) - (attempt.timeRemaining || 0)
       };
 
       const updatedAttempt: TestAttemptDto = {
         ...attempt,
-        IsPaused: true,
-        Status: 'Paused',
-        PauseHistory: [...attempt.PauseHistory, pauseRecord]
+        isPaused: true,
+        status: 'Paused',
+        pauseHistory: [...attempt.pauseHistory, pauseRecord]
       };
 
       patchState(store, { currentAttempt: updatedAttempt });
@@ -391,46 +391,46 @@ export const CertTestStore = signalStore(
     resumeTest(): void {
       const attempt = store.currentAttempt();
       const test = store.currentTest();
-      if (!attempt || !test || !attempt.IsPaused) return;
+      if (!attempt || !test || !attempt.isPaused) return;
 
-      const lastPause = attempt.PauseHistory[attempt.PauseHistory.length - 1];
+      const lastPause = attempt.pauseHistory[attempt.pauseHistory.length - 1];
       if (!lastPause) return;
 
       const now = new Date();
-      const pauseDuration = Math.floor((now.getTime() - new Date(lastPause.PauseStartTime).getTime()) / 1000);
+      const pauseDuration = Math.floor((now.getTime() - new Date(lastPause.pauseStartTime).getTime()) / 1000);
 
       // Update pause record
       const updatedPauseRecord: TestPauseDto = {
         ...lastPause,
-        ResumeTime: now
+        resumeTime: now
       };
 
-      const updatedPauseHistory = [...attempt.PauseHistory];
+      const updatedPauseHistory = [...attempt.pauseHistory];
       updatedPauseHistory[updatedPauseHistory.length - 1] = updatedPauseRecord;
 
       const updatedAttempt: TestAttemptDto = {
         ...attempt,
-        IsPaused: false,
-        Status: 'InProgress',
-        TotalTimePaused: (attempt.TotalTimePaused || 0) + pauseDuration,
-        PauseHistory: updatedPauseHistory
+        isPaused: false,
+        status: 'InProgress',
+        totalTimePaused: (attempt.totalTimePaused || 0) + pauseDuration,
+        pauseHistory: updatedPauseHistory
       };
 
       patchState(store, { currentAttempt: updatedAttempt });
 
       // Restart timer if test has timer
-      if (test.HasTimer && updatedAttempt.TimeRemaining && updatedAttempt.TimeRemaining > 0) {
+      if (test.hasTimer && updatedAttempt.timeRemaining && updatedAttempt.timeRemaining > 0) {
         const newInterval = setInterval(() => {
           const currentAttempt = store.currentAttempt();
-          if (currentAttempt && currentAttempt.TimeRemaining && currentAttempt.TimeRemaining > 0 && !currentAttempt.IsPaused) {
+          if (currentAttempt && currentAttempt.timeRemaining && currentAttempt.timeRemaining > 0 && !currentAttempt.isPaused) {
             const updated = {
               ...currentAttempt,
-              TimeRemaining: currentAttempt.TimeRemaining - 1
+              timeRemaining: currentAttempt.timeRemaining - 1
             };
             patchState(store, { currentAttempt: updated });
 
             // Auto-submit when time runs out
-            if (updated.TimeRemaining === 0) {
+            if (updated.timeRemaining === 0) {
               internalSubmitTest();
             }
           }
@@ -443,19 +443,19 @@ export const CertTestStore = signalStore(
     // Toggle hint for a question
     toggleHint(questionId: string): void {
       const currentAnswers = store.userAnswers();
-      const answer = currentAnswers.find(a => a.QuestionId === questionId);
+      const answer = currentAnswers.find(a => a.questionId === questionId);
 
       if (answer) {
         const updatedAnswers = currentAnswers.map(a =>
-          a.QuestionId === questionId ? { ...a, HintUsed: !a.HintUsed } : a
+          a.questionId === questionId ? { ...a, hintUsed: !a.hintUsed } : a
         );
         patchState(store, { userAnswers: updatedAnswers });
       } else {
         // Create answer entry with hint used
         const newAnswer: UserAnswerDto = {
-          QuestionId: questionId,
-          SelectedOption: -1,
-          HintUsed: true
+          questionId: questionId,
+          selectedOption: -1,
+          hintUsed: true
         };
         patchState(store, { userAnswers: [...currentAnswers, newAnswer] });
       }
@@ -464,19 +464,19 @@ export const CertTestStore = signalStore(
     // Reveal answer for a question
     revealAnswer(questionId: string): void {
       const currentAnswers = store.userAnswers();
-      const answer = currentAnswers.find(a => a.QuestionId === questionId);
+      const answer = currentAnswers.find(a => a.questionId === questionId);
 
       if (answer) {
         const updatedAnswers = currentAnswers.map(a =>
-          a.QuestionId === questionId ? { ...a, AnswerRevealed: true } : a
+          a.questionId === questionId ? { ...a, answerRevealed: true } : a
         );
         patchState(store, { userAnswers: updatedAnswers });
       } else {
         // Create answer entry with answer revealed
         const newAnswer: UserAnswerDto = {
-          QuestionId: questionId,
-          SelectedOption: -1,
-          AnswerRevealed: true
+          questionId: questionId,
+          selectedOption: -1,
+          answerRevealed: true
         };
         patchState(store, { userAnswers: [...currentAnswers, newAnswer] });
       }

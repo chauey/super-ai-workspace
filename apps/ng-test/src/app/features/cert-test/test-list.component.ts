@@ -74,7 +74,7 @@ import { CertTestStore } from './store/test.store';
         </div>
 
         <div class="tests-grid">
-          @for (test of availableTests(); track test.Id) {
+          @for (test of availableTests(); track test.id) {
             <mat-card class="test-card">
               <mat-card-header>
                 <div class="card-header-content">
@@ -82,11 +82,11 @@ import { CertTestStore } from './store/test.store';
                     <mat-icon>school</mat-icon>
                   </div>
                   <div class="test-title-section">
-                    <mat-card-title>{{ test.Title }}</mat-card-title>
-                    @if (!test.IsFree) {
+                    <mat-card-title>{{ test.title }}</mat-card-title>
+                    @if (!test.isFree) {
                       <mat-chip class="price-chip">
                         <mat-icon>monetization_on</mat-icon>
-                        {{ test.Price | currency:test.Currency }}
+                        {{ test.price | currency:test.currency }}
                       </mat-chip>
                     } @else {
                       <mat-chip class="free-chip">
@@ -99,41 +99,41 @@ import { CertTestStore } from './store/test.store';
               </mat-card-header>
 
               <mat-card-content>
-                <p class="test-description">{{ test.Description }}</p>
+                <p class="test-description">{{ test.description }}</p>
 
                 <div class="test-meta">
                   <div class="meta-item">
                     <mat-icon>schedule</mat-icon>
-                    <span>{{ test.Duration }} minutes</span>
+                    <span>{{ test.duration }} minutes</span>
                   </div>
                   <div class="meta-item">
                     <mat-icon>assignment</mat-icon>
-                    <span>{{ test.Questions.length }} questions</span>
+                    <span>{{ test.questions.length }} questions</span>
                   </div>
                   <div class="meta-item">
                     <mat-icon>trending_up</mat-icon>
-                    <span>Pass: {{ test.PassingScore }}%</span>
+                    <span>Pass: {{ test.passingScore }}%</span>
                   </div>
                 </div>
 
                 <div class="test-info">
-                  <mat-chip class="level-chip">{{ test.CertificationLevel || 'Standard' }}</mat-chip>
-                  <mat-chip>{{ test.Category }}</mat-chip>
-                  <mat-chip>v{{ test.Version }}</mat-chip>
+                  <mat-chip class="level-chip">{{ test.certificationLevel || 'Standard' }}</mat-chip>
+                  <mat-chip>{{ test.category }}</mat-chip>
+                  <mat-chip>v{{ test.version }}</mat-chip>
                 </div>
 
-                @if (test.Skills.length > 0) {
+                @if (test.skills.length > 0) {
                   <div class="skills-section">
                     <div class="skills-label">Skills Covered:</div>
                     <div class="skills-list">
-                      @for (skill of test.Skills.slice(0, 3); track skill.Id) {
-                        <mat-chip class="skill-chip" [matTooltip]="skill.Description">
-                          {{ skill.Name }}
+                      @for (skill of test.skills.slice(0, 3); track skill.id) {
+                        <mat-chip class="skill-chip" [matTooltip]="skill.description">
+                          {{ skill.name }}
                         </mat-chip>
                       }
-                      @if (test.Skills.length > 3) {
+                      @if (test.skills.length > 3) {
                         <mat-chip class="more-chip">
-                          +{{ test.Skills.length - 3 }} more
+                          +{{ test.skills.length - 3 }} more
                         </mat-chip>
                       }
                     </div>
@@ -142,11 +142,11 @@ import { CertTestStore } from './store/test.store';
               </mat-card-content>
 
               <mat-card-actions>
-                <button mat-button [routerLink]="['/apps/certification-test', test.Id]">
+                <button mat-button [routerLink]="['/apps/certification-test', test.id]">
                   <mat-icon>visibility</mat-icon>
                   View Details
                 </button>
-                <button mat-raised-button color="primary" [routerLink]="['/apps/certification-test', test.Id, 'take']">
+                <button mat-raised-button color="primary" [routerLink]="['/apps/certification-test', test.id, 'take']">
                   <mat-icon>play_arrow</mat-icon>
                   Start Test
                 </button>
@@ -507,21 +507,21 @@ export class TestListComponent {
   totalAttempts = computed(() => {
     const history = this.store.testHistory();
     const userId = this.store.currentUserId();
-    const userHistory = history.find(h => h.UserId === userId);
-    return userHistory?.Attempts.length || 0;
+    const userHistory = history.find(h => h.userId === userId);
+    return userHistory?.attempts.length || 0;
   });
 
   passRate = computed(() => {
     const history = this.store.testHistory();
     const userId = this.store.currentUserId();
-    const userHistory = history.find(h => h.UserId === userId);
+    const userHistory = history.find(h => h.userId === userId);
 
-    if (!userHistory || userHistory.Attempts.length === 0) return 0;
+    if (!userHistory || userHistory.attempts.length === 0) return 0;
 
-    const completedAttempts = userHistory.Attempts.filter(a => a.Status === 'Completed');
+    const completedAttempts = userHistory.attempts.filter(a => a.status === 'Completed');
     if (completedAttempts.length === 0) return 0;
 
-    const passedAttempts = completedAttempts.filter(a => a.Passed);
+    const passedAttempts = completedAttempts.filter(a => a.passed);
     return Math.round((passedAttempts.length / completedAttempts.length) * 100);
   });
 }

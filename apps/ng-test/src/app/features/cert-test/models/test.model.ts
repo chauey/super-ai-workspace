@@ -1,248 +1,248 @@
-// ABP Framework Style DTOs with PascalCase properties
+// DTOs with camelCase properties following JavaScript/TypeScript conventions
 
 /**
  * Represents a skill or knowledge area tested
  */
 export interface SkillDto {
-  Id: string;
-  Name: string;
-  Description: string;
-  Category?: string; // e.g., "Core Concepts", "Advanced", "Security"
-  Weight?: number; // Importance weight (1-10)
+  id: string;
+  name: string;
+  description: string;
+  category?: string; // e.g., "Core Concepts", "Advanced", "Security"
+  weight?: number; // Importance weight (1-10)
 }
 
 /**
  * Links a question to specific skills it tests
  */
 export interface QuestionSkillDto {
-  QuestionId: string;
-  SkillId: string;
-  Proficiency: 'Basic' | 'Intermediate' | 'Advanced' | 'Expert'; // Level required
+  questionId: string;
+  skillId: string;
+  proficiency: 'Basic' | 'Intermediate' | 'Advanced' | 'Expert'; // Level required
 }
 
 /**
  * Individual test question
  */
 export interface TestQuestionDto {
-  Id: string;
-  Question: string;
-  Options: string[];
-  CorrectAnswer: number | number[]; // index of correct option(s) - single number for single choice, array for multiple choice
-  AllowMultipleSelection?: boolean; // Whether this question allows multiple answers
-  Explanation?: string;
-  Category?: string;
-  Hint?: string;
-  SkillIds: string[]; // Skills this question tests
-  DifficultyLevel: 'Easy' | 'Medium' | 'Hard';
-  EstimatedTimeSeconds?: number; // Estimated time to answer
-  Points?: number; // Point value (default 1)
-  ImageUrl?: string; // Optional image for question
-  CodeSnippet?: string; // Optional code snippet
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number | number[]; // index of correct option(s) - single number for single choice, array for multiple choice
+  allowMultipleSelection?: boolean; // Whether this question allows multiple answers
+  explanation?: string;
+  category?: string;
+  hint?: string;
+  skillIds: string[]; // Skills this question tests
+  difficultyLevel: 'Easy' | 'Medium' | 'Hard';
+  estimatedTimeSeconds?: number; // Estimated time to answer
+  points?: number; // Point value (default 1)
+  imageUrl?: string; // Optional image for question
+  codeSnippet?: string; // Optional code snippet
 }
 
 /**
  * Test version - allows tests to be updated over time
  */
 export interface TestVersionDto {
-  Id: string;
-  TestId: string;
-  Version: string; // e.g., "1.0", "1.1", "2.0"
-  VersionDate: Date;
-  ChangeLog?: string; // What changed in this version
-  IsActive: boolean; // Is this the current active version
-  IsDeprecated: boolean;
+  id: string;
+  testId: string;
+  version: string; // e.g., "1.0", "1.1", "2.0"
+  versionDate: Date;
+  changeLog?: string; // What changed in this version
+  isActive: boolean; // Is this the current active version
+  isDeprecated: boolean;
 }
 
 /**
  * Test outline section - organizes test content hierarchically
  */
 export interface TestOutlineSectionDto {
-  Id: string;
-  Title: string;
-  Description: string;
-  Order: number;
-  ParentSectionId?: string; // For nested sections
-  ContentMarkdownUrl?: string; // Link to markdown content
-  QuestionIds: string[]; // Questions in this section
-  SkillIds: string[]; // Skills covered in this section
-  EstimatedTimeMinutes?: number;
-  Weight?: number; // Percentage weight of this section (e.g., 20%)
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+  parentSectionId?: string; // For nested sections
+  contentMarkdownUrl?: string; // Link to markdown content
+  questionIds: string[]; // Questions in this section
+  skillIds: string[]; // Skills covered in this section
+  estimatedTimeMinutes?: number;
+  weight?: number; // Percentage weight of this section (e.g., 20%)
 }
 
 /**
  * Question ordering configuration
  */
 export interface QuestionOrderingDto {
-  Type: 'Outline' | 'Random' | 'Stored' | 'Manual';
-  ManualOrder?: string[]; // For manual ordering: array of question IDs
+  type: 'Outline' | 'Random' | 'Stored' | 'Manual';
+  manualOrder?: string[]; // For manual ordering: array of question IDs
 }
 
 /**
  * Main test definition
  */
 export interface TestDto {
-  Id: string;
-  Title: string;
-  Description: string;
-  Duration: number; // in minutes (0 = no time limit)
-  PassingScore: number; // percentage
-  Questions: TestQuestionDto[];
-  Category: string;
-  HasTimer: boolean;
-  Skills: SkillDto[]; // Skills/knowledge areas covered
-  Version: string; // Current version (e.g., "1.0")
-  VersionId: string; // Link to TestVersionDto
-  TotalPoints?: number; // Total points available
-  AllowPause: boolean; // Can test be paused
-  AllowReview: boolean; // Can review answers before submit
-  RandomizeQuestions: boolean; // Randomize question order (legacy - use QuestionOrdering)
-  RandomizeOptions: boolean; // Randomize option order
-  ShowResultsImmediately: boolean; // Show results right after submit
-  CertificationLevel?: string; // e.g., "Fundamentals", "Associate", "Expert"
-  Prerequisites?: string[]; // Test IDs that should be passed first
-  Tags?: string[]; // Searchable tags
-  IsFree: boolean; // Free or paid test
-  Price?: number; // Price if paid (USD)
-  Currency?: string; // Currency code (e.g., "USD", "EUR")
-  Outline: TestOutlineSectionDto[]; // Hierarchical test structure
-  QuestionOrdering: QuestionOrderingDto; // How questions are ordered
-  AvailableVersions?: TestVersionDto[]; // All versions of this test
+  id: string;
+  title: string;
+  description: string;
+  duration: number; // in minutes (0 = no time limit)
+  passingScore: number; // percentage
+  questions: TestQuestionDto[];
+  category: string;
+  hasTimer: boolean;
+  skills: SkillDto[]; // Skills/knowledge areas covered
+  version: string; // Current version (e.g., "1.0")
+  versionId: string; // Link to TestVersionDto
+  totalPoints?: number; // Total points available
+  allowPause: boolean; // Can test be paused
+  allowReview: boolean; // Can review answers before submit
+  randomizeQuestions: boolean; // Randomize question order (legacy - use QuestionOrdering)
+  randomizeOptions: boolean; // Randomize option order
+  showResultsImmediately: boolean; // Show results right after submit
+  certificationLevel?: string; // e.g., "Fundamentals", "Associate", "Expert"
+  prerequisites?: string[]; // Test IDs that should be passed first
+  tags?: string[]; // Searchable tags
+  isFree: boolean; // Free or paid test
+  price?: number; // Price if paid (USD)
+  currency?: string; // Currency code (e.g., "USD", "EUR")
+  outline: TestOutlineSectionDto[]; // Hierarchical test structure
+  questionOrdering: QuestionOrderingDto; // How questions are ordered
+  availableVersions?: TestVersionDto[]; // All versions of this test
 }
 
 /**
  * Test pause/resume tracking
  */
 export interface TestPauseDto {
-  Id: string;
-  AttemptId: string;
-  PauseStartTime: Date;
-  ResumeTime?: Date;
-  TimeElapsedBeforePause: number; // seconds
-  Reason?: string; // Optional reason for pause
+  id: string;
+  attemptId: string;
+  pauseStartTime: Date;
+  resumeTime?: Date;
+  timeElapsedBeforePause: number; // seconds
+  reason?: string; // Optional reason for pause
 }
 
 /**
  * Test attempt - single instance of taking a test
  */
 export interface TestAttemptDto {
-  Id: string;
-  TestId: string;
-  TestVersionId: string; // Which version was taken
-  UserId: string;
-  StartTime: Date;
-  EndTime?: Date;
-  TimeRemaining?: number; // Seconds remaining
-  TotalTimePaused?: number; // Total seconds paused
-  Answers: { [questionId: string]: number | number[] };
-  MarkedForReview: string[];
-  Score?: number; // Percentage score
-  PointsEarned?: number; // Raw points earned
-  TotalPoints?: number; // Total points possible
-  Passed?: boolean;
-  ShowAnswers: boolean;
-  IsPaused: boolean; // Currently paused
-  PauseHistory: TestPauseDto[]; // All pause/resume events
-  SkillScores?: { [skillId: string]: number }; // Score per skill
-  Status: 'InProgress' | 'Completed' | 'Abandoned' | 'TimedOut' | 'Paused';
-  CompletionPercentage?: number; // % of questions answered
-  AttemptNumber?: number; // Which attempt is this (1st, 2nd, etc.)
+  id: string;
+  testId: string;
+  testVersionId: string; // Which version was taken
+  userId: string;
+  startTime: Date;
+  endTime?: Date;
+  timeRemaining?: number; // Seconds remaining
+  totalTimePaused?: number; // Total seconds paused
+  answers: { [questionId: string]: number | number[] };
+  markedForReview: string[];
+  score?: number; // Percentage score
+  pointsEarned?: number; // Raw points earned
+  totalPoints?: number; // Total points possible
+  passed?: boolean;
+  showAnswers: boolean;
+  isPaused: boolean; // Currently paused
+  pauseHistory: TestPauseDto[]; // All pause/resume events
+  skillScores?: { [skillId: string]: number }; // Score per skill
+  status: 'InProgress' | 'Completed' | 'Abandoned' | 'TimedOut' | 'Paused';
+  completionPercentage?: number; // % of questions answered
+  attemptNumber?: number; // Which attempt is this (1st, 2nd, etc.)
 }
 
 /**
  * User answer to a question
  */
 export interface UserAnswerDto {
-  QuestionId: string;
-  SelectedOption: number | number[]; // Single option index or array of selected option indices
-  IsMarkedForReview?: boolean;
-  HintUsed?: boolean;
-  AnswerRevealed?: boolean;
-  TimeSpentSeconds?: number; // Time spent on this question
-  IsCorrect?: boolean; // Computed after submission
-  PointsEarned?: number; // Points earned for this question
-  AnsweredAt?: Date; // When answered
-  ChangedCount?: number; // How many times answer changed
+  questionId: string;
+  selectedOption: number | number[]; // Single option index or array of selected option indices
+  isMarkedForReview?: boolean;
+  hintUsed?: boolean;
+  answerRevealed?: boolean;
+  timeSpentSeconds?: number; // Time spent on this question
+  isCorrect?: boolean; // Computed after submission
+  pointsEarned?: number; // Points earned for this question
+  answeredAt?: Date; // When answered
+  changedCount?: number; // How many times answer changed
 }
 
 /**
  * Test history for a user
  */
 export interface TestHistoryDto {
-  UserId: string;
-  Attempts: TestAttemptDto[];
+  userId: string;
+  attempts: TestAttemptDto[];
 }
 
 /**
  * Skill performance summary
  */
 export interface SkillPerformanceDto {
-  SkillId: string;
-  SkillName: string;
-  TotalQuestions: number;
-  CorrectAnswers: number;
-  ScorePercentage: number;
-  Proficiency: 'Beginner' | 'Developing' | 'Proficient' | 'Advanced';
-  LastAssessed?: Date;
+  skillId: string;
+  skillName: string;
+  totalQuestions: number;
+  correctAnswers: number;
+  scorePercentage: number;
+  proficiency: 'Beginner' | 'Developing' | 'Proficient' | 'Advanced';
+  lastAssessed?: Date;
 }
 
 /**
  * User test statistics
  */
 export interface UserTestStatsDto {
-  UserId: string;
-  TestId: string;
-  TotalAttempts: number;
-  PassedAttempts: number;
-  FailedAttempts: number;
-  HighestScore: number;
-  LowestScore: number;
-  AverageScore: number;
-  LastAttemptDate?: Date;
-  BestAttemptId?: string;
-  SkillPerformance: SkillPerformanceDto[];
-  TotalTimeSpent: number; // Total minutes across all attempts
-  AverageTimePerAttempt: number; // Average minutes
+  userId: string;
+  testId: string;
+  totalAttempts: number;
+  passedAttempts: number;
+  failedAttempts: number;
+  highestScore: number;
+  lowestScore: number;
+  averageScore: number;
+  lastAttemptDate?: Date;
+  bestAttemptId?: string;
+  skillPerformance: SkillPerformanceDto[];
+  totalTimeSpent: number; // Total minutes across all attempts
+  averageTimePerAttempt: number; // Average minutes
 }
 
 /**
  * Filter for querying test history
  */
 export interface TestHistoryFilterDto {
-  UserId?: string;
-  TestId?: string;
-  TestVersionId?: string;
-  Status?: ('InProgress' | 'Completed' | 'Abandoned' | 'TimedOut' | 'Paused')[];
-  Passed?: boolean;
-  DateFrom?: Date;
-  DateTo?: Date;
-  MinScore?: number;
-  MaxScore?: number;
-  SkillId?: string; // Filter by specific skill
-  IsFree?: boolean; // Filter by free/paid
-  PageNumber?: number;
-  PageSize?: number;
-  SortBy?: 'StartTime' | 'Score' | 'Duration' | 'AttemptNumber';
-  SortDescending?: boolean;
+  userId?: string;
+  testId?: string;
+  testVersionId?: string;
+  status?: ('InProgress' | 'Completed' | 'Abandoned' | 'TimedOut' | 'Paused')[];
+  passed?: boolean;
+  dateFrom?: Date;
+  dateTo?: Date;
+  minScore?: number;
+  maxScore?: number;
+  skillId?: string; // Filter by specific skill
+  isFree?: boolean; // Filter by free/paid
+  pageNumber?: number;
+  pageSize?: number;
+  sortBy?: 'StartTime' | 'Score' | 'Duration' | 'AttemptNumber';
+  sortDescending?: boolean;
 }
 
 /**
  * Filter for questions within a test
  */
 export interface QuestionFilterDto {
-  ShowMarkedForReview?: boolean; // Only marked questions
-  ShowIncorrect?: boolean; // Only incorrect answers
-  ShowUnanswered?: boolean; // Only unanswered
-  ShowCorrect?: boolean; // Only correct answers
-  SectionId?: string; // Filter by outline section
-  SkillId?: string; // Filter by skill
-  DifficultyLevel?: ('Easy' | 'Medium' | 'Hard')[];
+  showMarkedForReview?: boolean; // Only marked questions
+  showIncorrect?: boolean; // Only incorrect answers
+  showUnanswered?: boolean; // Only unanswered
+  showCorrect?: boolean; // Only correct answers
+  sectionId?: string; // Filter by outline section
+  skillId?: string; // Filter by skill
+  difficultyLevel?: ('Easy' | 'Medium' | 'Hard')[];
 }
 
 /**
  * Sort options for questions
  */
 export interface QuestionSortDto {
-  SortBy: 'OutlineOrder' | 'Difficulty' | 'TimeSpent' | 'Marked' | 'Correctness';
-  SortDescending?: boolean;
+  sortBy: 'OutlineOrder' | 'Difficulty' | 'TimeSpent' | 'Marked' | 'Correctness';
+  sortDescending?: boolean;
 }
 

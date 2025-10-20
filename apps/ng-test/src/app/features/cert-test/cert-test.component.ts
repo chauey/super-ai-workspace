@@ -54,24 +54,24 @@ import { TestDto, UserAnswerDto } from './models/test.model';
         <div class="test-selection">
           <h2>Available Tests</h2>
           <div class="tests-grid">
-            @for (test of availableTests(); track test.Id) {
+            @for (test of availableTests(); track test.id) {
               <mat-card class="test-card">
                 <mat-card-header>
                   <mat-card-title>
                     <mat-icon>school</mat-icon>
-                    {{ test.Title }}
+                    {{ test.title }}
                   </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                  <p class="test-description">{{ test.Description }}</p>
+                  <p class="test-description">{{ test.description }}</p>
                   <div class="test-meta">
-                    @if (test.HasTimer) {
-                      <mat-chip><mat-icon>timer</mat-icon> {{ test.Duration }} minutes</mat-chip>
+                    @if (test.hasTimer) {
+                      <mat-chip><mat-icon>timer</mat-icon> {{ test.duration }} minutes</mat-chip>
                     } @else {
                       <mat-chip><mat-icon>all_inclusive</mat-icon> No time limit</mat-chip>
                     }
-                    <mat-chip><mat-icon>assignment</mat-icon> {{ test.Questions.length }} questions</mat-chip>
-                    <mat-chip><mat-icon>trending_up</mat-icon> Pass: {{ test.PassingScore }}%</mat-chip>
+                    <mat-chip><mat-icon>assignment</mat-icon> {{ test.questions.length }} questions</mat-chip>
+                    <mat-chip><mat-icon>trending_up</mat-icon> Pass: {{ test.passingScore }}%</mat-chip>
                   </div>
                 </mat-card-content>
                 <mat-card-actions>
@@ -93,14 +93,14 @@ import { TestDto, UserAnswerDto } from './models/test.model';
           <mat-card class="progress-card">
             <div class="progress-info">
               <div class="progress-left">
-                <span>Question {{ currentQuestionIndex() + 1 }} of {{ currentTest()!.Questions.length }}</span>
+                <span>Question {{ currentQuestionIndex() + 1 }} of {{ currentTest()!.questions.length }}</span>
                 <mat-chip [matBadge]="markedForReviewCount()" [matBadgeHidden]="markedForReviewCount() === 0" matBadgeColor="warn">
                   <mat-icon>flag</mat-icon> Marked for Review
                 </mat-chip>
               </div>
               <div class="progress-right">
-                @if (currentTest()!.HasTimer && currentAttempt()?.TimeRemaining) {
-                  <mat-chip [class.time-warning]="(currentAttempt()?.TimeRemaining || 0) < 300">
+                @if (currentTest()!.hasTimer && currentAttempt()?.timeRemaining) {
+                  <mat-chip [class.time-warning]="(currentAttempt()?.timeRemaining || 0) < 300">
                     <mat-icon>timer</mat-icon>
                     {{ timeRemainingFormatted() }}
                   </mat-chip>
@@ -115,60 +115,60 @@ import { TestDto, UserAnswerDto } from './models/test.model';
           <mat-card class="question-card">
             <mat-card-content>
               <div class="question-header">
-                <mat-chip class="category-chip">{{ currentQuestion()?.Category }}</mat-chip>
+                <mat-chip class="category-chip">{{ currentQuestion()?.category }}</mat-chip>
                 <span class="question-number">Question {{ currentQuestionIndex() + 1 }}</span>
                 <button
                   mat-icon-button
-                  [color]="isQuestionMarkedForReview(currentQuestion()?.Id || '') ? 'warn' : 'default'"
-                  (click)="toggleMarkForReview(currentQuestion()?.Id || '')"
+                  [color]="isQuestionMarkedForReview(currentQuestion()?.id || '') ? 'warn' : 'default'"
+                  (click)="toggleMarkForReview(currentQuestion()?.id || '')"
                   matTooltip="Mark for review">
-                  <mat-icon>{{ isQuestionMarkedForReview(currentQuestion()?.Id || '') ? 'flag' : 'flag_outlined' }}</mat-icon>
+                  <mat-icon>{{ isQuestionMarkedForReview(currentQuestion()?.id || '') ? 'flag' : 'flag_outlined' }}</mat-icon>
                 </button>
               </div>
 
-              <h3 class="question-text">{{ currentQuestion()?.Question }}</h3>
+              <h3 class="question-text">{{ currentQuestion()?.question }}</h3>
 
               <!-- Hint Section -->
-              @if (currentQuestion()?.Hint) {
-                <mat-expansion-panel class="hint-panel" [expanded]="isHintVisible(currentQuestion()?.Id || '')">
+              @if (currentQuestion()?.hint) {
+                <mat-expansion-panel class="hint-panel" [expanded]="isHintVisible(currentQuestion()?.id || '')">
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                       <mat-icon>lightbulb</mat-icon>
                       Hint
                     </mat-panel-title>
                   </mat-expansion-panel-header>
-                  <p>{{ currentQuestion()?.Hint }}</p>
+                  <p>{{ currentQuestion()?.hint }}</p>
                 </mat-expansion-panel>
               }
 
               <!-- Answer Revealed -->
-              @if (isAnswerRevealed(currentQuestion()?.Id || '') && currentQuestion()) {
+              @if (isAnswerRevealed(currentQuestion()?.id || '') && currentQuestion()) {
                 <div class="answer-revealed">
                   <mat-icon>visibility</mat-icon>
                   <strong>Correct Answer:</strong>
-                  @if (currentQuestion()!.AllowMultipleSelection) {
-                    @if (isCorrectAnswerArray(currentQuestion()!.CorrectAnswer)) {
-                      @for (answerIndex of getCorrectAnswerArray(currentQuestion()!.CorrectAnswer); track answerIndex) {
-                        <span class="correct-answer-text">{{ currentQuestion()!.Options[answerIndex] }}</span>
+                  @if (currentQuestion()!.allowMultipleSelection) {
+                    @if (isCorrectAnswerArray(currentQuestion()!.correctAnswer)) {
+                      @for (answerIndex of getCorrectAnswerArray(currentQuestion()!.correctAnswer); track answerIndex) {
+                        <span class="correct-answer-text">{{ currentQuestion()!.options[answerIndex] }}</span>
                         @if (!$last) { <span>, </span> }
                       }
                     } @else {
-                      <span class="correct-answer-text">{{ getCorrectAnswerText(currentQuestion()!.CorrectAnswer) }}</span>
+                      <span class="correct-answer-text">{{ getCorrectAnswerText(currentQuestion()!.correctAnswer) }}</span>
                     }
                   } @else {
-                    <span class="correct-answer-text">{{ getCorrectAnswerText(currentQuestion()!.CorrectAnswer) }}</span>
+                    <span class="correct-answer-text">{{ getCorrectAnswerText(currentQuestion()!.correctAnswer) }}</span>
                   }
                 </div>
               }
 
               <!-- Single Choice Questions -->
-              @if (!currentQuestion()?.AllowMultipleSelection) {
+              @if (!currentQuestion()?.allowMultipleSelection) {
                 <mat-radio-group [ngModel]="selectedAnswer()" (ngModelChange)="selectedAnswer.set($event); onAnswerChange()" class="options-group">
-                  @for (option of currentQuestion()?.Options; track $index) {
+                  @for (option of currentQuestion()?.options; track $index) {
                     <mat-radio-button
                       [value]="$index"
                       class="option"
-                      [class.correct-answer]="isAnswerRevealed(currentQuestion()?.Id || '') && isCorrectAnswer($index)">
+                      [class.correct-answer]="isAnswerRevealed(currentQuestion()?.id || '') && isCorrectAnswer($index)">
                       {{ option }}
                     </mat-radio-button>
                   }
@@ -176,14 +176,14 @@ import { TestDto, UserAnswerDto } from './models/test.model';
               }
 
               <!-- Multiple Choice Questions -->
-              @if (currentQuestion()?.AllowMultipleSelection) {
+              @if (currentQuestion()?.allowMultipleSelection) {
                 <div class="options-group">
-                  @for (option of currentQuestion()?.Options; track $index) {
+                  @for (option of currentQuestion()?.options; track $index) {
                     <mat-checkbox
                       [checked]="isOptionSelected($index)"
                       (change)="onMultipleChoiceChange($index, $event.checked)"
                       class="option"
-                      [class.correct-answer]="isAnswerRevealed(currentQuestion()?.Id || '') && isCorrectAnswer($index)">
+                      [class.correct-answer]="isAnswerRevealed(currentQuestion()?.id || '') && isCorrectAnswer($index)">
                       {{ option }}
                     </mat-checkbox>
                   }
@@ -191,14 +191,14 @@ import { TestDto, UserAnswerDto } from './models/test.model';
               }
 
               <div class="question-actions">
-                @if (currentQuestion()?.Hint && !isHintVisible(currentQuestion()?.Id || '')) {
-                  <button mat-button (click)="showHint(currentQuestion()?.Id || '')">
+                @if (currentQuestion()?.hint && !isHintVisible(currentQuestion()?.id || '')) {
+                  <button mat-button (click)="showHint(currentQuestion()?.id || '')">
                     <mat-icon>lightbulb</mat-icon>
                     Show Hint
                   </button>
                 }
-                @if (!isAnswerRevealed(currentQuestion()?.Id || '')) {
-                  <button mat-button color="accent" (click)="revealAnswer(currentQuestion()?.Id || '')">
+                @if (!isAnswerRevealed(currentQuestion()?.id || '')) {
+                  <button mat-button color="accent" (click)="revealAnswer(currentQuestion()?.id || '')">
                     <mat-icon>visibility</mat-icon>
                     Show Answer
                   </button>
@@ -216,7 +216,7 @@ import { TestDto, UserAnswerDto } from './models/test.model';
 
               <div class="spacer"></div>
 
-              @if (currentQuestionIndex() < currentTest()!.Questions.length - 1) {
+              @if (currentQuestionIndex() < currentTest()!.questions.length - 1) {
                 <button mat-raised-button color="primary" (click)="nextQuestion()">
                   Next
                   <mat-icon>arrow_forward</mat-icon>
@@ -242,16 +242,16 @@ import { TestDto, UserAnswerDto } from './models/test.model';
                 <span class="legend-item"><span class="dot unanswered"></span> Unanswered</span>
               </div>
               <div class="question-grid">
-                @for (question of currentTest()!.Questions; track question.Id; let i = $index) {
+                @for (question of currentTest()!.questions; track question.id; let i = $index) {
                   <button
                     mat-mini-fab
-                    [color]="getQuestionButtonColor(question.Id, i)"
+                    [color]="getQuestionButtonColor(question.id, i)"
                     [class.current]="i === currentQuestionIndex()"
-                    [class.marked-for-review]="isQuestionMarkedForReview(question.Id)"
+                    [class.marked-for-review]="isQuestionMarkedForReview(question.id)"
                     (click)="goToQuestion(i)"
                     matTooltip="Question {{ i + 1 }}">
                     {{ i + 1 }}
-                    @if (isQuestionMarkedForReview(question.Id)) {
+                    @if (isQuestionMarkedForReview(question.id)) {
                       <mat-icon class="flag-overlay">flag</mat-icon>
                     }
                   </button>
@@ -267,46 +267,46 @@ import { TestDto, UserAnswerDto } from './models/test.model';
         <div class="results">
           <mat-card class="results-card">
             <mat-card-header>
-              <mat-icon [class.passed]="currentAttempt()!.Passed" [class.failed]="!currentAttempt()!.Passed" class="result-icon">
-                {{ currentAttempt()!.Passed ? 'check_circle' : 'cancel' }}
+              <mat-icon [class.passed]="currentAttempt()!.passed" [class.failed]="!currentAttempt()!.passed" class="result-icon">
+                {{ currentAttempt()!.passed ? 'check_circle' : 'cancel' }}
               </mat-icon>
               <mat-card-title>
-                {{ currentAttempt()!.Passed ? 'Congratulations!' : 'Not Passed' }}
+                {{ currentAttempt()!.passed ? 'Congratulations!' : 'Not Passed' }}
               </mat-card-title>
             </mat-card-header>
 
             <mat-card-content>
               <div class="score-display">
-                <div class="score-value">{{ currentAttempt()!.Score | number:'1.0-0' }}%</div>
+                <div class="score-value">{{ currentAttempt()!.score | number:'1.0-0' }}%</div>
                 <div class="score-label">Your Score</div>
               </div>
 
               <div class="results-stats">
                 <div class="stat">
                   <mat-icon>assignment</mat-icon>
-                  <span>{{ getCorrectAnswersCount() }} / {{ currentTest()!.Questions.length }}</span>
+                  <span>{{ getCorrectAnswersCount() }} / {{ currentTest()!.questions.length }}</span>
                   <small>Correct Answers</small>
                 </div>
                 <div class="stat">
                   <mat-icon>trending_up</mat-icon>
-                  <span>{{ currentTest()!.PassingScore }}%</span>
+                  <span>{{ currentTest()!.passingScore }}%</span>
                   <small>Passing Score</small>
                 </div>
-                @if (currentTest()!.HasTimer) {
+                @if (currentTest()!.hasTimer) {
                   <div class="stat">
                     <mat-icon>timer</mat-icon>
-                    <span>{{ currentTest()!.Duration }}m</span>
+                    <span>{{ currentTest()!.duration }}m</span>
                     <small>Time Limit</small>
                   </div>
                 }
               </div>
 
               <!-- Questions Marked for Review -->
-              @if (currentAttempt()!.MarkedForReview && currentAttempt()!.MarkedForReview.length > 0) {
+              @if (currentAttempt()!.markedForReview && currentAttempt()!.markedForReview.length > 0) {
                 <div class="review-section">
                   <h3>Questions Marked for Review</h3>
                   <div class="review-questions">
-                    @for (questionId of currentAttempt()!.MarkedForReview; track questionId) {
+                    @for (questionId of currentAttempt()!.markedForReview; track questionId) {
                       @let question = getQuestionById(questionId);
                       @if (question) {
                         <mat-chip (click)="scrollToQuestion(questionId)">
@@ -321,39 +321,39 @@ import { TestDto, UserAnswerDto } from './models/test.model';
               <!-- Answer Review -->
               <div class="answer-review">
                 <h3>Answer Review</h3>
-                @for (question of currentTest()!.Questions; track question.Id; let i = $index) {
-                  <div [id]="'question-' + question.Id" class="review-item" [class.correct]="isAnswerCorrect(question.Id)" [class.incorrect]="!isAnswerCorrect(question.Id)">
+                @for (question of currentTest()!.questions; track question.id; let i = $index) {
+                  <div [id]="'question-' + question.id" class="review-item" [class.correct]="isAnswerCorrect(question.id)" [class.incorrect]="!isAnswerCorrect(question.id)">
                     <div class="review-header">
                       <div class="review-header-left">
                         <span class="review-number">Question {{ i + 1 }}</span>
-                        @if (isQuestionMarkedForReview(question.Id)) {
+                        @if (isQuestionMarkedForReview(question.id)) {
                           <mat-icon class="marked-flag">flag</mat-icon>
                         }
                       </div>
-                      <mat-icon>{{ isAnswerCorrect(question.Id) ? 'check_circle' : 'cancel' }}</mat-icon>
+                      <mat-icon>{{ isAnswerCorrect(question.id) ? 'check_circle' : 'cancel' }}</mat-icon>
                     </div>
-                    <p class="review-question">{{ question.Question }}</p>
+                    <p class="review-question">{{ question.question }}</p>
                     <div class="review-answers">
-                      <div class="your-answer" [class.wrong]="!isAnswerCorrect(question.Id)">
-                        <strong>Your Answer:</strong> {{ question.Options[getUserAnswer(question.Id)] || 'Not answered' }}
+                      <div class="your-answer" [class.wrong]="!isAnswerCorrect(question.id)">
+                        <strong>Your Answer:</strong> {{ question.options[getUserAnswer(question.id)] || 'Not answered' }}
                       </div>
-                      @if (!isAnswerCorrect(question.Id)) {
+                      @if (!isAnswerCorrect(question.id)) {
                         <div class="correct-answer">
-                          <strong>Correct Answer:</strong> {{ getCorrectAnswerText(question.CorrectAnswer) }}
+                          <strong>Correct Answer:</strong> {{ getCorrectAnswerText(question.correctAnswer) }}
                         </div>
                       }
-                      @if (question.Explanation) {
+                      @if (question.explanation) {
                         <div class="explanation">
-                          <strong>Explanation:</strong> {{ question.Explanation }}
+                          <strong>Explanation:</strong> {{ question.explanation }}
                         </div>
                       }
-                      @if (question.Hint && isHintUsed(question.Id)) {
+                      @if (question.hint && isHintUsed(question.id)) {
                         <div class="hint-used">
                           <mat-icon>lightbulb</mat-icon>
                           <span>Hint was used for this question</span>
                         </div>
                       }
-                      @if (isAnswerWasRevealed(question.Id)) {
+                      @if (isAnswerWasRevealed(question.id)) {
                         <div class="answer-was-revealed">
                           <mat-icon>visibility</mat-icon>
                           <span>Answer was revealed for this question</span>
@@ -872,7 +872,7 @@ export class CertTestComponent implements OnInit, OnDestroy {
   currentQuestion = computed(() => {
     const test = this.currentTest();
     const index = this.currentQuestionIndex();
-    return test ? test.Questions[index] : null;
+    return test ? test.questions[index] : null;
   });
 
   ngOnInit() {
@@ -881,7 +881,7 @@ export class CertTestComponent implements OnInit, OnDestroy {
       const testId = params['testId'];
       if (testId) {
         // Find the test by ID and start it
-        const test = this.availableTests().find(t => t.Id === testId);
+        const test = this.availableTests().find(t => t.id === testId);
         if (test) {
           this.startTest(test);
         }
@@ -905,7 +905,7 @@ export class CertTestComponent implements OnInit, OnDestroy {
 
   nextQuestion() {
     this.saveCurrentAnswer();
-    if (this.currentTest() && this.currentQuestionIndex() < this.currentTest()!.Questions.length - 1) {
+    if (this.currentTest() && this.currentQuestionIndex() < this.currentTest()!.questions.length - 1) {
       this.currentQuestionIndex.set(this.currentQuestionIndex() + 1);
       this.loadAnswer();
     }
@@ -929,8 +929,8 @@ export class CertTestComponent implements OnInit, OnDestroy {
     const selected = this.selectedAnswer();
     if (selected !== null && this.currentQuestion()) {
       const answer: UserAnswerDto = {
-        QuestionId: this.currentQuestion()!.Id,
-        SelectedOption: selected as number
+        questionId: this.currentQuestion()!.id,
+        selectedOption: selected as number
       };
       this.store.answerQuestion(answer);
     }
@@ -943,29 +943,29 @@ export class CertTestComponent implements OnInit, OnDestroy {
   // Multiple choice question methods
   isOptionSelected(optionIndex: number): boolean {
     const question = this.currentQuestion();
-    if (!question || !question.AllowMultipleSelection) return false;
+    if (!question || !question.allowMultipleSelection) return false;
 
-    const existingAnswer = this.userAnswers().find(a => a.QuestionId === question.Id);
+    const existingAnswer = this.userAnswers().find(a => a.questionId === question.id);
     if (!existingAnswer) return false;
 
-    const selectedOptions = Array.isArray(existingAnswer.SelectedOption)
-      ? existingAnswer.SelectedOption
-      : [existingAnswer.SelectedOption];
+    const selectedOptions = Array.isArray(existingAnswer.selectedOption)
+      ? existingAnswer.selectedOption
+      : [existingAnswer.selectedOption];
 
     return selectedOptions.includes(optionIndex);
   }
 
   onMultipleChoiceChange(optionIndex: number, checked: boolean) {
     const question = this.currentQuestion();
-    if (!question || !question.AllowMultipleSelection) return;
+    if (!question || !question.allowMultipleSelection) return;
 
-    const existingAnswer = this.userAnswers().find(a => a.QuestionId === question.Id);
+    const existingAnswer = this.userAnswers().find(a => a.questionId === question.id);
     let selectedOptions: number[] = [];
 
     if (existingAnswer) {
-      selectedOptions = Array.isArray(existingAnswer.SelectedOption)
-        ? [...existingAnswer.SelectedOption]
-        : [existingAnswer.SelectedOption];
+      selectedOptions = Array.isArray(existingAnswer.selectedOption)
+        ? [...existingAnswer.selectedOption]
+        : [existingAnswer.selectedOption];
     }
 
     if (checked) {
@@ -977,8 +977,8 @@ export class CertTestComponent implements OnInit, OnDestroy {
     }
 
     const answer: UserAnswerDto = {
-      QuestionId: question.Id,
-      SelectedOption: selectedOptions
+      questionId: question.id,
+      selectedOption: selectedOptions
     };
 
     this.store.answerQuestion(answer);
@@ -988,13 +988,13 @@ export class CertTestComponent implements OnInit, OnDestroy {
     const question = this.currentQuestion();
     if (!question) return false;
 
-    if (question.AllowMultipleSelection) {
-      const correctAnswers = Array.isArray(question.CorrectAnswer)
-        ? question.CorrectAnswer
-        : [question.CorrectAnswer];
+    if (question.allowMultipleSelection) {
+      const correctAnswers = Array.isArray(question.correctAnswer)
+        ? question.correctAnswer
+        : [question.correctAnswer];
       return correctAnswers.includes(optionIndex);
     } else {
-      return question.CorrectAnswer === optionIndex;
+      return question.correctAnswer === optionIndex;
     }
   }
 
@@ -1007,9 +1007,9 @@ export class CertTestComponent implements OnInit, OnDestroy {
     if (!question) return '';
 
     if (Array.isArray(correctAnswer)) {
-      return correctAnswer.map(index => question.Options[index]).join(', ');
+      return correctAnswer.map(index => question.options[index]).join(', ');
     } else {
-      return question.Options[correctAnswer];
+      return question.options[correctAnswer];
     }
   }
 
@@ -1020,14 +1020,14 @@ export class CertTestComponent implements OnInit, OnDestroy {
   loadAnswer() {
     const question = this.currentQuestion();
     if (question) {
-      const existingAnswer = this.userAnswers().find(a => a.QuestionId === question.Id);
-      if (question.AllowMultipleSelection) {
+      const existingAnswer = this.userAnswers().find(a => a.questionId === question.id);
+      if (question.allowMultipleSelection) {
         // For multiple choice questions, we don't use selectedAnswer signal
         // The checkboxes handle their own state
         this.selectedAnswer.set(null);
       } else {
         // For single choice questions
-        const selectedOption = existingAnswer?.SelectedOption;
+        const selectedOption = existingAnswer?.selectedOption;
         if (selectedOption !== null && selectedOption !== undefined && !Array.isArray(selectedOption) && selectedOption >= 0) {
           this.selectedAnswer.set(selectedOption);
         } else {
@@ -1038,19 +1038,19 @@ export class CertTestComponent implements OnInit, OnDestroy {
   }
 
   isQuestionAnswered(questionId: string): boolean {
-    const answer = this.userAnswers().find(a => a.QuestionId === questionId);
+    const answer = this.userAnswers().find(a => a.questionId === questionId);
     if (!answer) return false;
 
-    if (Array.isArray(answer.SelectedOption)) {
-      return answer.SelectedOption.length > 0;
+    if (Array.isArray(answer.selectedOption)) {
+      return answer.selectedOption.length > 0;
     } else {
-      return answer.SelectedOption !== null && answer.SelectedOption !== undefined && typeof answer.SelectedOption === 'number' && answer.SelectedOption >= 0;
+      return answer.selectedOption !== null && answer.selectedOption !== undefined && typeof answer.selectedOption === 'number' && answer.selectedOption >= 0;
     }
   }
 
   isQuestionMarkedForReview(questionId: string): boolean {
     const attempt = this.currentAttempt();
-    return attempt?.MarkedForReview?.includes(questionId) || false;
+    return attempt?.markedForReview?.includes(questionId) || false;
   }
 
   toggleMarkForReview(questionId: string) {
@@ -1058,8 +1058,8 @@ export class CertTestComponent implements OnInit, OnDestroy {
   }
 
   isHintVisible(questionId: string): boolean {
-    const answer = this.userAnswers().find(a => a.QuestionId === questionId);
-    return answer?.HintUsed || false;
+    const answer = this.userAnswers().find(a => a.questionId === questionId);
+    return answer?.hintUsed || false;
   }
 
   showHint(questionId: string) {
@@ -1067,8 +1067,8 @@ export class CertTestComponent implements OnInit, OnDestroy {
   }
 
   isAnswerRevealed(questionId: string): boolean {
-    const answer = this.userAnswers().find(a => a.QuestionId === questionId);
-    return answer?.AnswerRevealed || false;
+    const answer = this.userAnswers().find(a => a.questionId === questionId);
+    return answer?.answerRevealed || false;
   }
 
   revealAnswer(questionId: string) {
@@ -1109,8 +1109,8 @@ export class CertTestComponent implements OnInit, OnDestroy {
 
     let count = 0;
     this.userAnswers().forEach(answer => {
-      const question = test.Questions.find(q => q.Id === answer.QuestionId);
-      if (question && question.CorrectAnswer === answer.SelectedOption) {
+      const question = test.questions.find(q => q.id === answer.questionId);
+      if (question && question.correctAnswer === answer.selectedOption) {
         count++;
       }
     });
@@ -1121,14 +1121,14 @@ export class CertTestComponent implements OnInit, OnDestroy {
     const test = this.currentTest();
     if (!test) return false;
 
-    const question = test.Questions.find(q => q.Id === questionId);
-    const userAnswer = this.userAnswers().find(a => a.QuestionId === questionId);
+    const question = test.questions.find(q => q.id === questionId);
+    const userAnswer = this.userAnswers().find(a => a.questionId === questionId);
 
     if (!question || !userAnswer) return false;
 
-    if (question.AllowMultipleSelection) {
-      const correctAnswers = Array.isArray(question.CorrectAnswer) ? question.CorrectAnswer : [question.CorrectAnswer];
-      const selectedAnswers = Array.isArray(userAnswer.SelectedOption) ? userAnswer.SelectedOption : [userAnswer.SelectedOption];
+    if (question.allowMultipleSelection) {
+      const correctAnswers = Array.isArray(question.correctAnswer) ? question.correctAnswer : [question.correctAnswer];
+      const selectedAnswers = Array.isArray(userAnswer.selectedOption) ? userAnswer.selectedOption : [userAnswer.selectedOption];
 
       const correctSet = new Set(correctAnswers.sort());
       const selectedSet = new Set(selectedAnswers.sort());
@@ -1136,37 +1136,37 @@ export class CertTestComponent implements OnInit, OnDestroy {
       return correctSet.size === selectedSet.size &&
              [...correctSet].every(val => selectedSet.has(val));
     } else {
-      return question.CorrectAnswer === userAnswer.SelectedOption;
+      return question.correctAnswer === userAnswer.selectedOption;
     }
   }
 
   getUserAnswer(questionId: string): number {
-    const answer = this.userAnswers().find(a => a.QuestionId === questionId);
+    const answer = this.userAnswers().find(a => a.questionId === questionId);
     if (!answer) return -1;
 
-    if (Array.isArray(answer.SelectedOption)) {
-      return answer.SelectedOption.length > 0 ? answer.SelectedOption[0] : -1;
+    if (Array.isArray(answer.selectedOption)) {
+      return answer.selectedOption.length > 0 ? answer.selectedOption[0] : -1;
     } else {
-      return answer.SelectedOption !== null && answer.SelectedOption !== undefined && answer.SelectedOption >= 0 ? answer.SelectedOption : -1;
+      return answer.selectedOption !== null && answer.selectedOption !== undefined && answer.selectedOption >= 0 ? answer.selectedOption : -1;
     }
   }
 
   isHintUsed(questionId: string): boolean {
-    const answer = this.userAnswers().find(a => a.QuestionId === questionId);
-    return answer?.HintUsed || false;
+    const answer = this.userAnswers().find(a => a.questionId === questionId);
+    return answer?.hintUsed || false;
   }
 
   isAnswerWasRevealed(questionId: string): boolean {
-    const answer = this.userAnswers().find(a => a.QuestionId === questionId);
-    return answer?.AnswerRevealed || false;
+    const answer = this.userAnswers().find(a => a.questionId === questionId);
+    return answer?.answerRevealed || false;
   }
 
   getQuestionById(questionId: string) {
-    return this.currentTest()?.Questions.find(q => q.Id === questionId);
+    return this.currentTest()?.questions.find(q => q.id === questionId);
   }
 
   getQuestionIndex(questionId: string): number {
-    return this.currentTest()?.Questions.findIndex(q => q.Id === questionId) || 0;
+    return this.currentTest()?.questions.findIndex(q => q.id === questionId) || 0;
   }
 
   scrollToQuestion(questionId: string) {
