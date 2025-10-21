@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Import shared styles - using @use for modern Sass compatibility */
+@use './app/shared/styles/mixins';
+@use './app/shared/styles/utilities';
+@use './app/shared/styles/density';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,11 +15,6 @@
 /* AG Grid Styles */
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
-
-/* Import shared styles - using @import for compatibility with @tailwind */
-@import './app/shared/styles/mixins';
-@import './app/shared/styles/utilities';
-@import './app/shared/styles/density';
 
 /* CSS Variables for Theming - MUST BE IN GLOBAL STYLES */
 :root {
@@ -868,4 +869,35 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* CRITICAL FIX: Disable pointer events on all parent containers to allow child navigation items to receive events */
+/* This MUST be in the global styles file to avoid Angular's view encapsulation */
+.mat-drawer-inner-container,
+.mat-drawer-inner-container[cdkscrollable],
+.navigation-content,
+.nav-section,
+.nav-section-items,
+.nav-subsection,
+.nav-subsection-items {
+  pointer-events: none !important;
+}
+
+/* Re-enable pointer events for all clickable navigation elements */
+.mat-drawer-inner-container > *,
+.mat-drawer-inner-container[cdkscrollable] > *,
+.navigation-content > *,
+.nav-section > *,
+.nav-section-items > *,
+.nav-subsection > *,
+.nav-subsection-items > *,
+.nav-item,
+.nav-greatgrandchild,
+.nav-section-header,
+.nav-subsection-header,
+.expand-icon,
+a[routerlink],
+a[mat-list-item],
+.mat-mdc-list-item {
+  pointer-events: auto !important;
 }

@@ -1,6 +1,38 @@
 /* Angular Test Suite - Fuse-like Interface Styles */
 /* NOTE: CSS Variables are now defined in styles.scss (global) */
 
+/* CRITICAL FIX: Disable pointer events on all parent containers to allow child navigation items to receive events */
+::ng-deep {
+  .mat-drawer-inner-container,
+  .mat-drawer-inner-container[cdkscrollable],
+  .navigation-content,
+  .nav-section,
+  .nav-section-items,
+  .nav-subsection,
+  .nav-subsection-items {
+    pointer-events: none !important;
+  }
+
+  /* Re-enable pointer events for all clickable navigation elements */
+  .mat-drawer-inner-container > *,
+  .mat-drawer-inner-container[cdkscrollable] > *,
+  .navigation-content > *,
+  .nav-section > *,
+  .nav-section-items > *,
+  .nav-subsection > *,
+  .nav-subsection-items > *,
+  .nav-item,
+  .nav-greatgrandchild,
+  .nav-section-header,
+  .nav-subsection-header,
+  .expand-icon,
+  a[routerlink],
+  a[mat-list-item],
+  .mat-mdc-list-item {
+    pointer-events: auto !important;
+  }
+}
+
 /* Global Material Design Overrides */
 .mat-mdc-list-item {
   .mdc-list-item__content {
@@ -68,6 +100,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
 
     .logo-icon {
       color: var(--primary-color);
@@ -77,12 +115,22 @@
       font-weight: 600;
       font-size: 18px;
       transition: opacity 0.3s ease;
+      color: var(--text-primary);
 
       &.compact {
         opacity: 0;
         width: 0;
         overflow: hidden;
       }
+    }
+
+    &:hover {
+      background-color: var(--bg-tertiary);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 
@@ -442,11 +490,12 @@
     padding: 8px 16px 8px 48px;
     transition: all 0.2s ease;
     color: var(--text-primary);
-    cursor: pointer;
+    cursor: pointer !important;
     user-select: none;
 
     &:hover {
       background-color: var(--bg-tertiary);
+      cursor: pointer !important;
     }
 
     &.expanded {
@@ -522,8 +571,56 @@
 .nav-level-4 {
   .nav-subsection-header {
     padding-left: 64px; // Extra indentation for 4th level
-    cursor: pointer;
+    cursor: pointer !important;
     user-select: none;
+    position: relative;
+    width: 100%;
+    min-height: 48px; /* Ensure minimum clickable height */
+
+    &:hover {
+      cursor: pointer !important;
+      background-color: var(--bg-tertiary);
+    }
+
+    /* Make the entire header area clickable */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Ensure child elements don't interfere with click area */
+    .nav-subsection-title {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+
+      /* But allow links to be clickable */
+      a {
+        pointer-events: auto;
+      }
+    }
+
+    /* Ensure expand icon is clickable */
+    .expand-icon {
+      position: relative;
+      z-index: 3;
+      pointer-events: auto;
+    }
+
+    /* Active state for 4th level items */
+    &.expanded {
+      background-color: var(--bg-tertiary);
+
+      .expand-icon {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   .nav-subsection-title {
@@ -541,11 +638,74 @@
     padding-left: 88px !important; // Even more indentation for 5th level (great-grandchildren)
     font-size: 12px;
     font-weight: 400;
+    position: relative;
+    width: 100%;
+    min-height: 48px; /* Ensure minimum clickable height */
+    cursor: pointer !important;
+
+    &:hover {
+      cursor: pointer !important;
+      background-color: var(--bg-tertiary);
+    }
+
+    /* Make the entire item area clickable */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Ensure child elements don't interfere with click area */
+    mat-icon,
+    span {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Active router link styles for full block highlighting */
+    &.active {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+
+      /* Ensure the entire block is highlighted */
+      position: relative;
+      z-index: 3;
+
+      mat-icon,
+      span {
+        color: white !important;
+      }
+    }
 
     mat-icon {
       font-size: 14px;
       width: 14px;
       height: 14px;
+    }
+  }
+
+  /* Active router link styles for 4th level */
+  .nav-subsection-header {
+    .nav-title-link.active {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+
+      /* Ensure the entire block is highlighted */
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      padding-left: 64px; /* Match the header padding */
     }
   }
 }
@@ -897,6 +1057,54 @@
   }
 }
 
+/* Dark Mode Search Input Overrides */
+.dark .nav-search {
+  .search-field {
+    .mat-mdc-form-field {
+      .mat-mdc-text-field-wrapper {
+        background-color: var(--bg-tertiary) !important;
+      }
+    }
+
+    .mat-mdc-input-element {
+      color: var(--text-primary) !important;
+      background-color: transparent !important;
+    }
+
+    .mat-mdc-form-field-label {
+      color: var(--text-secondary) !important;
+    }
+
+    .mat-mdc-form-field-outline {
+      color: var(--border-color) !important;
+    }
+
+    .mat-mdc-form-field-outline-thick {
+      color: var(--primary-color) !important;
+    }
+
+    .mat-mdc-form-field-outline-start,
+    .mat-mdc-form-field-outline-end,
+    .mat-mdc-form-field-outline-gap {
+      border-color: var(--border-color) !important;
+    }
+
+    .mat-mdc-form-field-outline-thick .mat-mdc-form-field-outline-start,
+    .mat-mdc-form-field-outline-thick .mat-mdc-form-field-outline-end,
+    .mat-mdc-form-field-outline-thick .mat-mdc-form-field-outline-gap {
+      border-color: var(--primary-color) !important;
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+      color: var(--text-secondary) !important;
+    }
+
+    .mat-mdc-form-field-icon-prefix {
+      color: var(--text-secondary) !important;
+    }
+  }
+}
+
 /* Expand Icon Clickable */
 .expand-icon {
   cursor: pointer;
@@ -908,4 +1116,357 @@
     background-color: var(--hover-color);
     color: var(--primary-color);
   }
+}
+
+/* Ensure all navigation headers have pointer cursor and full clickable area */
+.nav-section-header,
+.nav-subsection-header {
+  cursor: pointer !important;
+  position: relative;
+  width: 100%;
+  min-height: 48px; /* Ensure minimum clickable height */
+
+  &:hover {
+    cursor: pointer !important;
+    background-color: var(--bg-tertiary);
+  }
+
+  /* Make the entire header area clickable */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Ensure child elements don't interfere with click area */
+  .nav-section-title,
+  .nav-subsection-title {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+
+    /* But allow links to be clickable */
+    a {
+      pointer-events: auto;
+    }
+  }
+
+  /* Ensure expand icon is clickable */
+  .expand-icon {
+    position: relative;
+    z-index: 3;
+    pointer-events: auto;
+  }
+
+  /* Active router link styles for full block highlighting */
+  .nav-title-link.active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+
+    /* Ensure the entire block is highlighted */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    padding-left: inherit; /* Inherit the parent's padding */
+  }
+}
+
+/* Ensure all navigation items (including 4th and 5th level) have full block highlighting */
+.nav-item {
+  position: relative;
+  width: 100%;
+  min-height: 48px; /* Ensure minimum clickable height */
+  cursor: pointer !important;
+
+  &:hover {
+    cursor: pointer !important;
+    background-color: var(--bg-tertiary);
+  }
+
+  /* Make the entire item area clickable */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10; /* Higher z-index to ensure it's above parent elements */
+    pointer-events: auto; /* Allow pointer events */
+  }
+
+  /* Ensure child elements don't interfere with click area */
+  mat-icon,
+  span {
+    position: relative;
+    z-index: 11; /* Above the ::before pseudo-element */
+    pointer-events: none;
+  }
+
+  /* Active router link styles for full block highlighting */
+  &.active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+
+    /* Ensure the entire block is highlighted */
+    position: relative;
+    z-index: 12; /* Highest z-index for active state */
+
+    mat-icon,
+    span {
+      color: white !important;
+    }
+  }
+}
+
+/* Specific styles for 4th level items to ensure they work properly */
+.nav-greatgrandchild {
+  position: relative !important;
+  z-index: 10 !important; /* Ensure they're above parent elements */
+  pointer-events: auto !important; /* Ensure they can receive pointer events */
+
+  &:hover {
+    background-color: var(--bg-tertiary) !important;
+  }
+
+  &.active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+
+    mat-icon,
+    span {
+      color: white !important;
+    }
+  }
+}
+
+/* Fix parent elements that might block 4th level items */
+.nav-section-header {
+  /* Ensure parent headers don't block child navigation items */
+  .nav-section-items {
+    .nav-subsection-items {
+      .nav-greatgrandchild {
+        position: relative !important;
+        z-index: 15 !important; /* Higher than parent headers */
+        pointer-events: auto !important;
+
+        &:hover {
+          background-color: var(--bg-tertiary) !important;
+        }
+
+        &.active {
+          background-color: var(--primary-color) !important;
+          color: white !important;
+
+          mat-icon,
+          span {
+            color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Override parent header pointer events to allow child items to work */
+.nav-section-header {
+  pointer-events: none !important; /* Disable pointer events on parent headers */
+
+  /* But allow expand icons to work */
+  .expand-icon {
+    pointer-events: auto !important;
+  }
+
+  /* Allow child navigation items to receive pointer events */
+  .nav-section-items {
+    pointer-events: auto !important;
+
+    .nav-subsection-items {
+      pointer-events: auto !important;
+
+      .nav-greatgrandchild {
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 20 !important; /* Very high z-index */
+
+        &:hover {
+          background-color: var(--bg-tertiary) !important;
+        }
+
+        &.active {
+          background-color: var(--primary-color) !important;
+          color: white !important;
+
+          mat-icon,
+          span {
+            color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Ensure parent nav-section doesn't block child items */
+.nav-section {
+  pointer-events: none !important; /* Disable pointer events on parent sections */
+
+  /* But allow child navigation items to receive pointer events */
+  .nav-section-items {
+    pointer-events: auto !important;
+
+    .nav-subsection-items {
+      pointer-events: auto !important;
+
+      .nav-greatgrandchild {
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 20 !important; /* Very high z-index */
+
+        &:hover {
+          background-color: var(--bg-tertiary) !important;
+        }
+
+        &.active {
+          background-color: var(--primary-color) !important;
+          color: white !important;
+
+          mat-icon,
+          span {
+            color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Ensure navigation-content doesn't block child items */
+.navigation-content {
+  pointer-events: none !important; /* Disable pointer events on navigation content */
+
+  /* But allow child navigation items to receive pointer events */
+  .nav-section-items {
+    pointer-events: auto !important;
+
+    .nav-subsection-items {
+      pointer-events: auto !important;
+
+      .nav-greatgrandchild {
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 20 !important; /* Very high z-index */
+
+        &:hover {
+          background-color: var(--bg-tertiary) !important;
+        }
+
+        &.active {
+          background-color: var(--primary-color) !important;
+          color: white !important;
+
+          mat-icon,
+          span {
+            color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Ensure mat-drawer-inner-container doesn't block child items */
+.mat-drawer-inner-container {
+  pointer-events: none !important; /* Disable pointer events on drawer container */
+
+  /* But allow child navigation items to receive pointer events */
+  .nav-section-items {
+    pointer-events: auto !important;
+
+    .nav-subsection-items {
+      pointer-events: auto !important;
+
+      .nav-greatgrandchild {
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 20 !important; /* Very high z-index */
+
+        &:hover {
+          background-color: var(--bg-tertiary) !important;
+        }
+
+        &.active {
+          background-color: var(--primary-color) !important;
+          color: white !important;
+
+          mat-icon,
+          span {
+            color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Ensure all navigation items can receive pointer events */
+.nav-item,
+.nav-greatgrandchild {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 30 !important; /* Very high z-index to ensure they're above all parent elements */
+
+  &:hover {
+    background-color: var(--bg-tertiary) !important;
+  }
+
+  &.active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+
+    mat-icon,
+    span {
+      color: white !important;
+    }
+  }
+}
+
+/* CRITICAL: Override all parent containers to allow navigation items to work */
+.mat-drawer-inner-container,
+.mat-drawer-inner-container[cdkscrollable],
+.navigation-content,
+.nav-section,
+.nav-section-items,
+.nav-subsection,
+.nav-subsection-items {
+  pointer-events: none !important;
+}
+
+/* Re-enable pointer events for all clickable navigation elements */
+.mat-drawer-inner-container > *,
+.mat-drawer-inner-container[cdkscrollable] > *,
+.navigation-content > *,
+.nav-section > *,
+.nav-section-items > *,
+.nav-subsection > *,
+.nav-subsection-items > *,
+.nav-item,
+.nav-greatgrandchild,
+.nav-section-header,
+.nav-subsection-header,
+.expand-icon,
+a[routerlink],
+a[mat-list-item],
+.mat-mdc-list-item {
+  pointer-events: auto !important;
 }

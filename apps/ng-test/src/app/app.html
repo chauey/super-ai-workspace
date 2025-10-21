@@ -5,10 +5,10 @@
       <button mat-icon-button (click)="toggleSidebar()" class="sidebar-toggle">
         <mat-icon>menu</mat-icon>
       </button>
-      <div class="app-logo">
+      <a routerLink="/" class="app-logo" [class.compact]="sidebarCompact()">
         <mat-icon class="logo-icon">dashboard</mat-icon>
         <span class="logo-text" [class.compact]="sidebarCompact()">Super AI Guide</span>
-      </div>
+      </a>
     </div>
 
     <div class="toolbar-spacer"></div>
@@ -252,21 +252,18 @@
                           class="nav-subsection-header"
                           [class.expanded]="isPanelExpanded(child.id)"
                           (click)="togglePanel(child.id)">
-                          <!-- Clickable title that navigates if route exists -->
-                          @if (child.route) {
-                            <a
-                              [routerLink]="child.route"
-                              routerLinkActive="active"
-                              class="nav-subsection-title">
-                              <mat-icon>{{ child.icon }}</mat-icon>
-                              <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
-                            </a>
-                          } @else {
-                            <div class="nav-subsection-title">
-                              <mat-icon>{{ child.icon }}</mat-icon>
-                              <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
-                            </div>
-                          }
+                          <div class="nav-subsection-title">
+                            <mat-icon>{{ child.icon }}</mat-icon>
+                            <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
+                            @if (child.route) {
+                              <a
+                                [routerLink]="child.route"
+                                routerLinkActive="active"
+                                class="nav-title-link"
+                                (click)="$event.stopPropagation()">
+                              </a>
+                            }
+                          </div>
                           <mat-icon
                             class="expand-icon"
                             *ngIf="!sidebarCompact()"
@@ -301,20 +298,18 @@
                                   class="nav-subsection-header"
                                   [class.expanded]="isPanelExpanded(grandchild.id)"
                                   (click)="togglePanel(grandchild.id)">
-                                  @if (grandchild.route) {
-                                    <a
-                                      [routerLink]="grandchild.route"
-                                      routerLinkActive="active"
-                                      class="nav-subsection-title">
-                                      <mat-icon>{{ grandchild.icon }}</mat-icon>
-                                      <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
-                                    </a>
-                                  } @else {
-                                    <div class="nav-subsection-title">
-                                      <mat-icon>{{ grandchild.icon }}</mat-icon>
-                                      <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
-                                    </div>
-                                  }
+                                  <div class="nav-subsection-title">
+                                    <mat-icon>{{ grandchild.icon }}</mat-icon>
+                                    <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
+                                    @if (grandchild.route) {
+                                      <a
+                                        [routerLink]="grandchild.route"
+                                        routerLinkActive="active"
+                                        class="nav-title-link"
+                                        (click)="$event.stopPropagation()">
+                                      </a>
+                                    }
+                                  </div>
                                   <mat-icon
                                     class="expand-icon"
                                     *ngIf="!sidebarCompact()"
