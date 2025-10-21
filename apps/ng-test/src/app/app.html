@@ -122,6 +122,30 @@
 
       <!-- Navigation Items -->
       <div class="navigation-content">
+        <!-- Search Input -->
+        @if (!sidebarCompact()) {
+          <div class="nav-search">
+            <mat-form-field appearance="outline" class="search-field">
+              <mat-label>Search navigation...</mat-label>
+              <input
+                matInput
+                [value]="searchQuery()"
+                (input)="onSearchInput($event)"
+                placeholder="Type to search...">
+              <mat-icon matSuffix>search</mat-icon>
+              @if (searchQuery()) {
+                <button
+                  matSuffix
+                  mat-icon-button
+                  (click)="clearSearch()"
+                  matTooltip="Clear search">
+                  <mat-icon>close</mat-icon>
+                </button>
+              }
+            </mat-form-field>
+          </div>
+        }
+
         <!-- Loading State -->
         @if (navigationService.loading()) {
           <div class="nav-loading">
@@ -161,14 +185,13 @@
                   [class.expanded]="isPanelExpanded(item.id)"
                   [matTooltip]="sidebarCompact() ? item.tooltip : ''"
                   matTooltipPosition="right"
-                  (click)="handleSectionClick(item, $event)">
+                  (click)="togglePanel(item.id)">
                   <!-- Clickable title that navigates if route exists -->
                   @if (item.route) {
                     <a
                       [routerLink]="item.route"
                       routerLinkActive="active"
-                      class="nav-section-title nav-title-link"
-                      (click)="$event.stopPropagation()">
+                      class="nav-section-title nav-title-link">
                       <mat-icon>{{ item.icon }}</mat-icon>
                       <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
                       <!-- @if (item.badge && !sidebarCompact()) {
@@ -188,8 +211,12 @@
                       } -->
                     </div>
                   }
-                  <!-- Expand/collapse icon (always toggles children) -->
-                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
+                  <!-- Expand/collapse icon (only toggles children) -->
+                  <mat-icon
+                    class="expand-icon"
+                    *ngIf="!sidebarCompact()"
+                    (click)="togglePanel(item.id); $event.stopPropagation()"
+                    matTooltip="Toggle menu">
                     {{ isPanelExpanded(item.id) ? 'expand_less' : 'expand_more' }}
                   </mat-icon>
                 </div>
@@ -224,14 +251,13 @@
                         <div
                           class="nav-subsection-header"
                           [class.expanded]="isPanelExpanded(child.id)"
-                          (click)="handleSectionClick(child, $event)">
+                          (click)="togglePanel(child.id)">
                           <!-- Clickable title that navigates if route exists -->
                           @if (child.route) {
                             <a
                               [routerLink]="child.route"
                               routerLinkActive="active"
-                              class="nav-subsection-title"
-                              (click)="$event.stopPropagation()">
+                              class="nav-subsection-title">
                               <mat-icon>{{ child.icon }}</mat-icon>
                               <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
                             </a>
@@ -241,7 +267,11 @@
                               <span *ngIf="!sidebarCompact()">{{ child.title }}</span>
                             </div>
                           }
-                          <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
+                          <mat-icon
+                            class="expand-icon"
+                            *ngIf="!sidebarCompact()"
+                            (click)="togglePanel(child.id); $event.stopPropagation()"
+                            matTooltip="Toggle menu">
                             {{ isPanelExpanded(child.id) ? 'expand_less' : 'expand_more' }}
                           </mat-icon>
                         </div>
@@ -270,13 +300,12 @@
                                 <div
                                   class="nav-subsection-header"
                                   [class.expanded]="isPanelExpanded(grandchild.id)"
-                                  (click)="handleSectionClick(grandchild, $event)">
+                                  (click)="togglePanel(grandchild.id)">
                                   @if (grandchild.route) {
                                     <a
                                       [routerLink]="grandchild.route"
                                       routerLinkActive="active"
-                                      class="nav-subsection-title"
-                                      (click)="$event.stopPropagation()">
+                                      class="nav-subsection-title">
                                       <mat-icon>{{ grandchild.icon }}</mat-icon>
                                       <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
                                     </a>
@@ -286,7 +315,11 @@
                                       <span *ngIf="!sidebarCompact()">{{ grandchild.title }}</span>
                                     </div>
                                   }
-                                  <mat-icon class="expand-icon" *ngIf="!sidebarCompact()">
+                                  <mat-icon
+                                    class="expand-icon"
+                                    *ngIf="!sidebarCompact()"
+                                    (click)="togglePanel(grandchild.id); $event.stopPropagation()"
+                                    matTooltip="Toggle menu">
                                     {{ isPanelExpanded(grandchild.id) ? 'expand_less' : 'expand_more' }}
                                   </mat-icon>
                                 </div>

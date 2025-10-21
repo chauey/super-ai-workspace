@@ -28,7 +28,7 @@ import { ThemeService } from '../../core/services/theme.service';
           </div>
           <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Super AI Guide</h1>
           <p class="text-xl md:text-2xl text-secondary mb-6">
-            All-in-one AI/Full-Stackdeveloper hub: Learn modern web technologies, master cloud
+            All-in-one AI/Full-Stack developer hub: Learn modern web technologies, master cloud
             certifications, explore AI tools, build SaaS applications, and showcase skills with
             interactive tutorials and real-world projects.
           </p>

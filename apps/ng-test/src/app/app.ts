@@ -13,6 +13,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -41,7 +43,9 @@ import { StoreInitializerService } from './core/services/store-initializer.servi
     MatTooltipModule,
     MatDividerModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
@@ -54,6 +58,9 @@ export class App {
   public navigationService = inject(NavigationService);
   readonly densityStore = inject(DensityStore);
   private storeInitializer = inject(StoreInitializerService); // This will initialize the store
+
+  // Search functionality
+  searchQuery = signal<string>('');
 
   // Computed values
   sidebarMode = computed(() => this.sidebarCompact() ? 'over' : 'side');
@@ -117,16 +124,20 @@ export class App {
     this.navigationService.ensureExpanded(panelId);
   }
 
-  handleSectionClick(item: any, event: Event): void {
-    // If the item has children, toggle the panel
-    if (item.children) {
-      this.togglePanel(item.id);
-    }
 
-    // If the item has a route and no children, navigate
-    if (item.route && !item.children) {
-      // Navigation will be handled by the routerLink
-    }
+  onSearchChange(query: string): void {
+    this.searchQuery.set(query);
+    this.navigationService.setSearchQuery(query);
+  }
+
+  onSearchInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.onSearchChange(target?.value || '');
+  }
+
+  clearSearch(): void {
+    this.searchQuery.set('');
+    this.navigationService.clearSearch();
   }
 
   // Density methods
