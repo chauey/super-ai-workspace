@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Super AI Guide</title>
+    <base href="/super-ai-workspace/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        // GitHub Pages SPA redirect for Angular
+        // This script redirects to the main app and lets Angular handle the routing
+        var segmentCount = 1;
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
+            l.pathname.slice(1 + l.pathname.split('/')[segmentCount].length) +
+            (l.search ? '&' + l.search.slice(1) : '') +
+            l.hash
+        );
+    </script>
+</head>
+<body>
+    <p>Redirecting to Super AI Guide...</p>
+</body>
+</html>
