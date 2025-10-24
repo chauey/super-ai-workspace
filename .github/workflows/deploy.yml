@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master, main ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -36,3 +41,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./apps/ng-test/dist/ng-test/browser
         cname: # Add your custom domain here if you have one
+        force_orphan: true
