@@ -34,11 +34,17 @@ jobs:
     - name: Build application
       run: npm run build:github-pages
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./apps/ng-test/dist/ng-test/browser
-        cname: # Add your custom domain here if you have one
-        force_orphan: true
+        path: ./apps/ng-test/dist/ng-test/browser
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
