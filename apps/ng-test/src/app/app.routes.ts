@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { angularFeatureRoutes } from './features/angular/angular-feature.config';
 
 export const routes: Routes = [
   // Dashboard - Landing page with all top-level features
@@ -55,8 +54,8 @@ export const routes: Routes = [
     loadChildren: () => import('./features/design-system/design-system.routes').then(m => m.designSystemRoutes)
   },
 
-  // Angular Feature Module - All routes under /angular/
-  { path: 'angular', children: angularFeatureRoutes },
+  // Angular routes are now properly nested under /tech/front-end/angular/
+  // Removed direct /angular/ route to maintain consistent hierarchy
 
   // .NET Learning Path
   {
@@ -100,11 +99,8 @@ export const routes: Routes = [
     loadChildren: () => import('./features/resume/resume.routes').then(m => m.resumeRoutes)
   },
 
-  // Front-end Landing Page
-  {
-    path: 'front-end',
-    loadComponent: () => import('./features/front-end/front-end.component').then(m => m.FrontEndComponent)
-  },
+  // Front-end Landing Page (moved to /tech/front-end)
+  // This route is now handled by tech.routes.ts
 
   // SaaS Landing Page (legacy - redirect to apps)
   {

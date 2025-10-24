@@ -397,9 +397,9 @@ export class AngularShellComponent implements OnInit {
       icon: 'build',
       tooltip: 'Angular core concepts and fundamentals',
       children: [
-        { id: 'empty', title: 'Empty Page', icon: 'description', route: '/angular/core-concepts/empty', tooltip: 'Empty page template' },
-        { id: 'control-flow', title: 'Control Flow', icon: 'control_camera', route: '/angular/core-concepts/control-flow', tooltip: 'Angular control flow syntax' },
-        { id: 'signals', title: 'Signals & Resources', icon: 'signal_cellular_alt', route: '/angular/core-concepts/signals', tooltip: 'Angular signals and resources' }
+        { id: 'empty', title: 'Empty Page', icon: 'description', route: '/tech/front-end/angular/core-concepts/empty', tooltip: 'Empty page template' },
+        { id: 'control-flow', title: 'Control Flow', icon: 'control_camera', route: '/tech/front-end/angular/core-concepts/control-flow', tooltip: 'Angular control flow syntax' },
+        { id: 'signals', title: 'Signals & Resources', icon: 'signal_cellular_alt', route: '/tech/front-end/angular/core-concepts/signals', tooltip: 'Angular signals and resources' }
       ]
     },
     {
@@ -408,9 +408,9 @@ export class AngularShellComponent implements OnInit {
       icon: 'description',
       tooltip: 'Angular forms and data handling',
       children: [
-        { id: 'reactive-forms', title: 'Reactive Forms', icon: 'edit', route: '/angular/forms-data/reactive-forms', tooltip: 'Angular reactive forms' },
-        { id: 'reactive-forms-signals', title: 'Forms + Signals', icon: 'signal_cellular_alt', route: '/angular/forms-data/reactive-forms-signals', tooltip: 'Reactive forms with signals' },
-        { id: 'http-client', title: 'HTTP Client', icon: 'http', route: '/angular/forms-data/http-client', tooltip: 'Angular HTTP client' }
+        { id: 'reactive-forms', title: 'Reactive Forms', icon: 'edit', route: '/tech/front-end/angular/forms-data/reactive-forms', tooltip: 'Angular reactive forms' },
+        { id: 'reactive-forms-signals', title: 'Forms + Signals', icon: 'signal_cellular_alt', route: '/tech/front-end/angular/forms-data/reactive-forms-signals', tooltip: 'Reactive forms with signals' },
+        { id: 'http-client', title: 'HTTP Client', icon: 'http', route: '/tech/front-end/angular/forms-data/http-client', tooltip: 'Angular HTTP client' }
       ]
     },
     {
@@ -419,9 +419,9 @@ export class AngularShellComponent implements OnInit {
       icon: 'architecture',
       tooltip: 'Angular architecture patterns',
       children: [
-        { id: 'dependency-injection', title: 'Dependency Injection', icon: 'injection', route: '/angular/architecture/dependency-injection', tooltip: 'Angular dependency injection' },
-        { id: 'lifecycle-hooks', title: 'Lifecycle Hooks', icon: 'cycle', route: '/angular/architecture/lifecycle-hooks', tooltip: 'Angular component lifecycle hooks' },
-        { id: 'services', title: 'Services', icon: 'build', route: '/angular/architecture/services', tooltip: 'Angular services' }
+        { id: 'dependency-injection', title: 'Dependency Injection', icon: 'injection', route: '/tech/front-end/angular/architecture/dependency-injection', tooltip: 'Angular dependency injection' },
+        { id: 'lifecycle-hooks', title: 'Lifecycle Hooks', icon: 'cycle', route: '/tech/front-end/angular/architecture/lifecycle-hooks', tooltip: 'Angular component lifecycle hooks' },
+        { id: 'services', title: 'Services', icon: 'build', route: '/tech/front-end/angular/architecture/services', tooltip: 'Angular services' }
       ]
     },
     {
@@ -430,10 +430,10 @@ export class AngularShellComponent implements OnInit {
       icon: 'extension',
       tooltip: 'Advanced Angular features',
       children: [
-        { id: 'pipes', title: 'Pipes', icon: 'filter_list', route: '/angular/advanced-features/pipes', tooltip: 'Angular pipes' },
-        { id: 'guards-interceptors', title: 'Guards & Interceptors', icon: 'security', route: '/angular/advanced-features/guards-interceptors', tooltip: 'Angular guards and interceptors' },
-        { id: 'lazy-loading', title: 'Lazy Loading', icon: 'speed', route: '/angular/advanced-features/lazy-loading', tooltip: 'Angular lazy loading' },
-        { id: 'defer', title: '@defer Directive', icon: 'schedule', route: '/angular/advanced-features/defer', tooltip: 'Angular @defer directive' }
+        { id: 'pipes', title: 'Pipes', icon: 'filter_list', route: '/tech/front-end/angular/advanced-features/pipes', tooltip: 'Angular pipes' },
+        { id: 'guards-interceptors', title: 'Guards & Interceptors', icon: 'security', route: '/tech/front-end/angular/advanced-features/guards-interceptors', tooltip: 'Angular guards and interceptors' },
+        { id: 'lazy-loading', title: 'Lazy Loading', icon: 'speed', route: '/tech/front-end/angular/advanced-features/lazy-loading', tooltip: 'Angular lazy loading' },
+        { id: 'defer', title: '@defer Directive', icon: 'schedule', route: '/tech/front-end/angular/advanced-features/defer', tooltip: 'Angular @defer directive' }
       ]
     },
     {
@@ -442,8 +442,8 @@ export class AngularShellComponent implements OnInit {
       icon: 'play_arrow',
       tooltip: 'Experimental features and testing',
       children: [
-        { id: 'testdome', title: 'TestDome Page 1', icon: 'science', route: '/angular/playground/testdome', tooltip: 'TestDome experiment page 1' },
-        { id: 'testdome2', title: 'TestDome Page 2', icon: 'experiment', route: '/angular/playground/testdome2', tooltip: 'TestDome experiment page 2' }
+        { id: 'testdome', title: 'TestDome Page 1', icon: 'science', route: '/tech/front-end/angular/playground/testdome', tooltip: 'TestDome experiment page 1' },
+        { id: 'testdome2', title: 'TestDome Page 2', icon: 'experiment', route: '/tech/front-end/angular/playground/testdome2', tooltip: 'TestDome experiment page 2' }
       ]
     }
   ];
@@ -468,8 +468,8 @@ export class AngularShellComponent implements OnInit {
   }
 
   private updateActiveCategoryFromRoute(url: string) {
-    // Extract category from URL (e.g., /angular/core-concepts/empty -> core-concepts)
-    const match = url.match(/\/angular\/([^\/]+)/);
+    // Extract category from URL (e.g., /tech/front-end/angular/core-concepts/empty -> core-concepts)
+    const match = url.match(/\/tech\/front-end\/angular\/([^\/]+)/);
     if (match) {
       const category = match[1];
       this._activeCategoryId.set(category);
@@ -488,7 +488,7 @@ export class AngularShellComponent implements OnInit {
     // Navigate to the category landing page
     const category = this.angularCategories().find(cat => cat.id === categoryId);
     if (category) {
-      this.router.navigate([`/angular/${categoryId}`]);
+      this.router.navigate([`/tech/front-end/angular/${categoryId}`]);
     }
   }
 

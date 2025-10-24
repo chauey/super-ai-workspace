@@ -191,7 +191,8 @@
                     <a
                       [routerLink]="item.route"
                       routerLinkActive="active"
-                      class="nav-section-title nav-title-link">
+                      class="nav-section-title nav-title-link"
+                      (click)="$event.stopPropagation()">
                       <mat-icon>{{ item.icon }}</mat-icon>
                       <span *ngIf="!sidebarCompact()">{{ item.title }}</span>
                       <!-- @if (item.badge && !sidebarCompact()) {

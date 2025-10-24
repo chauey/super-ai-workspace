@@ -16,48 +16,49 @@ export const NAVIGATION_CONFIG: NavigationItem[] = [
     id: 'tech',
     title: 'Tech',
     icon: 'school',
+    route: '/tech',
     tooltip: 'All educational content',
     children: [
       {
         id: 'front-end',
         title: 'Front-end',
         icon: 'web',
-        route: '/front-end',
+        route: '/tech/front-end',
         tooltip: 'Front-end frameworks and libraries',
         children: [
           {
             id: 'angular',
             title: 'Angular',
             icon: 'code',
-            route: '/angular',
+            route: '/tech/front-end/angular',
             tooltip: 'Angular tutorials and examples',
             children: [
               {
                 id: 'core-concepts',
                 title: 'Core Concepts',
                 icon: 'build',
-                route: '/angular/core-concepts',
+                route: '/tech/front-end/angular/core-concepts',
                 tooltip: 'Angular core concepts and fundamentals',
                 children: [
                   {
                     id: 'empty',
                     title: 'Empty Page',
                     icon: 'description',
-                    route: '/angular/core-concepts/empty',
+                    route: '/tech/front-end/angular/core-concepts/empty',
                     tooltip: 'Empty page template'
                   },
                   {
                     id: 'control-flow',
                     title: 'Control Flow',
                     icon: 'control_camera',
-                    route: '/angular/core-concepts/control-flow',
+                    route: '/tech/front-end/angular/core-concepts/control-flow',
                     tooltip: 'Angular control flow syntax'
                   },
                   {
                     id: 'signals',
                     title: 'Signals & Resources',
                     icon: 'signal_cellular_alt',
-                    route: '/angular/core-concepts/signals',
+                    route: '/tech/front-end/angular/core-concepts/signals',
                     tooltip: 'Angular signals and resources'
                   }
                 ]
@@ -66,28 +67,28 @@ export const NAVIGATION_CONFIG: NavigationItem[] = [
                 id: 'forms-data',
                 title: 'Forms & Data',
                 icon: 'description',
-                route: '/angular/forms-data',
+                route: '/tech/front-end/angular/forms-data',
                 tooltip: 'Angular forms and data handling',
                 children: [
                   {
                     id: 'reactive-forms',
                     title: 'Reactive Forms',
                     icon: 'edit',
-                    route: '/angular/forms-data/reactive-forms',
+                    route: '/tech/front-end/angular/forms-data/reactive-forms',
                     tooltip: 'Angular reactive forms'
                   },
                   {
                     id: 'reactive-forms-signals',
                     title: 'Forms + Signals',
                     icon: 'signal_cellular_alt',
-                    route: '/angular/forms-data/reactive-forms-signals',
+                    route: '/tech/front-end/angular/forms-data/reactive-forms-signals',
                     tooltip: 'Reactive forms with signals'
                   },
                   {
                     id: 'http-client',
                     title: 'HTTP Client',
                     icon: 'http',
-                    route: '/angular/forms-data/http-client',
+                    route: '/tech/front-end/angular/forms-data/http-client',
                     tooltip: 'Angular HTTP client'
                   }
                 ]
@@ -96,28 +97,28 @@ export const NAVIGATION_CONFIG: NavigationItem[] = [
                 id: 'architecture',
                 title: 'Architecture',
                 icon: 'architecture',
-                route: '/angular/architecture',
+                route: '/tech/front-end/angular/architecture',
                 tooltip: 'Angular architecture patterns',
                 children: [
                   {
                     id: 'dependency-injection',
                     title: 'Dependency Injection',
                     icon: 'injection',
-                    route: '/angular/architecture/dependency-injection',
+                    route: '/tech/front-end/angular/architecture/dependency-injection',
                     tooltip: 'Angular dependency injection'
                   },
                   {
                     id: 'lifecycle-hooks',
                     title: 'Lifecycle Hooks',
                     icon: 'cycle',
-                    route: '/angular/architecture/lifecycle-hooks',
+                    route: '/tech/front-end/angular/architecture/lifecycle-hooks',
                     tooltip: 'Angular component lifecycle hooks'
                   },
                   {
                     id: 'services',
                     title: 'Services',
                     icon: 'build',
-                    route: '/angular/architecture/services',
+                    route: '/tech/front-end/angular/architecture/services',
                     tooltip: 'Angular services'
                   }
                 ]
@@ -126,35 +127,35 @@ export const NAVIGATION_CONFIG: NavigationItem[] = [
                 id: 'advanced-features',
                 title: 'Advanced Features',
                 icon: 'extension',
-                route: '/angular/advanced-features',
+                route: '/tech/front-end/angular/advanced-features',
                 tooltip: 'Advanced Angular features',
                 children: [
                   {
                     id: 'pipes',
                     title: 'Pipes',
                     icon: 'filter_list',
-                    route: '/angular/advanced-features/pipes',
+                    route: '/tech/front-end/angular/advanced-features/pipes',
                     tooltip: 'Angular pipes'
                   },
                   {
                     id: 'guards-interceptors',
                     title: 'Guards & Interceptors',
                     icon: 'security',
-                    route: '/angular/advanced-features/guards-interceptors',
+                    route: '/tech/front-end/angular/advanced-features/guards-interceptors',
                     tooltip: 'Angular guards and interceptors'
                   },
                   {
                     id: 'lazy-loading',
                     title: 'Lazy Loading',
                     icon: 'speed',
-                    route: '/angular/advanced-features/lazy-loading',
+                    route: '/tech/front-end/angular/advanced-features/lazy-loading',
                     tooltip: 'Angular lazy loading'
                   },
                   {
                     id: 'defer',
                     title: '@defer Directive',
                     icon: 'schedule',
-                    route: '/angular/advanced-features/defer',
+                    route: '/tech/front-end/angular/advanced-features/defer',
                     tooltip: 'Angular @defer directive'
                   }
                 ]
@@ -163,14 +164,14 @@ export const NAVIGATION_CONFIG: NavigationItem[] = [
                 id: 'playground',
                 title: 'Playground',
                 icon: 'play_arrow',
-                route: '/angular/playground',
+                route: '/tech/front-end/angular/playground',
                 tooltip: 'Experimental features and testing',
                 children: [
                   {
                     id: 'testdome',
                     title: 'TestDome Page 1',
                     icon: 'science',
-                    route: '/angular/playground/testdome',
+                    route: '/tech/front-end/angular/playground/testdome',
                     tooltip: 'TestDome experiment page 1',
                     badge: 'New',
                     badgeColor: 'accent'
@@ -179,7 +180,7 @@ export const NAVIGATION_CONFIG: NavigationItem[] = [
                     id: 'testdome2',
                     title: 'TestDome Page 2',
                     icon: 'experiment',
-                    route: '/angular/playground/testdome2',
+                    route: '/tech/front-end/angular/playground/testdome2',
                     tooltip: 'TestDome experiment page 2'
                   }
                 ]

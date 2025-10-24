@@ -5,7 +5,7 @@ import { EmptyComponent } from './pages/core-concepts/empty.component';
 import { ControlFlowComponent } from './pages/core-concepts/control-flow.component';
 
 export const angularRoutes: Routes = [
-  { path: '', redirectTo: 'core-concepts', pathMatch: 'full' },
+  { path: '', loadComponent: () => import('./angular-shell.component').then(m => m.AngularShellComponent) },
 
   // CORE CONCEPTS - Landing Page
   { path: 'core-concepts', loadComponent: () => import('./pages/core-concepts/core-concepts-landing.component').then(m => m.CoreConceptsLandingComponent) },

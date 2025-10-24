@@ -48,12 +48,12 @@ export class NavigationService {
    */
   private loadNavigation(): void {
     this._loading.set(true);
-    
+
     // Load navigation from constants - single source of truth
     this._navigationItems.set(NAVIGATION_CONFIG);
     this._filteredItems.set(NAVIGATION_CONFIG);
     this._loading.set(false);
-    
+
     // Start with all panels collapsed by default
     this._expandedPanels.set(new Set());
   }

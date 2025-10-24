@@ -13,8 +13,4 @@ export const techRoutes: Routes = [
     path: 'back-end',
     loadChildren: () => import('./back-end/back-end.routes').then(m => m.backEndRoutes)
   },
-  {
-    path: 'angular',
-    loadChildren: () => import('./angular/angular.routes').then(m => m.angularRoutes)
-  }
 ];
