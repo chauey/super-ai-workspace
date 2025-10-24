@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "nx build super-ai --configuration=production",
-    "vercel-build": "nx build super-ai --configuration=production"
+    "build": "cd apps/ng-test && ng build --configuration=production",
+    "build:github-pages": "cd apps/ng-test && ng build --configuration=github-pages",
+    "vercel-build": "cd apps/ng-test && ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
