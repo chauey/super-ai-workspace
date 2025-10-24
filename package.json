@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "cd apps/ng-test && ng serve",
     "build": "cd apps/ng-test && ng build --configuration=production",
     "build:github-pages": "cd apps/ng-test && ng build --configuration=github-pages",
     "vercel-build": "cd apps/ng-test && ng build --configuration=production"
